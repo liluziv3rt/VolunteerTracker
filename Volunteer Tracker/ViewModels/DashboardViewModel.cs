@@ -57,59 +57,107 @@ namespace Volunteer_Tracker.ViewModels
         {
             try
             {
+                // ОТЛАДКА: выводим ID пользователя
+                System.Diagnostics.Debug.WriteLine($"=== Загрузка данных для UserId: {_currentUser.Id} ===");
+
                 // 1. Загружаем баллы и часы из user_points
                 var userPoints = await _context.UserPoints
                     .FirstOrDefaultAsync(up => up.UserId == _currentUser.Id);
 
                 if (userPoints != null)
                 {
+                    // ОТЛАДКА: выводим значения из БД
+                    System.Diagnostics.Debug.WriteLine($"userPoints найден: TotalPoints={userPoints.TotalPoints}, TotalHours={userPoints.TotalVolunteerHours}, Projects={userPoints.TotalProjectsCompleted}");
+
                     TotalPoints = userPoints.TotalPoints ?? 0;
                     TotalHours = userPoints.TotalVolunteerHours ?? 0;
                     CompletedProjects = userPoints.TotalProjectsCompleted ?? 0;
                 }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine($"userPoints НЕ найден для UserId={_currentUser.Id}");
 
-                // 2. Баллы за последнюю неделю из activity_log
+                    // Создаём запись в user_points, если её нет
+                    var newUserPoints = new UserPoint
+                    {
+                        UserId = _currentUser.Id,
+                        TotalPoints = 0,
+                        TotalVolunteerHours = 0,
+                        TotalProjectsCompleted = 0,
+                        UpdatedAt = DateTime.Now
+                    };
+                    _context.UserPoints.Add(newUserPoints);
+                    await _context.SaveChangesAsync();
+                    System.Diagnostics.Debug.WriteLine($"Создана новая запись user_points для UserId={_currentUser.Id}");
+
+                    TotalPoints = 0;
+                    TotalHours = 0;
+                    CompletedProjects = 0;
+                }
+
+                // ОТЛАДКА: выводим итоговые значения
+                System.Diagnostics.Debug.WriteLine($"Итоговые значения: TotalPoints={TotalPoints}, TotalHours={TotalHours}, CompletedProjects={CompletedProjects}");
+
+                // 2. Баллы за последнюю неделю
                 var oneWeekAgo = DateTime.Now.AddDays(-7);
                 var weeklyPointsFromLog = await _context.ActivityLogs
                     .Where(al => al.UserId == _currentUser.Id && al.CreatedAt >= oneWeekAgo)
                     .SumAsync(al => al.PointsChange ?? 0);
                 WeeklyPoints = weeklyPointsFromLog;
+                System.Diagnostics.Debug.WriteLine($"WeeklyPoints: {WeeklyPoints}");
 
-                // 3. Прогресс до следующего достижения из таблицы achievements
-                var nextAchievement = await _context.Achievements
-                    .Where(a => a.TriggerType == "points" && a.ThresholdValue > TotalPoints)
-                    .OrderBy(a => a.ThresholdValue)
+                // 3. Прогресс достижений
+                await LoadAchievementProgress();
+
+                // 4. Недавняя активность
+                await LoadRecentActivities();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"ОШИБКА загрузки: {ex.Message}");
+                SetDefaultValues();
+            }
+        }
+
+        private async Task LoadAchievementProgress()
+        {
+            var nextAchievement = await _context.Achievements
+                .Where(a => a.TriggerType == "points" && a.ThresholdValue > TotalPoints)
+                .OrderBy(a => a.ThresholdValue)
+                .FirstOrDefaultAsync();
+
+            if (nextAchievement != null)
+            {
+                var remainingPoints = nextAchievement.ThresholdValue - TotalPoints;
+                NextAchievementText = $"До достижения \"{nextAchievement.Name}\": {remainingPoints} баллов";
+
+                var previousThreshold = await _context.Achievements
+                    .Where(a => a.TriggerType == "points" && a.ThresholdValue <= TotalPoints)
+                    .OrderByDescending(a => a.ThresholdValue)
+                    .Select(a => a.ThresholdValue)
                     .FirstOrDefaultAsync();
 
-                if (nextAchievement != null)
-                {
-                    var remainingPoints = nextAchievement.ThresholdValue - TotalPoints;
-                    NextAchievementText = $"До достижения \"{nextAchievement.Name}\": {remainingPoints} баллов";
+                var totalNeeded = nextAchievement.ThresholdValue - previousThreshold;
+                var earned = TotalPoints - previousThreshold;
+                AchievementProgress = totalNeeded > 0 ? (double)earned / totalNeeded * 100 : 0;
+            }
+            else
+            {
+                NextAchievementText = "Все достижения получены!";
+                AchievementProgress = 100;
+            }
+        }
 
-                    // Процент прогресса
-                    var previousThreshold = await _context.Achievements
-                        .Where(a => a.TriggerType == "points" && a.ThresholdValue <= TotalPoints)
-                        .OrderByDescending(a => a.ThresholdValue)
-                        .Select(a => a.ThresholdValue)
-                        .FirstOrDefaultAsync();
+        private async Task LoadRecentActivities()
+        {
+            var activities = await _context.ActivityLogs
+                .Where(al => al.UserId == _currentUser.Id)
+                .OrderByDescending(al => al.CreatedAt)
+                .Take(10)
+                .ToListAsync();
 
-                    var totalNeeded = nextAchievement.ThresholdValue - previousThreshold;
-                    var earned = TotalPoints - previousThreshold;
-                    AchievementProgress = totalNeeded > 0 ? (double)earned / totalNeeded * 100 : 0;
-                }
-                else
-                {
-                    NextAchievementText = "Все достижения получены!";
-                    AchievementProgress = 100;
-                }
-
-                // 4. Недавняя активность из activity_log
-                var activities = await _context.ActivityLogs
-                    .Where(al => al.UserId == _currentUser.Id)
-                    .OrderByDescending(al => al.CreatedAt)
-                    .Take(10)
-                    .ToListAsync();
-
+            if (activities.Any())
+            {
                 RecentActivities = activities.Select(a => new ActivityItem
                 {
                     Title = a.Title ?? a.ActivityType ?? "Действие",
@@ -117,30 +165,28 @@ namespace Volunteer_Tracker.ViewModels
                     TimeAgo = GetTimeAgo(a.CreatedAt ?? DateTime.Now)
                 }).ToList();
             }
-            catch (Exception ex)
+            else
             {
-                System.Diagnostics.Debug.WriteLine($"Ошибка загрузки данных: {ex.Message}");
-
-                // Данные по умолчанию, если БД пустая
-                TotalPoints = 1250;
-                TotalHours = 47.5m;
-                CompletedProjects = 4;
-                WeeklyPoints = 50;
-                NextAchievementText = "До следующего достижения: 150 баллов";
-                AchievementProgress = 75;
                 RecentActivities = GetDefaultActivities();
             }
+        }
+
+        private void SetDefaultValues()
+        {
+            TotalPoints = 0;
+            TotalHours = 0;
+            CompletedProjects = 0;
+            WeeklyPoints = 0;
+            NextAchievementText = "Загрузка данных...";
+            AchievementProgress = 0;
+            RecentActivities = GetDefaultActivities();
         }
 
         private List<ActivityItem> GetDefaultActivities()
         {
             return new List<ActivityItem>
             {
-                new() { Title = "Завершила проект \"Эко-акция\"", PointsChange = "+50 баллов", TimeAgo = "2 часа назад" },
-                new() { Title = "Подтверждено 4 волонтёрских часа", PointsChange = null, TimeAgo = "вчера" },
-                new() { Title = "Получен значок \"Помощник\"", PointsChange = null, TimeAgo = "3 дня назад" },
-                new() { Title = "Присоединилась к проекту \"Чистый город\"", PointsChange = null, TimeAgo = "неделю назад" },
-                new() { Title = "Поднялась в рейтинге на 5 позиций", PointsChange = null, TimeAgo = "неделю назад" }
+                new() { Title = "Добро пожаловать! Начните волонтёрство", PointsChange = null, TimeAgo = "только что" }
             };
         }
 

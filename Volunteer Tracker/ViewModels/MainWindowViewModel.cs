@@ -1,5 +1,6 @@
 ﻿using System;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.EntityFrameworkCore;
 using Volunteer_Tracker.Models;
 using Volunteer_Tracker.Views;
 
@@ -45,11 +46,29 @@ namespace Volunteer_Tracker.ViewModels
             CurrentView = new DashboardView { DataContext = dashboardVm };
         }
 
-        private void OnLoginSuccess(object? sender, User user)
+        private async void OnLoginSuccess(object? sender, User user)
         {
             _currentUser = user;
 
-            _menuViewModel = new MainMenuViewModel(user, 1250);
+            // Загружаем баллы пользователя из базы данных
+            int userPoints = 0;
+            try
+            {
+                using var context = new PostgresContext();
+                var pointsEntity = await context.UserPoints
+                    .FirstOrDefaultAsync(up => up.UserId == user.Id);
+
+                if (pointsEntity != null)
+                {
+                    userPoints = pointsEntity.TotalPoints ?? 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Ошибка загрузки баллов: {ex.Message}");
+            }
+
+            _menuViewModel = new MainMenuViewModel(user, userPoints);
             _menuViewModel.NavigateRequested += OnNavigateRequested;
             _menuViewModel.LogoutRequested += OnLogoutRequested;
             MenuView = new MainMenuView { DataContext = _menuViewModel };
@@ -65,26 +84,25 @@ namespace Volunteer_Tracker.ViewModels
                     ShowDashboard();
                     break;
                 case "Gradebook":
-                    // TODO
+                    // TODO: ShowGradebook();
                     break;
                 case "Events":
-                    // TODO
+                    // TODO: ShowEvents();
                     break;
                 case "Volunteer":
-                    // TODO
+                    // TODO: ShowVolunteer();
                     break;
                 case "Rating":
-                    // TODO
+                    // TODO: ShowRating();
                     break;
                 case "Projects":
-                    // TODO
+                    // TODO: ShowProjects();
                     break;
             }
         }
 
         private void OnNavigateFromDashboard(object? sender, string destination)
         {
-            // Подсвечиваем соответствующий пункт меню
             _menuViewModel?.ResetSelection();
             switch (destination)
             {
