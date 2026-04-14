@@ -1,0 +1,175 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Volunteer_Tracker.ViewModels"
+             x:Class="Volunteer_Tracker.Views.RatingView"
+             x:DataType="vm:RatingViewModel">
+
+    <UserControl.Styles>
+        <Style Selector="Border.rating-card">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="16"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="0,0,0,16"/>
+        </Style>
+        
+        <Style Selector="Border.leaderboard-item">
+            <Setter Property="Padding" Value="12,0"/>
+            <Setter Property="Margin" Value="0,8"/>
+            <Setter Property="CornerRadius" Value="12"/>
+        </Style>
+        
+        <Style Selector="Border.leaderboard-item.current-user">
+            <Setter Property="Background" Value="#E8F0FE"/>
+        </Style>
+        
+        <Style Selector="Border.leaderboard-item:pointerover">
+            <Setter Property="Background" Value="#F8F9FA"/>
+        </Style>
+    </UserControl.Styles>
+
+    <ScrollViewer>
+        <StackPanel Margin="32,24,32,24" Spacing="24">
+            
+            <!-- Заголовок -->
+            <StackPanel Spacing="8">
+                <TextBlock Text="🏆 Рейтинг студентов" FontSize="28" FontWeight="SemiBold" Foreground="#202124"/>
+                <TextBlock Text="Таблица лидеров по накопленным баллам" FontSize="14" Foreground="#5F6368"/>
+            </StackPanel>
+
+            <!-- Твоё место (карточка текущего пользователя) -->
+            <Border Classes="rating-card" Background="#E8F0FE">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="📌 Твоё место в рейтинге" FontSize="14" FontWeight="SemiBold" Foreground="#1A73E8"/>
+                    
+                    <Grid ColumnDefinitions="Auto,Auto,*,Auto" RowDefinitions="Auto" ColumnSpacing="16">
+                        <!-- Место -->
+                        <Border Background="#1A73E8" Width="40" Height="40" CornerRadius="20">
+                            <TextBlock Text="{Binding CurrentUserRank}" FontSize="16" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        
+                        <!-- Аватар -->
+                        <Border Background="#E8F0FE" Width="48" Height="48" CornerRadius="24" Grid.Column="1">
+                            <TextBlock Text="{Binding CurrentUserInitials}" FontSize="16" FontWeight="Bold" Foreground="#1A73E8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        
+                        <!-- Имя и баллы -->
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="{Binding CurrentUserFullName}" FontSize="16" FontWeight="SemiBold" Foreground="#202124"/>
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <TextBlock Text="⭐" FontSize="12"/>
+                                <TextBlock Text="{Binding CurrentUserPoints}" FontSize="14" FontWeight="Bold" Foreground="#1A73E8"/>
+                                <TextBlock Text="баллов" FontSize="12" Foreground="#5F6368"/>
+                            </StackPanel>
+                        </StackPanel>
+                        
+                        <!-- Стрелка прогресса -->
+                        <TextBlock Grid.Column="3" Text="{Binding RankChange}" FontSize="14" Foreground="{Binding RankChangeColor}"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- Таблица лидеров -->
+            <Border Classes="rating-card">
+                <StackPanel Spacing="16">
+                    
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <TextBlock Text="🏅 Топ студентов" FontSize="16" FontWeight="SemiBold" Foreground="#202124"/>
+                        <TextBlock Text="за всё время" FontSize="13" Foreground="#9AA0A6"/>
+                    </StackPanel>
+                    
+                    <!-- Заголовки таблицы -->
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="16" Margin="0,0,0,8">
+                        <TextBlock Text="Место" FontSize="12" FontWeight="SemiBold" Foreground="#5F6368" Width="50"/>
+                        <TextBlock Text="Студент" FontSize="12" FontWeight="SemiBold" Foreground="#5F6368"/>
+                        <TextBlock Text="Баллы" FontSize="12" FontWeight="SemiBold" Foreground="#5F6368" Width="80" HorizontalAlignment="Right"/>
+                    </Grid>
+                    
+                    <!-- Список студентов -->
+                    <ItemsControl ItemsSource="{Binding Leaderboard}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Classes="leaderboard-item" Background="{Binding BackgroundColor}">
+                                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="16">
+                                        
+                                        <!-- Место с медалью -->
+                                        <StackPanel Grid.Column="0" Width="50" Orientation="Horizontal" Spacing="8">
+                                            <TextBlock Text="{Binding Rank}" FontSize="16" FontWeight="SemiBold" Foreground="{Binding RankColor}"/>
+                                            <TextBlock Text="{Binding Medal}" FontSize="16"/>
+                                        </StackPanel>
+                                        
+                                        <!-- Аватар + Имя -->
+                                        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="12">
+                                            <Border Background="#F0F0F0" Width="36" Height="36" CornerRadius="18">
+                                                <TextBlock Text="{Binding Initials}" FontSize="14" FontWeight="Bold" Foreground="#5F6368" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding FullName}" FontSize="14" FontWeight="SemiBold" Foreground="#202124"/>
+                                                <TextBlock Text="{Binding GroupName}" FontSize="11" Foreground="#9AA0A6"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                        
+                                        <!-- Баллы -->
+                                        <StackPanel Grid.Column="2" Width="80" HorizontalAlignment="Right" Spacing="4">
+                                            <TextBlock Text="{Binding Points}" FontSize="16" FontWeight="Bold" Foreground="#1A73E8" HorizontalAlignment="Right"/>
+                                            <TextBlock Text="баллов" FontSize="11" Foreground="#9AA0A6" HorizontalAlignment="Right"/>
+                                        </StackPanel>
+                                        
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    
+                </StackPanel>
+            </Border>
+
+            <!-- Статистика по баллам -->
+            <Grid ColumnDefinitions="1*,1*" ColumnSpacing="16">
+                <Border Classes="rating-card">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="📊 Распределение баллов" FontSize="14" FontWeight="SemiBold" Foreground="#202124"/>
+                        
+                        <StackPanel Spacing="8">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <TextBlock Text="Средний балл:" FontSize="13" Foreground="#5F6368"/>
+                                <TextBlock Text="{Binding AveragePoints}" FontSize="13" FontWeight="Bold" Foreground="#1A73E8"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <TextBlock Text="Всего студентов:" FontSize="13" Foreground="#5F6368"/>
+                                <TextBlock Text="{Binding TotalStudents}" FontSize="13" FontWeight="Bold" Foreground="#1A73E8"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <TextBlock Text="Максимум баллов:" FontSize="13" Foreground="#5F6368"/>
+                                <TextBlock Text="{Binding MaxPoints}" FontSize="13" FontWeight="Bold" Foreground="#34A853"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                
+                <Border Classes="rating-card">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="📈 Твоя статистика" FontSize="14" FontWeight="SemiBold" Foreground="#202124"/>
+                        
+                        <StackPanel Spacing="8">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <TextBlock Text="Общее место:" FontSize="13" Foreground="#5F6368"/>
+                                <TextBlock Text="{Binding CurrentUserRank}" FontSize="13" FontWeight="Bold" Foreground="#1A73E8"/>
+                                <TextBlock Text="из {Binding TotalStudents}" FontSize="13" Foreground="#5F6368"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <TextBlock Text="Твои баллы:" FontSize="13" Foreground="#5F6368"/>
+                                <TextBlock Text="{Binding CurrentUserPoints}" FontSize="13" FontWeight="Bold" Foreground="#1A73E8"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <TextBlock Text="До следующего места:" FontSize="13" Foreground="#5F6368"/>
+                                <TextBlock Text="{Binding PointsToNextRank}" FontSize="13" FontWeight="Bold" Foreground="#34A853"/>
+                                <TextBlock Text="баллов" FontSize="13" Foreground="#5F6368"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

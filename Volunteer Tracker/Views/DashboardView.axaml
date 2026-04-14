@@ -5,100 +5,132 @@
              x:DataType="vm:DashboardViewModel">
 
     <UserControl.Styles>
-        <Style Selector="Button.stat-card">
+        <Style Selector="Button.action-card">
             <Setter Property="Background" Value="White"/>
             <Setter Property="CornerRadius" Value="16"/>
             <Setter Property="Padding" Value="20"/>
-            <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="MinHeight" Value="140"/>
-            <Setter Property="Margin" Value="0,0,16,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="MinHeight" Value="132"/>
         </Style>
-        <Style Selector="Button.stat-card:pointerover">
-            <Setter Property="Background" Value="#F8F9FA"/>
+
+        <Style Selector="Button.action-card:pointerover">
+            <Setter Property="Background" Value="#FAFBFC"/>
         </Style>
-        
-        <Style Selector="Border.activity-item">
-            <Setter Property="Padding" Value="0,12"/>
-            <Setter Property="BorderBrush" Value="#F0F0F0"/>
-            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+
+        <Style Selector="Border.stat-card">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="16"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="MinHeight" Value="132"/>
         </Style>
     </UserControl.Styles>
 
     <ScrollViewer>
         <StackPanel Margin="32,24,32,24" Spacing="24">
             
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
-                <TextBlock Text="{Binding CurrentDate}" FontSize="14" Foreground="#5F6368"/>
+            <!-- Приветствие -->
+<StackPanel Spacing="4">
+    <TextBlock FontSize="28" FontWeight="SemiBold" Foreground="#202124">
+        Добро пожаловать, <Run Text="{Binding UserFirstName}"/>!
+    </TextBlock>
+    <TextBlock Text="{Binding CurrentDate}" FontSize="14" Foreground="#5F6368"/>
+</StackPanel>
+
+            <!-- Верхний ряд - 3 action карточки -->
+            <StackPanel Orientation="Horizontal" Spacing="16">
+                <Button Classes="action-card" Width="300" Command="{Binding StartVolunteerCommand}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <StackPanel Grid.Column="0" Spacing="8">
+                            <TextBlock Text="Начать волонтёрство" FontSize="17" FontWeight="SemiBold" Foreground="#1A73E8"/>
+                            <TextBlock Text="Присоединиться к новому проекту" FontSize="13.5" Foreground="#5F6368" TextWrapping="Wrap"/>
+                        </StackPanel>
+                        <Border Grid.Column="1" Width="56" Height="56" Background="#E8F5E9" CornerRadius="14">
+                            <TextBlock Text="▶" FontSize="32" Foreground="#34A853" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </Button>
+
+                <Button Classes="action-card" Width="300" Command="{Binding JoinProjectCommand}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <StackPanel Grid.Column="0" Spacing="8">
+                            <TextBlock Text="Мои проекты" FontSize="17" FontWeight="SemiBold" Foreground="#1A73E8"/>
+                            <TextBlock Text="Управление активными проектами" FontSize="13.5" Foreground="#5F6368" TextWrapping="Wrap"/>
+                        </StackPanel>
+                        <Border Grid.Column="1" Width="56" Height="56" Background="#E3F2FD" CornerRadius="14">
+                            <TextBlock Text="📁" FontSize="32" Foreground="#4285F4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </Button>
+
+                <Button Classes="action-card" Width="300" Command="{Binding NavigateToRatingCommand}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <StackPanel Grid.Column="0" Spacing="8">
+                            <TextBlock Text="Мой рейтинг" FontSize="17" FontWeight="SemiBold" Foreground="#1A73E8"/>
+                            <TextBlock Text="Посмотреть достижения" FontSize="13.5" Foreground="#5F6368" TextWrapping="Wrap"/>
+                        </StackPanel>
+                        <Border Grid.Column="1" Width="56" Height="56" Background="#FFF3E0" CornerRadius="14">
+                            <TextBlock Text="🏆" FontSize="32" Foreground="#FB8C00" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </Button>
             </StackPanel>
-            
-            <TextBlock FontSize="28" FontWeight="SemiBold" Foreground="#202124">
-                Добро пожаловать, <Run Text="{Binding UserFirstName}"/>!
-            </TextBlock>
 
-            <!-- Быстрые действия -->
-            <WrapPanel>
-                <Button Classes="stat-card" Width="280" Command="{Binding StartVolunteerCommand}">
-                    <StackPanel Spacing="8">
-                        <TextBlock Text="▶" FontSize="32" Foreground="#1A73E8"/>
-                        <TextBlock Text="Начать волонтёрство" FontSize="16" FontWeight="SemiBold" Foreground="#1A73E8"/>
-                        <TextBlock Text="Присоединиться к новому проекту" FontSize="13" Foreground="#5F6368" TextWrapping="Wrap"/>
-                    </StackPanel>
-                </Button>
-                
-                <Button Classes="stat-card" Width="280" Command="{Binding JoinProjectCommand}">
-                    <StackPanel Spacing="8">
-                        <TextBlock Text="📋" FontSize="32" Foreground="#34A853"/>
-                        <TextBlock Text="Мои проекты" FontSize="16" FontWeight="SemiBold" Foreground="#34A853"/>
-                        <TextBlock Text="Управление активными проектами" FontSize="13" Foreground="#5F6368" TextWrapping="Wrap"/>
-                    </StackPanel>
-                </Button>
-            </WrapPanel>
+            <!-- Нижний ряд - 3 стат карточки -->
+            <StackPanel Orientation="Horizontal" Spacing="16">
+                <Border Classes="stat-card" Width="300">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <StackPanel Grid.Column="0" Spacing="4">
+                            <TextBlock Text="Волонтёрские часы" FontSize="15" Foreground="#5F6368"/>
+                            <TextBlock Text="{Binding TotalHours, StringFormat={}{0:F1}}" FontSize="42" FontWeight="Bold" Foreground="#202124"/>
+                            <TextBlock Text="за семестр" FontSize="13" Foreground="#9AA0A6"/>
+                        </StackPanel>
+                        <Border Grid.Column="1" Width="52" Height="52" Background="#E6F4EA" CornerRadius="14" VerticalAlignment="Center">
+                            <TextBlock Text="⏰" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </Border>
 
-            <!-- Три карточки статистики -->
-            <WrapPanel>
-                <Button Classes="stat-card" Width="200" Command="{Binding NavigateToVolunteerCommand}">
-                    <StackPanel Spacing="8">
-                        <TextBlock Text="🤲" FontSize="28" Foreground="#202124"/>
-                        <TextBlock Text="{Binding TotalHours, StringFormat={}{0:F2}}" FontSize="32" FontWeight="Bold" Foreground="#202124"/>
-                        <TextBlock Text="волонтёрских часов" FontSize="13" Foreground="#5F6368"/>
-                        <TextBlock Text="за семестр" FontSize="11" Foreground="#9AA0A6"/>
-                    </StackPanel>
-                </Button>
+                <!-- Полученные баллы -->
+                <Border Classes="stat-card" Width="300">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <StackPanel Grid.Column="0" Spacing="4">
+                            <TextBlock Text="Полученные баллы" FontSize="15" Foreground="#5F6368"/>
+                            <TextBlock Text="{Binding TotalPoints}" FontSize="42" FontWeight="Bold" Foreground="#1A73E8"/>
+                            <StackPanel Orientation="Horizontal" Spacing="4" Margin="0,2,0,0">
+                                <TextBlock Text="+" FontSize="12" Foreground="#34A853"/>
+                                <TextBlock Text="{Binding WeeklyPoints}" FontSize="12" FontWeight="SemiBold" Foreground="#34A853"/>
+                                <TextBlock Text="за неделю" FontSize="12" Foreground="#5F6368"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <Border Grid.Column="1" Width="52" Height="52" Background="#E3F2FD" CornerRadius="14" VerticalAlignment="Center">
+                            <TextBlock Text="💎" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </Border>
 
-                <Button Classes="stat-card" Width="200" Command="{Binding NavigateToRatingCommand}">
-    <StackPanel Spacing="8">
-        <TextBlock Text="⭐" FontSize="28" Foreground="#1A73E8"/>
-        <TextBlock Text="{Binding TotalPoints}" FontSize="32" FontWeight="Bold" Foreground="#1A73E8"/>
-        <TextBlock Text="накоплено баллов" FontSize="13" Foreground="#5F6368"/>
-        <TextBlock FontSize="11" Foreground="#34A853">
-            <Run Text="+"/>
-            <Run Text="{Binding WeeklyPoints}"/>
-            <Run Text=" за неделю"/>
-        </TextBlock>
-    </StackPanel>
-</Button>
-
-                <Button Classes="stat-card" Width="200" Command="{Binding NavigateToProjectsCommand}">
-                    <StackPanel Spacing="8">
-                        <TextBlock Text="✅" FontSize="28" Foreground="#202124"/>
-                        <TextBlock Text="{Binding CompletedProjects}" FontSize="32" FontWeight="Bold" Foreground="#202124"/>
-                        <TextBlock Text="завершённых проектов" FontSize="13" Foreground="#5F6368"/>
-                        <TextBlock Text="в этом семестре" FontSize="11" Foreground="#9AA0A6"/>
-                    </StackPanel>
-                </Button>
-            </WrapPanel>
+                <Border Classes="stat-card" Width="300">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <StackPanel Grid.Column="0" Spacing="4">
+                            <TextBlock Text="Завершённые проекты" FontSize="15" Foreground="#5F6368"/>
+                            <TextBlock Text="{Binding CompletedProjects}" FontSize="42" FontWeight="Bold" Foreground="#202124"/>
+                            <TextBlock Text="в этом семестре" FontSize="13" Foreground="#9AA0A6"/>
+                        </StackPanel>
+                        <Border Grid.Column="1" Width="52" Height="52" Background="#FFF3E0" CornerRadius="14" VerticalAlignment="Center">
+                            <TextBlock Text="✅" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </Border>
+            </StackPanel>
 
             <!-- Мои достижения -->
-            <Border Background="White" CornerRadius="16" Padding="20">
+            <Border Background="White" CornerRadius="16" Padding="24,20">
                 <StackPanel Spacing="16">
                     <StackPanel Orientation="Horizontal" Spacing="8">
-                        <TextBlock Text="🏅" FontSize="20"/>
-                        <TextBlock Text="Мои достижения" FontSize="16" FontWeight="SemiBold" Foreground="#202124"/>
+                        <TextBlock Text="🏅" FontSize="22"/>
+                        <TextBlock Text="Мои достижения" FontSize="18" FontWeight="SemiBold" Foreground="#202124"/>
                     </StackPanel>
-                    
                     <TextBlock Text="{Binding NextAchievementText}" FontSize="14" Foreground="#5F6368"/>
-                    
                     <Grid ColumnDefinitions="*,Auto" ColumnSpacing="16">
                         <ProgressBar Value="{Binding AchievementProgress}" Maximum="100" Height="8" CornerRadius="4">
                             <ProgressBar.Styles>
@@ -113,28 +145,41 @@
                 </StackPanel>
             </Border>
 
-            <!-- Недавняя активность -->
-            <Border Background="White" CornerRadius="16" Padding="20">
+            <!-- Недавняя активность с цветами и иконками -->
+            <Border Background="White" CornerRadius="16" Padding="24,20">
                 <StackPanel Spacing="16">
-                    
-                    <TextBlock Text="📋 Недавняя активность" FontSize="16" FontWeight="SemiBold" Foreground="#202124"/>
+                    <TextBlock Text="📋 Недавняя активность" FontSize="18" FontWeight="SemiBold" Foreground="#202124"/>
                     
                     <ItemsControl ItemsSource="{Binding RecentActivities}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Classes="activity-item">
-                                    <StackPanel Spacing="4">
-                                        <TextBlock Text="{Binding Title}" FontSize="14" FontWeight="SemiBold" Foreground="#202124"/>
-                                        <StackPanel Orientation="Horizontal" Spacing="12">
-                                            <TextBlock Text="{Binding PointsChange}" FontSize="12" Foreground="#34A853" IsVisible="{Binding PointsChange, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
-                                            <TextBlock Text="{Binding TimeAgo}" FontSize="12" Foreground="#9AA0A6"/>
+                                <Border Padding="0,12" BorderBrush="#F0F0F0" BorderThickness="0,0,0,1">
+                                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                                        
+                                        <!-- Иконка типа активности -->
+                                        <Border Width="40" Height="40" CornerRadius="12" Background="{Binding IconBackground}">
+                                            <TextBlock Text="{Binding Icon}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        
+                                        <!-- Текст активности -->
+                                        <StackPanel Grid.Column="1" Spacing="4">
+                                            <TextBlock Text="{Binding Title}" FontSize="14" FontWeight="SemiBold" Foreground="#202124"/>
+                                            <StackPanel Orientation="Horizontal" Spacing="12">
+                                                <TextBlock Text="{Binding Subtitle}" FontSize="12" Foreground="{Binding SubtitleColor}" 
+                                                           IsVisible="{Binding Subtitle, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                                                <TextBlock Text="{Binding TimeAgo}" FontSize="12" Foreground="#9AA0A6"/>
+                                            </StackPanel>
                                         </StackPanel>
-                                    </StackPanel>
+                                        
+                                        <!-- Баллы (если есть) -->
+                                        <TextBlock Grid.Column="2" Text="{Binding PointsChange}" FontSize="13" FontWeight="SemiBold" 
+                                                   Foreground="#34A853" VerticalAlignment="Center"
+                                                   IsVisible="{Binding PointsChange, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                                    </Grid>
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                    
                 </StackPanel>
             </Border>
 

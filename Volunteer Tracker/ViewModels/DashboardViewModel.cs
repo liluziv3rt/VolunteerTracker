@@ -161,8 +161,10 @@ namespace Volunteer_Tracker.ViewModels
                 RecentActivities = activities.Select(a => new ActivityItem
                 {
                     Title = a.Title ?? a.ActivityType ?? "Действие",
-                    PointsChange = a.PointsChange > 0 ? $"+{a.PointsChange} баллов" : null,
-                    TimeAgo = GetTimeAgo(a.CreatedAt ?? DateTime.Now)
+                    Subtitle = GetSubtitleByType(a),
+                    PointsChange = a.PointsChange > 0 ? $"+{a.PointsChange}" : null,
+                    TimeAgo = GetTimeAgo(a.CreatedAt ?? DateTime.Now),
+                    ActivityType = a.ActivityType ?? "other"
                 }).ToList();
             }
             else
@@ -170,6 +172,21 @@ namespace Volunteer_Tracker.ViewModels
                 RecentActivities = GetDefaultActivities();
             }
         }
+
+        private string GetSubtitleByType(ActivityLog log)
+        {
+            return log.ActivityType switch
+            {
+                "project_completed" => "Завершён проект",
+                "project_joined" => "Присоединился к проекту",
+                "volunteer_hours" => "Подтверждены часы",
+                "achievement" => "Новое достижение",
+                "rating_up" => "Поднялся в рейтинге",
+                "points_earned" => "Начислены баллы",
+                _ => log.Description ?? ""
+            };
+        }
+
 
         private void SetDefaultValues()
         {
@@ -220,7 +237,56 @@ namespace Volunteer_Tracker.ViewModels
     public class ActivityItem
     {
         public string Title { get; set; } = string.Empty;
+        public string? Subtitle { get; set; }
         public string? PointsChange { get; set; }
         public string TimeAgo { get; set; } = string.Empty;
+        public string ActivityType { get; set; } = string.Empty;
+
+        // Иконка и цвет в зависимости от типа
+        public string Icon => GetIcon();
+        public string IconBackground => GetIconBackground();
+        public string SubtitleColor => GetSubtitleColor();
+
+        private string GetIcon()
+        {
+            return ActivityType switch
+            {
+                "project_completed" => "🎉",
+                "project_joined" => "📋",
+                "volunteer_hours" => "🤲",
+                "achievement" => "🏅",
+                "rating_up" => "📈",
+                "points_earned" => "⭐",
+                _ => "📌"
+            };
+        }
+
+        private string GetIconBackground()
+        {
+            return ActivityType switch
+            {
+                "project_completed" => "#E8F5E9",
+                "project_joined" => "#E3F2FD",
+                "volunteer_hours" => "#E6F4EA",
+                "achievement" => "#FFF3E0",
+                "rating_up" => "#E8EAF6",
+                "points_earned" => "#FFF8E1",
+                _ => "#F5F5F5"
+            };
+        }
+
+        private string GetSubtitleColor()
+        {
+            return ActivityType switch
+            {
+                "project_completed" => "#34A853",
+                "project_joined" => "#1A73E8",
+                "volunteer_hours" => "#5F6368",
+                "achievement" => "#FB8C00",
+                "rating_up" => "#34A853",
+                "points_earned" => "#FB8C00",
+                _ => "#5F6368"
+            };
+        }
     }
 }

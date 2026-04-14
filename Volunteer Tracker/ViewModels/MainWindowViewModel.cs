@@ -93,7 +93,7 @@ namespace Volunteer_Tracker.ViewModels
                     // TODO: ShowVolunteer();
                     break;
                 case "Rating":
-                    // TODO: ShowRating();
+                    ShowRating();
                     break;
                 case "Projects":
                     // TODO: ShowProjects();
@@ -122,6 +122,12 @@ namespace Volunteer_Tracker.ViewModels
         {
             _currentUser = null;
             ShowLogin();
+        }
+
+        private void ShowRating()
+        {
+            var ratingVm = new RatingViewModel(_currentUser!);
+            CurrentView = new RatingView { DataContext = ratingVm };
         }
 
         private void OnNavigateToRegister(object? sender, EventArgs e) => ShowRegister();
