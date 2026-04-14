@@ -171,3 +171,4 @@ E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\obj\Debug\net9.0\refint
 E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\obj\Debug\net9.0\Volunteer Tracker.pdb
 E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\obj\Debug\net9.0\Volunteer Tracker.genruntimeconfig.cache
 E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\obj\Debug\net9.0\ref\Volunteer Tracker.dll
+E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\obj\Debug\net9.0\Volunteer Tracker.sourcelink.json

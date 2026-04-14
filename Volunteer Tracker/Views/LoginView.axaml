@@ -8,6 +8,77 @@
         <vm:LoginViewModel />
     </Design.DataContext>
 
+    <UserControl.Styles>
+        
+        <!-- PRIMARY BUTTON -->
+        <Style Selector="Button.primary">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border x:Name="Root"
+                            Background="#1A73E8"
+                            CornerRadius="8"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter
+                            Content="{TemplateBinding Content}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            RecognizesAccessKey="True"
+                            Foreground="{TemplateBinding Foreground}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.primary:pointerover /template/ Border#Root">
+            <Setter Property="Background" Value="#1557B0"/>
+        </Style>
+
+        <Style Selector="Button.primary:pressed /template/ Border#Root">
+            <Setter Property="Background" Value="#0D47A1"/>
+        </Style>
+
+        <!-- LINK BUTTON -->
+        <Style Selector="Button.link">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#1A73E8"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <ContentPresenter
+                        Content="{TemplateBinding Content}"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Foreground="{TemplateBinding Foreground}"/>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.link:pointerover">
+            <Setter Property="Foreground" Value="#1557B0"/>
+        </Style>
+
+        <!-- Стили для TextBox -->
+        <Style Selector="TextBox">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#DADCE0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#202124"/>
+        </Style>
+
+        <Style Selector="TextBox:pointerover">
+            <Setter Property="BorderBrush" Value="#1A73E8"/>
+        </Style>
+
+        <Style Selector="TextBox:focus">
+            <Setter Property="BorderBrush" Value="#1A73E8"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+
+    </UserControl.Styles>
+
     <Grid Background="#F8F9FA">
         <Border Background="#1A73E8" Opacity="0.05" />
 
@@ -38,9 +109,7 @@
                                    FontSize="14"
                                    Foreground="#202124" />
                         <TextBox Watermark="Введите email или телефон"
-                                 Text="{Binding Email, Mode=TwoWay}"
-                                 Padding="12,10"
-                                 CornerRadius="8" />
+                                 Text="{Binding Email, Mode=TwoWay}" />
                     </StackPanel>
 
                     <!-- Пароль -->
@@ -50,9 +119,7 @@
                                    Foreground="#202124" />
                         <TextBox Watermark="Введите пароль"
                                  Text="{Binding Password, Mode=TwoWay}"
-                                 PasswordChar="●"
-                                 Padding="12,10"
-                                 CornerRadius="8" />
+                                 PasswordChar="●" />
                     </StackPanel>
 
                     <!-- Ошибка -->
@@ -62,39 +129,12 @@
                                IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
                                TextWrapping="Wrap" />
 
-                    <!-- Кнопка входа - ИСПРАВЛЕНО -->
-                    <Button Content="Войти"
+                    <!-- Кнопка входа -->
+                    <Button Classes="primary"
+                            Content="Войти"
                             Command="{Binding LoginCommand}"
                             HorizontalAlignment="Stretch"
-                            Background="#1A73E8"
-                            Foreground="White"
-                            FontSize="15"
-                            FontWeight="SemiBold"
-                            Padding="16,12"
-                            CornerRadius="8">
-                        <Button.Styles>
-                            <!-- Обычное состояние -->
-                            <Style Selector="Button">
-                                <Setter Property="Background" Value="#1A73E8"/>
-                                <Setter Property="Foreground" Value="White"/>
-                            </Style>
-                            <!-- Состояние при наведении -->
-                            <Style Selector="Button:pointerover">
-                                <Setter Property="Background" Value="#1557B0"/>
-                                <Setter Property="Foreground" Value="White"/>
-                            </Style>
-                            <!-- Состояние при нажатии -->
-                            <Style Selector="Button:pressed">
-                                <Setter Property="Background" Value="#0D47A1"/>
-                                <Setter Property="Foreground" Value="White"/>
-                            </Style>
-                            <!-- Отключённое состояние -->
-                            <Style Selector="Button:disabled">
-                                <Setter Property="Background" Value="#A8C7FA"/>
-                                <Setter Property="Foreground" Value="White"/>
-                            </Style>
-                        </Button.Styles>
-                    </Button>
+                            Padding="16,12" />
 
                     <!-- Загрузка -->
                     <ProgressBar IsVisible="{Binding IsLoading}"
@@ -103,39 +143,17 @@
                                  CornerRadius="2" />
 
                     <!-- Забыли пароль? -->
-                    <Button Content="Забыли пароль?"
+                    <Button Classes="link"
+                            Content="Забыли пароль?"
                             Command="{Binding ForgotPasswordCommand}"
-                            FontSize="13"
-                            Foreground="#1A73E8"
-                            Background="Transparent"
-                            BorderThickness="0"
-                            HorizontalAlignment="Center"
-                            Cursor="Hand"
-                            Padding="0">
-                        <Button.Styles>
-                            <Style Selector="Button:pointerover">
-                                <Setter Property="Foreground" Value="#1557B0"/>
-                            </Style>
-                        </Button.Styles>
-                    </Button>
+                            HorizontalAlignment="Center" />
 
                     <!-- Ссылка на регистрацию -->
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="5">
                         <TextBlock Text="Нет аккаунта?" FontSize="13" Foreground="#5F6368" />
-                        <Button Content="Зарегистрироваться"
-                                Command="{Binding NavigateToRegisterCommand}"
-                                Background="Transparent"
-                                Foreground="#1A73E8"
-                                FontSize="13"
-                                BorderThickness="0"
-                                Padding="0"
-                                Cursor="Hand">
-                            <Button.Styles>
-                                <Style Selector="Button:pointerover">
-                                    <Setter Property="Foreground" Value="#1557B0"/>
-                                </Style>
-                            </Button.Styles>
-                        </Button>
+                        <Button Classes="link"
+                                Content="Зарегистрироваться"
+                                Command="{Binding NavigateToRegisterCommand}" />
                     </StackPanel>
 
                     <!-- Футер -->
