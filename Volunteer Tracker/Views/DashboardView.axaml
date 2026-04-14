@@ -1,0 +1,140 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Volunteer_Tracker.ViewModels"
+             x:Class="Volunteer_Tracker.Views.DashboardView"
+             x:DataType="vm:DashboardViewModel">
+
+    <UserControl.Styles>
+        <Style Selector="Button.stat-card">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="16"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        <Style Selector="Button.stat-card:pointerover">
+            <Setter Property="Background" Value="#F8F9FA"/>
+        </Style>
+        
+        <Style Selector="Border.activity-item">
+            <Setter Property="Padding" Value="0,12"/>
+            <Setter Property="BorderBrush" Value="#F0F0F0"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        </Style>
+    </UserControl.Styles>
+
+    <ScrollViewer>
+        <StackPanel Margin="32,24,32,24" Spacing="24">
+            
+            <!-- Приветствие и дата -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+                <TextBlock Text="{Binding CurrentDate}" FontSize="14" Foreground="#5F6368"/>
+            </StackPanel>
+            
+            <TextBlock FontSize="28" FontWeight="SemiBold" Foreground="#202124">
+                Добро пожаловать, <Run Text="{Binding UserFirstName}"/>!
+            </TextBlock>
+
+            <!-- Быстрые действия (2 карточки в ряд) -->
+            <Grid ColumnDefinitions="1*,1*" ColumnSpacing="16">
+                <Button Classes="stat-card" Command="{Binding StartVolunteerCommand}">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="▶" FontSize="32"/>
+                        <TextBlock Text="Начать волонтёрство" FontSize="16" FontWeight="SemiBold" Foreground="#1A73E8"/>
+                        <TextBlock Text="Присоединиться к новому проекту" FontSize="13" Foreground="#5F6368" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Button>
+                
+                <Button Classes="stat-card" Command="{Binding JoinProjectCommand}">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="📋" FontSize="32"/>
+                        <TextBlock Text="Мои проекты" FontSize="16" FontWeight="SemiBold" Foreground="#34A853"/>
+                        <TextBlock Text="Управление активными проектами" FontSize="13" Foreground="#5F6368" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+            <!-- Три карточки статистики (через Grid) -->
+            <Grid ColumnDefinitions="1*,1*,1*" ColumnSpacing="16">
+                
+                <Button Classes="stat-card" Command="{Binding NavigateToVolunteerCommand}">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="🤲" FontSize="28"/>
+                        <TextBlock Text="{Binding TotalHours}" FontSize="32" FontWeight="Bold" Foreground="#202124"/>
+                        <TextBlock Text="волонтёрских часов" FontSize="13" Foreground="#5F6368"/>
+                        <TextBlock Text="за семестр" FontSize="12" Foreground="#9AA0A6"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Classes="stat-card" Command="{Binding NavigateToRatingCommand}">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="⭐" FontSize="28"/>
+                        <TextBlock Text="{Binding TotalPoints}" FontSize="32" FontWeight="Bold" Foreground="#1A73E8"/>
+                        <TextBlock Text="накоплено баллов" FontSize="13" Foreground="#5F6368"/>
+                        <TextBlock Text="+{Binding WeeklyPoints} за неделю" FontSize="12" Foreground="#34A853"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Classes="stat-card" Command="{Binding NavigateToProjectsCommand}">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="✅" FontSize="28"/>
+                        <TextBlock Text="{Binding CompletedProjects}" FontSize="32" FontWeight="Bold" Foreground="#202124"/>
+                        <TextBlock Text="завершённых проектов" FontSize="13" Foreground="#5F6368"/>
+                        <TextBlock Text="в этом семестре" FontSize="12" Foreground="#9AA0A6"/>
+                    </StackPanel>
+                </Button>
+
+            </Grid>
+
+            <!-- Мои достижения (прогресс) -->
+            <Border Background="White" CornerRadius="16" Padding="20">
+                <StackPanel Spacing="16">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock Text="🏅" FontSize="20"/>
+                        <TextBlock Text="Мои достижения" FontSize="16" FontWeight="SemiBold" Foreground="#202124"/>
+                    </StackPanel>
+                    
+                    <TextBlock Text="{Binding NextAchievementText}" FontSize="14" Foreground="#5F6368"/>
+                    
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="16">
+                        <ProgressBar Value="{Binding AchievementProgress}" Maximum="100" Height="8" CornerRadius="4">
+                            <ProgressBar.Styles>
+                                <Style Selector="ProgressBar">
+                                    <Setter Property="Background" Value="#E8F0FE"/>
+                                    <Setter Property="Foreground" Value="#1A73E8"/>
+                                </Style>
+                            </ProgressBar.Styles>
+                        </ProgressBar>
+                        <TextBlock Grid.Column="1" Text="{Binding AchievementProgress, StringFormat={}{0:F0}%}" FontSize="14" FontWeight="SemiBold" Foreground="#1A73E8"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- Недавняя активность -->
+            <Border Background="White" CornerRadius="16" Padding="20">
+                <StackPanel Spacing="16">
+                    
+                    <TextBlock Text="📋 Недавняя активность" FontSize="16" FontWeight="SemiBold" Foreground="#202124"/>
+                    
+                    <ItemsControl ItemsSource="{Binding RecentActivities}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Classes="activity-item">
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="{Binding Title}" FontSize="14" FontWeight="SemiBold" Foreground="#202124"/>
+                                        <StackPanel Orientation="Horizontal" Spacing="12">
+                                            <TextBlock Text="{Binding PointsChange}" FontSize="12" Foreground="#34A853" IsVisible="{Binding PointsChange, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                                            <TextBlock Text="{Binding TimeAgo}" FontSize="12" Foreground="#9AA0A6"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
