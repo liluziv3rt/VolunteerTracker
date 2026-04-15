@@ -41,93 +41,120 @@
     </UserControl.Styles>
 
     <ScrollViewer>
-        <StackPanel Margin="32,24,32,24" Spacing="24">
+        <StackPanel Margin="32,24" Spacing="24">
 
             <!-- Заголовок -->
             <StackPanel Spacing="6">
                 <TextBlock Text="Рейтинг и достижения" FontSize="28" FontWeight="SemiBold" Foreground="#202124"/>
-                <TextBlock Text="Отслеживайте свой прогресс и соревнуйтесь с другими студентами" 
+                <TextBlock Text="Отслеживайте свой прогресс и соревнуйтесь с другими студентами"
                            FontSize="14" Foreground="#5F6368"/>
             </StackPanel>
 
+            <!-- ОСНОВНОЙ GRID -->
             <Grid ColumnDefinitions="1.6*,1*" ColumnSpacing="32">
 
-                <!-- ЛЕВАЯ КОЛОНКА - ТАБЛИЦА ЛИДЕРОВ -->
-                <Border Grid.Column="0"
-            Background="White"
-            CornerRadius="16"
-            BoxShadow="0 2 8 0 #1A000000">
-                    <StackPanel>
+                <!-- ================= ЛЕВАЯ КОЛОНКА ================= -->
+                <Border Background="White" CornerRadius="16" BoxShadow="0 2 8 0 #1A000000">
 
-                        <!-- Табы фильтрации -->
-                        <Border Padding="20,16" BorderBrush="#F0F0F0" BorderThickness="0,0,0,1">
+                    <Grid RowDefinitions="Auto,Auto,*">
+
+                        <!-- Табы -->
+                        <Border Grid.Row="0"
+                                Padding="20,16"
+                                BorderBrush="#F0F0F0"
+                                BorderThickness="0,0,0,1">
                             <StackPanel Orientation="Horizontal" Spacing="12">
-                                <Border Background="{Binding IsThisMonthSelected, Converter={StaticResource SelectedBrushConverter}}" 
+                                <Border Background="{Binding IsThisMonthSelected, Converter={StaticResource SelectedBrushConverter}}"
                                         CornerRadius="20" Padding="16,6" Cursor="Hand" Tapped="OnThisMonthTapped">
-                                    <TextBlock Text="За этот месяц" FontSize="13.5" 
+                                    <TextBlock Text="За этот месяц" FontSize="13.5"
                                                Foreground="{Binding IsThisMonthSelected, Converter={StaticResource ForegroundBrushConverter}}"/>
                                 </Border>
-                                <Border Background="{Binding IsAllTimeSelected, Converter={StaticResource SelectedBrushConverter}}" 
+
+                                <Border Background="{Binding IsAllTimeSelected, Converter={StaticResource SelectedBrushConverter}}"
                                         CornerRadius="20" Padding="16,6" Cursor="Hand" Tapped="OnAllTimeTapped">
-                                    <TextBlock Text="Всё время" FontSize="13.5" 
+                                    <TextBlock Text="Всё время" FontSize="13.5"
                                                Foreground="{Binding IsAllTimeSelected, Converter={StaticResource ForegroundBrushConverter}}"/>
                                 </Border>
                             </StackPanel>
                         </Border>
 
-                        <!-- Заголовки таблицы -->
-                        <Border Padding="20,14" BorderBrush="#F0F0F0" BorderThickness="0,0,0,1">
+                        <!-- ШАПКА -->
+                        <Border Grid.Row="1"
+                                Background="#FAFAFA"
+                                Padding="20,14"
+                                BorderBrush="#F0F0F0"
+                                BorderThickness="0,0,0,1">
                             <Grid ColumnDefinitions="70,*,100,80" ColumnSpacing="12">
-                                <TextBlock Text="Место" FontSize="13" FontWeight="SemiBold" Foreground="#5F6368"/>
-                                <TextBlock Text="Студент" FontSize="13" FontWeight="SemiBold" Foreground="#5F6368"/>
-                                <TextBlock Text="Баллы" FontSize="13" FontWeight="SemiBold" Foreground="#5F6368" HorizontalAlignment="Right"/>
-                                <TextBlock Text="Значки" FontSize="13" FontWeight="SemiBold" Foreground="#5F6368" HorizontalAlignment="Right"/>
+                                <TextBlock Grid.Column="0" Text="Место" FontSize="13" FontWeight="SemiBold" Foreground="#5F6368"/>
+                                <TextBlock Grid.Column="1" Text="Студент" FontSize="13" FontWeight="SemiBold" Foreground="#5F6368"/>
+                                <TextBlock Grid.Column="2" Text="Баллы" FontSize="13" FontWeight="SemiBold" Foreground="#5F6368" HorizontalAlignment="Right"/>
+                                <TextBlock Grid.Column="3" Text="Значки" FontSize="13" FontWeight="SemiBold" Foreground="#5F6368" HorizontalAlignment="Right"/>
                             </Grid>
                         </Border>
 
-                        <!-- Строки лидеров -->
-                        <ItemsControl ItemsSource="{Binding Leaderboard}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Border Classes="leaderboard-row" Background="{Binding RowBackground}">
-                                        <Grid ColumnDefinitions="70,*,100,80" ColumnSpacing="12">
-                                            <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
-                                                <TextBlock Text="{Binding Rank}" FontSize="16" FontWeight="SemiBold" Foreground="{Binding RankColor}"/>
-                                                <TextBlock Text="{Binding Medal}" FontSize="18"/>
-                                            </StackPanel>
+                        <!-- СПИСОК -->
+                        <ScrollViewer Grid.Row="2" MaxHeight="500">
+                            <StackPanel>
+                                <ItemsControl ItemsSource="{Binding Leaderboard}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Classes="leaderboard-row" Background="{Binding RowBackground}">
+                                                <Grid ColumnDefinitions="70,*,100,80" ColumnSpacing="12">
+                                                    <!-- Место -->
+                                                    <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                                                        <TextBlock Text="{Binding Rank}" FontSize="16" FontWeight="SemiBold" Foreground="{Binding RankColor}"/>
+                                                        <TextBlock Text="{Binding Medal}" FontSize="18"/>
+                                                    </StackPanel>
 
-                                            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                                                <Border Width="36" Height="36" CornerRadius="18" Background="#E8F0FE">
-                                                    <TextBlock Text="{Binding Initials}" FontSize="13" FontWeight="SemiBold"
-                                                               Foreground="#1A73E8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                                <StackPanel Spacing="1">
-                                                    <TextBlock Text="{Binding FullName}" FontSize="14" FontWeight="SemiBold" Foreground="#202124"/>
-                                                    <TextBlock Text="{Binding GroupName}" FontSize="11" Foreground="#9AA0A6"/>
-                                                </StackPanel>
-                                            </StackPanel>
+                                                    <!-- Студент -->
+                                                    <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                                                        <Border Width="36" Height="36" CornerRadius="18" Background="#E8F0FE">
+                                                            <TextBlock Text="{Binding Initials}" FontSize="13" FontWeight="SemiBold"
+                                                                       Foreground="#1A73E8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                        <StackPanel Spacing="1">
+                                                            <TextBlock Text="{Binding FullName}" FontSize="14" FontWeight="SemiBold" Foreground="#202124"/>
+                                                            <TextBlock Text="{Binding GroupName}" FontSize="11" Foreground="#9AA0A6"/>
+                                                        </StackPanel>
+                                                    </StackPanel>
 
-                                            <TextBlock Text="{Binding Points}" FontSize="15" FontWeight="Bold" 
-                                                       Foreground="#1A73E8" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                                    <!-- Баллы -->
+                                                    <TextBlock Grid.Column="2"
+                                                               Text="{Binding Points}"
+                                                               FontSize="15" FontWeight="Bold"
+                                                               Foreground="#1A73E8"
+                                                               HorizontalAlignment="Right"
+                                                               VerticalAlignment="Center"/>
 
-                                            <StackPanel Orientation="Horizontal" Spacing="4" HorizontalAlignment="Right" VerticalAlignment="Center">
-                                                <TextBlock Text="🏅" FontSize="12"/>
-                                                <TextBlock Text="{Binding BadgesCount}" FontSize="14" Foreground="#5F6368"/>
-                                            </StackPanel>
-                                        </Grid>
-                                    </Border>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+                                                    <!-- Значки -->
+                                                    <StackPanel Grid.Column="3"
+                                                                Orientation="Horizontal"
+                                                                Spacing="4"
+                                                                HorizontalAlignment="Right"
+                                                                VerticalAlignment="Center">
+                                                        <TextBlock Text="🏅" FontSize="12"/>
+                                                        <TextBlock Text="{Binding BadgesCount}" FontSize="14" Foreground="#5F6368"/>
+                                                        <TextBlock Text="значков" FontSize="11" Foreground="#9AA0A6"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
 
-                        <TextBlock Text="Нет данных" HorizontalAlignment="Center" Padding="20" 
-                                   IsVisible="{Binding Leaderboard, Converter={StaticResource IsEmptyConverter}}"/>
-                    </StackPanel>
+                                <!-- Нет данных -->
+                                <TextBlock Text="Нет данных"
+                                           HorizontalAlignment="Center"
+                                           Padding="20"
+                                           Foreground="#5F6368"
+                                           IsVisible="{Binding Leaderboard, Converter={StaticResource IsEmptyConverter}}"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
                 </Border>
 
-                <!-- ПРАВАЯ КОЛОНКА - МОИ ДОСТИЖЕНИЯ -->
-                <StackPanel Grid.Column="1"
-                Spacing="16">
+                <!-- ================= ПРАВАЯ КОЛОНКА ================= -->
+                <StackPanel Grid.Column="1" Spacing="16">
 
                     <StackPanel Orientation="Horizontal" Spacing="12">
                         <TextBlock Text="Мои достижения" FontSize="20" FontWeight="SemiBold" Foreground="#202124"/>
@@ -136,22 +163,26 @@
                         </Border>
                     </StackPanel>
 
-                    <TextBlock Text="✅ Получено" FontSize="14" FontWeight="SemiBold" Foreground="#34A853" 
+                    <TextBlock Text="✅ Получено"
+                               FontSize="14" FontWeight="SemiBold"
+                               Foreground="#34A853"
+                               Margin="0,4,0,0"
                                IsVisible="{Binding EarnedAchievements, Converter={StaticResource IsNotEmptyConverter}}"/>
+
                     <ItemsControl ItemsSource="{Binding EarnedAchievements}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Border Classes="achievement-card earned">
-                                    <Grid ColumnDefinitions="Auto,*,Auto">
+                                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
                                         <Border Width="40" Height="40" CornerRadius="20" Background="#E6F4EA">
                                             <TextBlock Text="{Binding Icon}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Border>
-                                        <StackPanel Grid.Column="1" Margin="12,0" VerticalAlignment="Center" Spacing="2">
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="2">
                                             <TextBlock Text="{Binding Name}" FontSize="14" FontWeight="SemiBold" Foreground="#202124"/>
                                             <TextBlock Text="{Binding Points} баллов" FontSize="11" Foreground="#34A853"/>
                                         </StackPanel>
                                         <Border Grid.Column="2" Width="22" Height="22" CornerRadius="11" Background="#34A853" VerticalAlignment="Center">
-                                            <TextBlock Text="✓" Foreground="White" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <TextBlock Text="✓" FontSize="12" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Border>
                                     </Grid>
                                 </Border>
@@ -159,22 +190,26 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
 
-                    <TextBlock Text="🔒 Заблокировано" FontSize="14" FontWeight="SemiBold" Foreground="#5F6368" Margin="0,8,0,0" 
+                    <TextBlock Text="🔒 Заблокировано"
+                               FontSize="14" FontWeight="SemiBold"
+                               Foreground="#5F6368"
+                               Margin="0,8,0,0"
                                IsVisible="{Binding LockedAchievements, Converter={StaticResource IsNotEmptyConverter}}"/>
+
                     <ItemsControl ItemsSource="{Binding LockedAchievements}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Border Classes="achievement-card locked">
-                                    <Grid ColumnDefinitions="Auto,*,Auto">
+                                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
                                         <Border Width="40" Height="40" CornerRadius="20" Background="#F1F3F4">
-                                            <TextBlock Text="{Binding Icon}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.5"/>
+                                            <TextBlock Text="{Binding Icon}" FontSize="20" Opacity="0.5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Border>
-                                        <StackPanel Grid.Column="1" Margin="12,0" VerticalAlignment="Center" Spacing="2">
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="2">
                                             <TextBlock Text="{Binding Name}" FontSize="14" FontWeight="SemiBold" Foreground="#5F6368"/>
                                             <TextBlock Text="{Binding Points} баллов" FontSize="11" Foreground="#9AA0A6"/>
                                         </StackPanel>
                                         <Border Grid.Column="2" Width="22" Height="22" CornerRadius="11" Background="#DADCE0" VerticalAlignment="Center">
-                                            <TextBlock Text="🔒" Foreground="#5F6368" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <TextBlock Text="🔒" FontSize="10" Foreground="#5F6368" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Border>
                                     </Grid>
                                 </Border>
