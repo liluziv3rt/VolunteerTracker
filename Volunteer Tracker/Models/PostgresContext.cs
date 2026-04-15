@@ -476,6 +476,7 @@ public partial class PostgresContext : DbContext
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.AmoCrmId).HasColumnName("amo_crm_id");
             entity.Property(e => e.AvatarUrl).HasColumnName("avatar_url");
+            entity.Property(e => e.Bio).HasColumnName("bio");
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("timestamp without time zone")
@@ -489,6 +490,9 @@ public partial class PostgresContext : DbContext
             entity.Property(e => e.FirstName)
                 .HasMaxLength(100)
                 .HasColumnName("first_name");
+            entity.Property(e => e.Github)
+                .HasMaxLength(100)
+                .HasColumnName("github");
             entity.Property(e => e.GroupName)
                 .HasMaxLength(50)
                 .HasColumnName("group_name");
@@ -510,14 +514,23 @@ public partial class PostgresContext : DbContext
             entity.Property(e => e.Phone)
                 .HasMaxLength(20)
                 .HasColumnName("phone");
+            entity.Property(e => e.PhoneVisible)
+                .HasDefaultValue(false)
+                .HasColumnName("phone_visible");
             entity.Property(e => e.Role)
                 .HasMaxLength(50)
                 .HasDefaultValueSql("'student'::character varying")
                 .HasColumnName("role");
+            entity.Property(e => e.Telegram)
+                .HasMaxLength(100)
+                .HasColumnName("telegram");
             entity.Property(e => e.UpdatedAt)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("updated_at");
+            entity.Property(e => e.Vk)
+                .HasMaxLength(100)
+                .HasColumnName("vk");
         });
 
         modelBuilder.Entity<UserAchievement>(entity =>

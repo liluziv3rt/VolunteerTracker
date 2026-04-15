@@ -121,26 +121,14 @@
                     Padding="16,20">
                 <StackPanel Spacing="12">
                     
-                    <StackPanel Orientation="Horizontal" Spacing="12">
-                        <Border Background="#E8F0FE"
-                                Width="44"
-                                Height="44"
-                                CornerRadius="22">
-                            <TextBlock Text="{Binding UserInitials}"
-                                       FontSize="16"
-                                       FontWeight="Bold"
-                                       Foreground="#1A73E8"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"/>
+                    <StackPanel Orientation="Horizontal" Spacing="12" Tapped="OnProfileTapped" Cursor="Hand">
+                        <Border Background="#E8F0FE" Width="44" Height="44" CornerRadius="22">
+                            <TextBlock Text="{Binding UserInitials}" FontSize="16" FontWeight="Bold"
+                                       Foreground="#1A73E8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <StackPanel>
-                            <TextBlock Text="{Binding UserFullName}"
-                                       FontSize="14"
-                                       FontWeight="SemiBold"
-                                       Foreground="#202124"/>
-                            <TextBlock Text="{Binding UserRole}"
-                                       FontSize="12"
-                                       Foreground="#5F6368"/>
+                            <TextBlock Text="{Binding UserFullName}" FontSize="14" FontWeight="SemiBold" Foreground="#202124"/>
+                            <TextBlock Text="{Binding UserRole}" FontSize="12" Foreground="#5F6368"/>
                         </StackPanel>
                     </StackPanel>
                     

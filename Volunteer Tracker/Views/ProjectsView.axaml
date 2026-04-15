@@ -176,6 +176,32 @@
                                     </ProgressBar>
                                 </StackPanel>
                                 
+                                <!-- Участники проекта (только для создателя и админа) -->
+                                <StackPanel Grid.Row="3" Grid.Column="0" Margin="0,12,0,0"
+                                            IsVisible="{Binding ShowParticipants}">
+                                    <TextBlock Text="👥 Участники:" FontSize="12" Foreground="#5F6368" Margin="0,0,0,8"/>
+                                    <ItemsControl ItemsSource="{Binding Participants}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Button Command="{Binding $parent[UserControl].DataContext.OpenProfileCommand}"
+                                                        CommandParameter="{Binding UserId}"
+                                                        Background="Transparent" BorderThickness="0" Cursor="Hand">
+                                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                                        <Border Width="32" Height="32" CornerRadius="16" Background="#E8F0FE">
+                                                            <TextBlock Text="{Binding Initials}" FontSize="12" 
+                                                                       Foreground="#1A73E8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                        <TextBlock Text="{Binding FullName}" FontSize="13" Foreground="#202124"/>
+                                                        <TextBlock FontSize="11" Foreground="#1A73E8">
+                                                            <Run Text="{Binding Points}"/>
+                                                            <Run Text=" баллов"/>
+                                                        </TextBlock>
+                                                    </StackPanel>
+                                                </Button>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
                             </Grid>
                         </Border>
                     </DataTemplate>

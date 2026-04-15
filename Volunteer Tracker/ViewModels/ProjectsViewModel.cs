@@ -60,6 +60,23 @@ namespace Volunteer_Tracker.ViewModels
             }
         }
 
+        [RelayCommand]
+        private async Task OpenProfile(int userId)
+        {
+            // Открываем профиль пользователя
+            var profileVm = new ProfileViewModel(_currentUser, userId);
+
+            // Получаем главное окно и заменяем контент
+            if (Avalonia.Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                var mainWindow = desktop.MainWindow;
+                if (mainWindow?.DataContext is MainWindowViewModel mainVm)
+                {
+                    mainVm.CurrentView = new ProfileView { DataContext = profileVm };
+                }
+            }
+        }
+
         private async Task LoadAvailableProjects()
         {
             var today = DateOnly.FromDateTime(DateTime.Now);
@@ -313,5 +330,17 @@ namespace Volunteer_Tracker.ViewModels
         public bool ShowProgress { get; set; }
         public int ProgressPercent { get; set; }
         public string ProgressText { get; set; } = string.Empty;
+        public bool ShowParticipants { get; set; }
+        public List<ParticipantItem> Participants { get; set; } = new();
+
     }
+
+    public class ParticipantItem
+    {
+        public int UserId { get; set; }
+        public string FullName { get; set; } = string.Empty;
+        public string Initials { get; set; } = string.Empty;
+        public int Points { get; set; }
+    }
+
 }

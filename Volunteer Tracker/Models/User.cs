@@ -40,6 +40,16 @@ public partial class User
 
     public DateTime? LastLoginAt { get; set; }
 
+    public string? Telegram { get; set; }
+
+    public string? Vk { get; set; }
+
+    public string? Github { get; set; }
+
+    public bool? PhoneVisible { get; set; }
+
+    public string? Bio { get; set; }
+
     public virtual ICollection<ActivityLog> ActivityLogs { get; set; } = new List<ActivityLog>();
 
     public virtual ICollection<ProjectAssignment> ProjectAssignments { get; set; } = new List<ProjectAssignment>();

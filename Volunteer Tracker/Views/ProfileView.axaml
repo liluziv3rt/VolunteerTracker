@@ -1,0 +1,165 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Volunteer_Tracker.ViewModels"
+             x:Class="Volunteer_Tracker.Views.ProfileView"
+             x:DataType="vm:ProfileViewModel">
+
+    <UserControl.Styles>
+        <Style Selector="Border.profile-card">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="20"/>
+            <Setter Property="Padding" Value="24"/>
+            <Setter Property="Margin" Value="0,0,0,16"/>
+            <Setter Property="BoxShadow" Value="0 2 12 0 #1A000000"/>
+        </Style>
+        
+        <Style Selector="Button.social-button">
+            <Setter Property="Background" Value="#F0F0F0"/>
+            <Setter Property="Foreground" Value="#202124"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        
+        <Style Selector="Button.social-button:pointerover">
+            <Setter Property="Background" Value="#E8F0FE"/>
+        </Style>
+        
+        <Style Selector="Button.edit-button">
+            <Setter Property="Background" Value="#1A73E8"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="16,10"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+    </UserControl.Styles>
+
+    <ScrollViewer>
+        <StackPanel Margin="32,24" Spacing="24">
+            
+            <!-- Заголовок -->
+            <TextBlock Text="Профиль пользователя" FontSize="28" FontWeight="SemiBold" Foreground="#202124"/>
+
+            <!-- Основная карточка профиля -->
+            <Border Classes="profile-card">
+                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="24">
+                    
+                    <!-- Аватар -->
+                    <Border Width="100" Height="100" CornerRadius="50" Background="#E8F0FE">
+                        <TextBlock Text="{Binding UserInitials}" FontSize="36" FontWeight="Bold" 
+                                   Foreground="#1A73E8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    
+                    <!-- Информация -->
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="8">
+                        <TextBlock Text="{Binding UserFullName}" FontSize="24" FontWeight="SemiBold" Foreground="#202124"/>
+                        <TextBlock Text="{Binding UserRole}" FontSize="14" Foreground="#5F6368"/>
+                        <TextBlock Text="{Binding UserGroup}" FontSize="14" Foreground="#5F6368" IsVisible="{Binding UserGroup, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                        <StackPanel Orientation="Horizontal" Spacing="16" Margin="0,8,0,0">
+                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                <TextBlock Text="⭐" FontSize="14"/>
+                                <TextBlock Text="{Binding UserPoints}" FontSize="16" FontWeight="Bold" Foreground="#1A73E8"/>
+                                <TextBlock Text="баллов" FontSize="13" Foreground="#5F6368"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                <TextBlock Text="🏅" FontSize="14"/>
+                                <TextBlock Text="{Binding UserBadges}" FontSize="16" FontWeight="Bold" Foreground="#1A73E8"/>
+                                <TextBlock Text="значков" FontSize="13" Foreground="#5F6368"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    
+                    <!-- Кнопка редактирования (только для своего профиля) -->
+                    <Button Grid.Column="2" Classes="edit-button" 
+                            Command="{Binding EditProfileCommand}"
+                            IsVisible="{Binding IsOwnProfile}"
+                            VerticalAlignment="Center">
+                        Редактировать профиль
+                    </Button>
+                    
+                </Grid>
+            </Border>
+
+            <!-- О себе -->
+            <Border Classes="profile-card" IsVisible="{Binding Bio, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="📝 О себе" FontSize="16" FontWeight="SemiBold" Foreground="#202124"/>
+                    <TextBlock Text="{Binding Bio}" FontSize="14" Foreground="#5F6368" TextWrapping="Wrap"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Контакты и соцсети -->
+            <Border Classes="profile-card">
+                <StackPanel Spacing="16">
+                    <TextBlock Text="🔗 Контакты и соцсети" FontSize="16" FontWeight="SemiBold" Foreground="#202124"/>
+                    
+                    <!-- Telegram -->
+                    <Grid ColumnDefinitions="Auto,Auto,*,Auto" ColumnSpacing="12" IsVisible="{Binding Telegram, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                        <TextBlock Grid.Column="0" Text="📱" FontSize="18"/>
+                        <TextBlock Grid.Column="1" Text="Telegram:" FontSize="14" Foreground="#5F6368"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Telegram}" FontSize="14" Foreground="#202124"/>
+                        <Button Grid.Column="3" Classes="social-button" Content="Открыть" Command="{Binding OpenTelegramCommand}"/>
+                    </Grid>
+                    
+                    <!-- VK -->
+                    <Grid ColumnDefinitions="Auto,Auto,*,Auto" ColumnSpacing="12" IsVisible="{Binding Vk, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                        <TextBlock Grid.Column="0" Text="🌐" FontSize="18"/>
+                        <TextBlock Grid.Column="1" Text="ВКонтакте:" FontSize="14" Foreground="#5F6368"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Vk}" FontSize="14" Foreground="#202124"/>
+                        <Button Grid.Column="3" Classes="social-button" Content="Открыть" Command="{Binding OpenVkCommand}"/>
+                    </Grid>
+                    
+                    <!-- GitHub -->
+                    <Grid ColumnDefinitions="Auto,Auto,*,Auto" ColumnSpacing="12" IsVisible="{Binding Github, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                        <TextBlock Grid.Column="0" Text="💻" FontSize="18"/>
+                        <TextBlock Grid.Column="1" Text="GitHub:" FontSize="14" Foreground="#5F6368"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Github}" FontSize="14" Foreground="#202124"/>
+                        <Button Grid.Column="3" Classes="social-button" Content="Открыть" Command="{Binding OpenGithubCommand}"/>
+                    </Grid>
+                    
+                    <!-- Телефон (если включено отображение) -->
+                    <Grid ColumnDefinitions="Auto,Auto,*,Auto" ColumnSpacing="12" IsVisible="{Binding ShowPhone, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                        <TextBlock Grid.Column="0" Text="📞" FontSize="18"/>
+                        <TextBlock Grid.Column="1" Text="Телефон:" FontSize="14" Foreground="#5F6368"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Phone}" FontSize="14" Foreground="#202124"/>
+                    </Grid>
+                    
+                    <TextBlock Text="Соцсети не добавлены" FontSize="14" Foreground="#9AA0A6" 
+                               IsVisible="{Binding NoSocials}"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Активность пользователя -->
+            <Border Classes="profile-card">
+                <StackPanel Spacing="16">
+                    <TextBlock Text="📊 Активность" FontSize="16" FontWeight="SemiBold" Foreground="#202124"/>
+                    
+                    <Grid ColumnDefinitions="*,*,*" ColumnSpacing="16">
+                        <Border Background="#E8F0FE" CornerRadius="12" Padding="16">
+                            <StackPanel>
+                                <TextBlock Text="📋" FontSize="24"/>
+                                <TextBlock Text="{Binding ProjectsCount}" FontSize="28" FontWeight="Bold" Foreground="#1A73E8"/>
+                                <TextBlock Text="проектов" FontSize="12" Foreground="#5F6368"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="#E6F4EA" CornerRadius="12" Padding="16">
+                            <StackPanel>
+                                <TextBlock Text="🤲" FontSize="24"/>
+                                <TextBlock Text="{Binding VolunteerHours}" FontSize="28" FontWeight="Bold" Foreground="#34A853"/>
+                                <TextBlock Text="часов" FontSize="12" Foreground="#5F6368"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="#FFF3E0" CornerRadius="12" Padding="16">
+                            <StackPanel>
+                                <TextBlock Text="🏆" FontSize="24"/>
+                                <TextBlock Text="{Binding UserRank}" FontSize="28" FontWeight="Bold" Foreground="#FB8C00"/>
+                                <TextBlock Text="место" FontSize="12" Foreground="#5F6368"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

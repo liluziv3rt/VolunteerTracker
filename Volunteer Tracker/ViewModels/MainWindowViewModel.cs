@@ -125,13 +125,13 @@ namespace Volunteer_Tracker.ViewModels
                     ShowDashboard();
                     break;
                 case "Gradebook":
-                    // TODO: ShowGradebook();
+                    // TODO
                     break;
                 case "Events":
-                    // TODO: ShowEvents();
+                    // TODO
                     break;
                 case "Volunteer":
-                    // TODO: ShowVolunteer();
+                    // TODO
                     break;
                 case "Rating":
                     ShowRating();
@@ -139,8 +139,19 @@ namespace Volunteer_Tracker.ViewModels
                 case "Projects":
                     ShowProjects();
                     break;
+                case "MyProfile":
+                    ShowMyProfile();
+                    break;
             }
         }
+
+        private void ShowMyProfile()
+        {
+            var profileVm = new ProfileViewModel(_currentUser!);
+            CurrentView = new ProfileView { DataContext = profileVm };
+        }
+
+
 
         private void OnNavigateFromDashboard(object? sender, string destination)
         {
