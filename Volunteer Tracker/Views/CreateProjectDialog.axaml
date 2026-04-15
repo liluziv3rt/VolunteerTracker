@@ -1,0 +1,135 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Volunteer_Tracker.ViewModels"
+        x:Class="Volunteer_Tracker.Views.CreateProjectDialog"
+        x:DataType="vm:CreateProjectDialogViewModel"
+        Title="Создание нового проекта"
+        Width="550"
+        Height="600"
+        MinWidth="500"
+        MinHeight="550"
+        CanResize="True"
+        WindowStartupLocation="CenterOwner"
+        Background="White">
+
+    <Window.Styles>
+        <Style Selector="TextBox, DatePicker">
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="BorderBrush" Value="#DADCE0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#202124"/>
+        </Style>
+        
+        <Style Selector="TextBox:focus, DatePicker:focus">
+            <Setter Property="BorderBrush" Value="#1A73E8"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+        
+        <Style Selector="Button.primary">
+            <Setter Property="Background" Value="#1A73E8"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="16,10"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        
+        <Style Selector="Button.primary:pointerover">
+            <Setter Property="Background" Value="#1557B0"/>
+        </Style>
+        
+        <Style Selector="Button.secondary">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#5F6368"/>
+            <Setter Property="Padding" Value="16,10"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderBrush" Value="#DADCE0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+        
+        <Style Selector="Button.secondary:pointerover">
+            <Setter Property="Background" Value="#F8F9FA"/>
+        </Style>
+        
+        <Style Selector="Button.approve-button">
+            <Setter Property="Background" Value="#34A853"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+        
+        <Style Selector="Button.approve-button:pointerover">
+            <Setter Property="Background" Value="#2D8C47"/>
+        </Style>
+        
+        <Style Selector="TextBlock.error">
+            <Setter Property="Foreground" Value="#EA4335"/>
+            <Setter Property="FontSize" Value="11"/>
+        </Style>
+    </Window.Styles>
+
+    <ScrollViewer>
+        <Border Padding="24">
+            <StackPanel Spacing="16">
+                
+                <StackPanel Spacing="4">
+                    <TextBlock Text="➕ Создание нового проекта" FontSize="22" FontWeight="SemiBold" Foreground="#202124"/>
+                    <TextBlock Text="Заполните информацию о новом проекте" FontSize="13" Foreground="#5F6368"/>
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock Text="Название проекта" FontSize="14" FontWeight="SemiBold" Foreground="#202124"/>
+                    <TextBox Text="{Binding Title, Mode=TwoWay}"/>
+                    <TextBlock Classes="error" Text="Введите название проекта" 
+                               IsVisible="{Binding TitleError, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock Text="Краткое описание" FontSize="14" FontWeight="SemiBold" Foreground="#202124"/>
+                    <TextBox Text="{Binding ShortDescription, Mode=TwoWay}" MaxLength="150"/>
+                    <TextBlock Text="Максимум 150 символов" FontSize="11" Foreground="#9AA0A6"/>
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock Text="Полное описание" FontSize="14" FontWeight="SemiBold" Foreground="#202124"/>
+                    <TextBox Text="{Binding Description, Mode=TwoWay}" Height="80" AcceptsReturn="True" TextWrapping="Wrap"/>
+                </StackPanel>
+
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
+                    <StackPanel Grid.Column="0" Spacing="4">
+                        <TextBlock Text="Дата начала" FontSize="14" FontWeight="SemiBold" Foreground="#202124"/>
+                        <DatePicker SelectedDate="{Binding StartDate, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Spacing="4">
+                        <TextBlock Text="Дедлайн" FontSize="14" FontWeight="SemiBold" Foreground="#202124"/>
+                        <DatePicker SelectedDate="{Binding EndDate, Mode=TwoWay}"/>
+                        <TextBlock Classes="error" Text="Дедлайн должен быть позже даты начала" 
+                                   IsVisible="{Binding DateError, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                    </StackPanel>
+                </Grid>
+
+                <StackPanel Spacing="4">
+                    <TextBlock Text="Максимальное количество баллов" FontSize="14" FontWeight="SemiBold" Foreground="#202124"/>
+                    <TextBox Text="{Binding MaxPoints, Mode=TwoWay}"/>
+                    <TextBlock Classes="error" Text="Введите число от 10 до 1000" 
+                               IsVisible="{Binding PointsError, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock Text="Категория" FontSize="14" FontWeight="SemiBold" Foreground="#202124"/>
+                    <ComboBox ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory}"/>
+                </StackPanel>
+
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="12" Margin="0,8,0,0">
+                    <Button Grid.Column="0" Classes="secondary" Content="Отмена" Command="{Binding CancelCommand}"/>
+                    <Button Grid.Column="1" Classes="primary" Content="Создать проект" Command="{Binding CreateCommand}"/>
+                </Grid>
+
+            </StackPanel>
+        </Border>
+    </ScrollViewer>
+</Window>

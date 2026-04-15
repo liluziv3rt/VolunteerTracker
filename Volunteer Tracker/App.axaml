@@ -1,8 +1,15 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Volunteer_Tracker.ViewModels"
              x:Class="Volunteer_Tracker.App">
     <Application.Styles>
         <FluentTheme />
-        <StyleInclude Source="/Styles/ButtonStyles.axaml" />
     </Application.Styles>
+    
+    <Application.Resources>
+        <vm:BoolToSelectedBrushConverter x:Key="SelectedBrushConverter"/>
+        <vm:BoolToForegroundBrushConverter x:Key="ForegroundBrushConverter"/>
+        <vm:IsEmptyConverter x:Key="IsEmptyConverter"/>
+        <vm:IsNotEmptyConverter x:Key="IsNotEmptyConverter"/>
+    </Application.Resources>
 </Application>

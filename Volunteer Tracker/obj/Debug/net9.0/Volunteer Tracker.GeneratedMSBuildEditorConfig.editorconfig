@@ -38,6 +38,9 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [E:/Volunteer Tracker/Volunteer Tracker/Volunteer Tracker/Styles/Styles1.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[E:/Volunteer Tracker/Volunteer Tracker/Volunteer Tracker/Views/CreateProjectDialog.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [E:/Volunteer Tracker/Volunteer Tracker/Volunteer Tracker/Views/DashboardView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
@@ -48,6 +51,9 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [E:/Volunteer Tracker/Volunteer Tracker/Volunteer Tracker/Views/MainWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[E:/Volunteer Tracker/Volunteer Tracker/Volunteer Tracker/Views/ProjectsView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [E:/Volunteer Tracker/Volunteer Tracker/Volunteer Tracker/Views/RatingView.axaml]

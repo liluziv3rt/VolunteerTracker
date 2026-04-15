@@ -21,13 +21,20 @@
             <Setter Property="Foreground" Value="#1A73E8"/>
         </Style>
         
+        <!-- Стиль для выбранного пункта - используем класс .selected -->
         <Style Selector="Button.menu-item.selected">
             <Setter Property="Background" Value="#E8F0FE"/>
             <Setter Property="Foreground" Value="#1A73E8"/>
         </Style>
         
-        <Style Selector="Button.menu-item TextBlock">
-            <Setter Property="Foreground" Value="{Binding $parent[Button].Foreground}"/>
+        <!-- Стиль для TextBlock внутри кнопки при наведении -->
+        <Style Selector="Button.menu-item:pointerover TextBlock">
+            <Setter Property="Foreground" Value="#1A73E8"/>
+        </Style>
+        
+        <!-- Стиль для TextBlock внутри выбранной кнопки -->
+        <Style Selector="Button.menu-item.selected TextBlock">
+            <Setter Property="Foreground" Value="#1A73E8"/>
         </Style>
     </UserControl.Styles>
 
@@ -49,47 +56,61 @@
 
             <!-- Меню навигации -->
             <StackPanel Margin="0,10,0,0">
-                <Button Classes="menu-item" Command="{Binding NavigateToDashboardCommand}">
+                
+                <Button Classes="menu-item"
+                        Classes.selected="{Binding IsDashboardSelected}"
+                        Command="{Binding NavigateToDashboardCommand}">
                     <StackPanel Orientation="Horizontal" Spacing="12">
                         <TextBlock Text="🏠" FontSize="18"/>
                         <TextBlock Text="Главная" FontSize="14" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
 
-                <Button Classes="menu-item" Command="{Binding NavigateToGradebookCommand}">
+                <Button Classes="menu-item"
+                        Classes.selected="{Binding IsGradebookSelected}"
+                        Command="{Binding NavigateToGradebookCommand}">
                     <StackPanel Orientation="Horizontal" Spacing="12">
                         <TextBlock Text="📖" FontSize="18"/>
                         <TextBlock Text="Зачётная книжка" FontSize="14" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
 
-                <Button Classes="menu-item" Command="{Binding NavigateToEventsCommand}">
+                <Button Classes="menu-item"
+                        Classes.selected="{Binding IsEventsSelected}"
+                        Command="{Binding NavigateToEventsCommand}">
                     <StackPanel Orientation="Horizontal" Spacing="12">
                         <TextBlock Text="📅" FontSize="18"/>
                         <TextBlock Text="Мероприятия" FontSize="14" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
 
-                <Button Classes="menu-item" Command="{Binding NavigateToVolunteerCommand}">
+                <Button Classes="menu-item"
+                        Classes.selected="{Binding IsVolunteerSelected}"
+                        Command="{Binding NavigateToVolunteerCommand}">
                     <StackPanel Orientation="Horizontal" Spacing="12">
                         <TextBlock Text="🤲" FontSize="18"/>
                         <TextBlock Text="Волонтёрство" FontSize="14" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
 
-                <Button Classes="menu-item" Command="{Binding NavigateToRatingCommand}">
+                <Button Classes="menu-item"
+                        Classes.selected="{Binding IsRatingSelected}"
+                        Command="{Binding NavigateToRatingCommand}">
                     <StackPanel Orientation="Horizontal" Spacing="12">
                         <TextBlock Text="🏆" FontSize="18"/>
                         <TextBlock Text="Рейтинг" FontSize="14" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
 
-                <Button Classes="menu-item" Command="{Binding NavigateToProjectsCommand}">
+                <Button Classes="menu-item"
+                        Classes.selected="{Binding IsProjectsSelected}"
+                        Command="{Binding NavigateToProjectsCommand}">
                     <StackPanel Orientation="Horizontal" Spacing="12">
                         <TextBlock Text="📁" FontSize="18"/>
                         <TextBlock Text="Мои проекты" FontSize="14" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
+                
             </StackPanel>
 
             <!-- Профиль снизу -->

@@ -19,6 +19,7 @@ namespace Volunteer_Tracker.ViewModels
         [ObservableProperty]
         private int _userPoints;
 
+
         [ObservableProperty]
         private bool _isDashboardSelected = true;
 
@@ -116,6 +117,32 @@ namespace Volunteer_Tracker.ViewModels
         private void Logout()
         {
             LogoutRequested?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void SetSelectedMenuItem(string menuItem)
+        {
+            ResetSelection();
+            switch (menuItem)
+            {
+                case "Dashboard":
+                    IsDashboardSelected = true;
+                    break;
+                case "Gradebook":
+                    IsGradebookSelected = true;
+                    break;
+                case "Events":
+                    IsEventsSelected = true;
+                    break;
+                case "Volunteer":
+                    IsVolunteerSelected = true;
+                    break;
+                case "Rating":
+                    IsRatingSelected = true;
+                    break;
+                case "Projects":
+                    IsProjectsSelected = true;
+                    break;
+            }
         }
     }
 }

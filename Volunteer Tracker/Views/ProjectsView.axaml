@@ -1,0 +1,193 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Volunteer_Tracker.ViewModels"
+             x:Class="Volunteer_Tracker.Views.ProjectsView"
+             x:DataType="vm:ProjectsViewModel"
+             x:Name="Root">
+
+    <UserControl.Resources>
+        <vm:BoolToSelectedBrushConverter x:Key="SelectedBrushConverter"/>
+        <vm:BoolToForegroundBrushConverter x:Key="ForegroundBrushConverter"/>
+        <vm:IsEmptyConverter x:Key="IsEmptyConverter"/>
+    </UserControl.Resources>
+
+    <UserControl.Styles>
+        <Style Selector="Border.project-card">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="16"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="0,0,0,16"/>
+            <Setter Property="BoxShadow" Value="0 2 8 0 #1A000000"/>
+        </Style>
+        
+        <Style Selector="Button.join-button, Button.approve-button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="MinWidth" Value="120"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+        </Style>
+        
+        <Style Selector="Button.join-button">
+            <Setter Property="Background" Value="#1A73E8"/>
+        </Style>
+        
+        <Style Selector="Button.join-button:pointerover">
+            <Setter Property="Background" Value="#1557B0"/>
+        </Style>
+        
+        <Style Selector="Button.approve-button">
+            <Setter Property="Background" Value="#34A853"/>
+        </Style>
+        
+        <Style Selector="Button.approve-button:pointerover">
+            <Setter Property="Background" Value="#2D8C47"/>
+        </Style>
+        
+        <Style Selector="Button.create-button">
+            <Setter Property="Background" Value="#34A853"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="16,10"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        
+        <Style Selector="Button.create-button:pointerover">
+            <Setter Property="Background" Value="#2D8C47"/>
+        </Style>
+        
+        <Style Selector="Border.status-badge">
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Styles>
+
+    <ScrollViewer>
+        <StackPanel Margin="32,24" Spacing="24">
+            
+            <!-- Заголовок -->
+            <StackPanel Spacing="6">
+                <TextBlock Text="Проекты и проектная активность" FontSize="28" FontWeight="SemiBold" Foreground="#202124"/>
+                <TextBlock Text="Присоединяйтесь к проектам и отслеживайте свой прогресс" 
+                           FontSize="14" Foreground="#5F6368"/>
+            </StackPanel>
+
+            <!-- Табы -->
+            <StackPanel Orientation="Horizontal" Spacing="12">
+                <Border Background="{Binding IsAvailableSelected, Converter={StaticResource SelectedBrushConverter}}"
+                        CornerRadius="20" Padding="20,8" Cursor="Hand" Tapped="OnAvailableTapped">
+                    <TextBlock Text="Доступные проекты" 
+                               Foreground="{Binding IsAvailableSelected, Converter={StaticResource ForegroundBrushConverter}}"/>
+                </Border>
+                <Border Background="{Binding IsMyProjectsSelected, Converter={StaticResource SelectedBrushConverter}}"
+                        CornerRadius="20" Padding="20,8" Cursor="Hand" Tapped="OnMyProjectsTapped">
+                    <TextBlock Text="Мои проекты" 
+                               Foreground="{Binding IsMyProjectsSelected, Converter={StaticResource ForegroundBrushConverter}}"/>
+                </Border>
+            </StackPanel>
+
+            <!-- Кнопка создания проекта -->
+            <Button Classes="create-button" 
+                    HorizontalAlignment="Right"
+                    Command="{Binding CreateProjectCommand}"
+                    IsVisible="{Binding CanCreateProject}">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <TextBlock Text="➕" FontSize="14"/>
+                    <TextBlock Text="Создать проект" FontSize="14" FontWeight="SemiBold"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Список проектов -->
+            <ItemsControl ItemsSource="{Binding Projects}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Classes="project-card">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <!-- Название и статус -->
+                                <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+                                    <TextBlock Text="📁" FontSize="24" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Title}" FontSize="18" FontWeight="SemiBold" Foreground="#202124" VerticalAlignment="Center"/>
+                                    <Border Classes="status-badge" Background="{Binding StatusColor}">
+                                        <TextBlock Text="{Binding Status}" FontSize="11" Foreground="White"/>
+                                    </Border>
+                                </StackPanel>
+                                
+                                <!-- Кнопки действий -->
+                                <StackPanel Grid.Row="0" Grid.Column="1" 
+                                            Orientation="Horizontal" Spacing="8"
+                                            VerticalAlignment="Center">
+                                    
+                                    <Button Classes="join-button"
+                                            Content="Присоединиться"
+                                            Command="{Binding $parent[UserControl].DataContext.JoinProjectCommand}"
+                                            CommandParameter="{Binding}"
+                                            IsVisible="{Binding CanJoin}"/>
+                                    
+                                    <Button Classes="approve-button"
+                                            Content="✓ Подтвердить"
+                                            Command="{Binding $parent[UserControl].DataContext.ApproveProjectCommand}"
+                                            CommandParameter="{Binding}"
+                                            IsVisible="{Binding CanApprove}"/>
+                                </StackPanel>
+                                
+                                <!-- Дедлайн и баллы -->
+                                <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Spacing="24" Margin="0,12,0,0">
+                                    <StackPanel Orientation="Horizontal" Spacing="6">
+                                        <TextBlock Text="📅" FontSize="14"/>
+                                        <TextBlock Text="Дедлайн:" FontSize="13" Foreground="#5F6368"/>
+                                        <TextBlock Text="{Binding EndDate}" FontSize="13" FontWeight="SemiBold" Foreground="#EA4335"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="6">
+                                        <TextBlock Text="⭐" FontSize="14"/>
+                                        <TextBlock Text="Макс. баллов:" FontSize="13" Foreground="#5F6368"/>
+                                        <TextBlock Text="{Binding MaxPoints}" FontSize="13" FontWeight="SemiBold" Foreground="#1A73E8"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                
+                                <!-- Описание -->
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding ShortDescription}" 
+                                           FontSize="13" Foreground="#5F6368" TextWrapping="Wrap"
+                                           Margin="0,8,0,0"/>
+                                
+                                <!-- Прогресс (для моих проектов) -->
+                                <StackPanel Grid.Row="3" Grid.Column="0" Margin="0,12,0,0" 
+                                            IsVisible="{Binding ShowProgress}">
+                                    <TextBlock Text="{Binding ProgressText}" FontSize="12" Foreground="#5F6368" Margin="0,0,0,4"/>
+                                    <ProgressBar Value="{Binding ProgressPercent}" Maximum="100" Height="6" CornerRadius="3">
+                                        <ProgressBar.Styles>
+                                            <Style Selector="ProgressBar">
+                                                <Setter Property="Background" Value="#E8F0FE"/>
+                                                <Setter Property="Foreground" Value="#1A73E8"/>
+                                            </Style>
+                                        </ProgressBar.Styles>
+                                    </ProgressBar>
+                                </StackPanel>
+                                
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            
+            <!-- Нет данных -->
+            <TextBlock Text="Нет проектов" 
+                       HorizontalAlignment="Center" 
+                       Foreground="#5F6368" 
+                       IsVisible="{Binding Projects, Converter={StaticResource IsEmptyConverter}}"/>
+            
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

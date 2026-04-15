@@ -31,6 +31,44 @@ namespace Volunteer_Tracker.ViewModels
             MenuView = null;
         }
 
+        private void ShowGradebook()
+        {
+            if (_menuViewModel != null)
+            {
+                _menuViewModel.ResetSelection();
+                _menuViewModel.IsGradebookSelected = true;
+            }
+            // TODO: ShowGradebook
+        }
+
+        private void ShowEvents()
+        {
+            if (_menuViewModel != null)
+            {
+                _menuViewModel.ResetSelection();
+                _menuViewModel.IsEventsSelected = true;
+            }
+            // TODO: ShowEvents
+        }
+
+        private void ShowVolunteer()
+        {
+            if (_menuViewModel != null)
+            {
+                _menuViewModel.ResetSelection();
+                _menuViewModel.IsVolunteerSelected = true;
+            }
+            // TODO: ShowVolunteer
+        }
+
+        private void ShowProjects()
+        {
+            _menuViewModel?.SetSelectedMenuItem("Projects");
+            var projectsVm = new ProjectsViewModel(_currentUser!);
+            CurrentView = new ProjectsView { DataContext = projectsVm };
+        }
+
+
         private void ShowRegister()
         {
             var registerVm = new RegisterViewModel();
@@ -41,10 +79,13 @@ namespace Volunteer_Tracker.ViewModels
 
         private void ShowDashboard()
         {
+            _menuViewModel?.SetSelectedMenuItem("Dashboard");
             var dashboardVm = new DashboardViewModel(_currentUser!);
             dashboardVm.NavigateRequested += OnNavigateFromDashboard;
             CurrentView = new DashboardView { DataContext = dashboardVm };
         }
+
+
 
         private async void OnLoginSuccess(object? sender, User user)
         {
@@ -96,7 +137,7 @@ namespace Volunteer_Tracker.ViewModels
                     ShowRating();
                     break;
                 case "Projects":
-                    // TODO: ShowProjects();
+                    ShowProjects();
                     break;
             }
         }
@@ -126,9 +167,11 @@ namespace Volunteer_Tracker.ViewModels
 
         private void ShowRating()
         {
+            _menuViewModel?.SetSelectedMenuItem("Rating");
             var ratingVm = new RatingViewModel(_currentUser!);
             CurrentView = new RatingView { DataContext = ratingVm };
         }
+
 
         private void OnNavigateToRegister(object? sender, EventArgs e) => ShowRegister();
         private void OnNavigateToLogin(object? sender, EventArgs e) => ShowLogin();
