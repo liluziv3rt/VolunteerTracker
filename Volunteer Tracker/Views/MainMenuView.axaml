@@ -15,13 +15,19 @@
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
         </Style>
+        
         <Style Selector="Button.menu-item:pointerover">
             <Setter Property="Background" Value="#E8F0FE"/>
             <Setter Property="Foreground" Value="#1A73E8"/>
         </Style>
+        
         <Style Selector="Button.menu-item.selected">
             <Setter Property="Background" Value="#E8F0FE"/>
             <Setter Property="Foreground" Value="#1A73E8"/>
+        </Style>
+        
+        <Style Selector="Button.menu-item TextBlock">
+            <Setter Property="Foreground" Value="{Binding $parent[Button].Foreground}"/>
         </Style>
     </UserControl.Styles>
 
@@ -29,7 +35,7 @@
         
         <StackPanel Spacing="0">
             
-            <!-- Логотип без синего фона -->
+            <!-- Логотип -->
             <Border Padding="20,25">
                 <StackPanel Spacing="5">
                     <TextBlock Text="🤝" FontSize="32" HorizontalAlignment="Center"/>
@@ -86,7 +92,7 @@
                 </Button>
             </StackPanel>
 
-            <!-- Профиль снизу (прижат к низу) -->
+            <!-- Профиль снизу -->
             <Border Background="White"
                     BorderBrush="#E8E8E8"
                     BorderThickness="0,1,0,0"
@@ -139,7 +145,13 @@
                             BorderThickness="0"
                             HorizontalAlignment="Left"
                             Padding="0,5,0,0"
-                            Cursor="Hand"/>
+                            Cursor="Hand">
+                        <Button.Styles>
+                            <Style Selector="Button:pointerover">
+                                <Setter Property="Foreground" Value="#D32F2F"/>
+                            </Style>
+                        </Button.Styles>
+                    </Button>
                     
                 </StackPanel>
             </Border>
