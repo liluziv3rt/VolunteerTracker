@@ -25,6 +25,12 @@ namespace Volunteer_Tracker.ViewModels
         [ObservableProperty]
         private string _achievementsCount = "0/0";
 
+        [ObservableProperty]
+        private bool _isThisMonthSelected = true;
+
+        [ObservableProperty]
+        private bool _isAllTimeSelected;
+
         public RatingViewModel(User user)
         {
             _currentUser = user;
@@ -32,91 +38,133 @@ namespace Volunteer_Tracker.ViewModels
             _ = LoadDataAsync();
         }
 
-        private async Task LoadDataAsync()
+        public async Task LoadDataAsync()
+        {
+            await LoadLeaderboardAsync();
+            await LoadAchievementsAsync();
+        }
+
+        public async Task LoadLeaderboardAsync()
         {
             try
             {
-                // Получаем всех студентов с баллами
-                var query = from u in _context.Users
-                            join up in _context.UserPoints on u.Id equals up.UserId into pointsJoin
-                            from up in pointsJoin.DefaultIfEmpty()
-                            where u.Role == "student" && u.IsActive == true
-                            orderby (up.TotalPoints ?? 0) descending
-                            select new
-                            {
-                                u.Id,
-                                u.LastName,
-                                u.FirstName,
-                                u.GroupName,
-                                Points = up.TotalPoints ?? 0
-                            };
+                var oneMonthAgo = DateTime.Now.AddMonths(-1);
+                List<(int UserId, int Points)> userPointsList;
 
-                var rawData = await query.ToListAsync();
+                if (IsThisMonthSelected)
+                {
+                    // Баллы за этот месяц из activity_log
+                    var monthlyPoints = await _context.ActivityLogs
+                        .Where(al => al.CreatedAt >= oneMonthAgo && al.PointsChange > 0)
+                        .GroupBy(al => al.UserId)
+                        .Select(g => new { UserId = g.Key, Points = g.Sum(x => x.PointsChange ?? 0) })
+                        .ToDictionaryAsync(x => x.UserId, x => x.Points);
 
-                // Получаем количество значков
+                    var users = await _context.Users
+                        .Where(u => u.Role == "student" && u.IsActive == true)
+                        .ToListAsync();
+
+                    userPointsList = users.Select(u => (u.Id, monthlyPoints.GetValueOrDefault(u.Id, 0))).ToList();
+                }
+                else
+                {
+                    // Баллы за всё время из таблицы user_points
+                    var userPoints = await _context.UserPoints
+                        .Where(up => up.TotalPoints > 0)
+                        .ToDictionaryAsync(up => up.UserId, up => up.TotalPoints ?? 0);
+
+                    var users = await _context.Users
+                        .Where(u => u.Role == "student" && u.IsActive == true)
+                        .ToListAsync();
+
+                    userPointsList = users.Select(u => (u.Id, userPoints.GetValueOrDefault(u.Id, 0))).ToList();
+                }
+
+                // Получаем количество значков для каждого пользователя
                 var badgesCount = await _context.UserAchievements
                     .GroupBy(ua => ua.UserId)
                     .Select(g => new { UserId = g.Key, Count = g.Count() })
                     .ToDictionaryAsync(x => x.UserId, x => x.Count);
 
-                // Формируем список лидеров
-                var studentsWithData = new List<LeaderboardItem>();
+                // Получаем информацию о пользователях
+                var usersInfo = await _context.Users
+                    .Where(u => u.Role == "student" && u.IsActive == true)
+                    .ToDictionaryAsync(u => u.Id, u => u);
+
+                // Формируем список лидеров, сортируем по баллам, берём ТОП-10
+                var leaderboardList = new List<LeaderboardItem>();
                 int rank = 1;
-                foreach (var item in rawData)
+
+                foreach (var (userId, points) in userPointsList.OrderByDescending(x => x.Points))
                 {
-                    var leaderItem = new LeaderboardItem
+                    if (!usersInfo.ContainsKey(userId)) continue;
+
+                    var user = usersInfo[userId];
+                    var item = new LeaderboardItem
                     {
-                        UserId = item.Id,
-                        FullName = $"{item.LastName} {item.FirstName}",
-                        GroupName = item.GroupName ?? "Факультет",
-                        Points = item.Points,
-                        BadgesCount = badgesCount.GetValueOrDefault(item.Id, 0),
+                        UserId = userId,
+                        FullName = $"{user.LastName} {user.FirstName}",
+                        GroupName = user.GroupName ?? "Факультет",
+                        Points = points,
+                        BadgesCount = badgesCount.GetValueOrDefault(userId, 0),
                         Rank = rank,
-                        IsCurrentUser = item.Id == _currentUser.Id
+                        IsCurrentUser = userId == _currentUser.Id
                     };
 
-                    var names = leaderItem.FullName.Split(' ');
-                    leaderItem.Initials = names.Length >= 2
+                    var names = item.FullName.Split(' ');
+                    item.Initials = names.Length >= 2
                         ? $"{names[0][0]}{names[1][0]}".ToUpper()
                         : names[0].Substring(0, Math.Min(2, names[0].Length)).ToUpper();
 
+                    // Оформление 1, 2, 3 места
                     if (rank == 1)
                     {
-                        leaderItem.Medal = "🥇";
-                        leaderItem.RankColor = "#FFD700";
-                        leaderItem.RowBackground = "#FFF9E6";
+                        item.Medal = "🥇";
+                        item.RankColor = "#FFD700";
+                        item.RowBackground = "#FFF9E6";
                     }
                     else if (rank == 2)
                     {
-                        leaderItem.Medal = "🥈";
-                        leaderItem.RankColor = "#C0C0C0";
-                        leaderItem.RowBackground = "#F0F7FF";
+                        item.Medal = "🥈";
+                        item.RankColor = "#C0C0C0";
+                        item.RowBackground = "#F0F7FF";
                     }
                     else if (rank == 3)
                     {
-                        leaderItem.Medal = "🥉";
-                        leaderItem.RankColor = "#CD7F32";
-                        leaderItem.RowBackground = "#FFF4EB";
+                        item.Medal = "🥉";
+                        item.RankColor = "#CD7F32";
+                        item.RowBackground = "#FFF4EB";
                     }
                     else
                     {
-                        leaderItem.Medal = "";
-                        leaderItem.RankColor = "#5F6368";
-                        leaderItem.RowBackground = "Transparent";
+                        item.Medal = "";
+                        item.RankColor = "#5F6368";
+                        item.RowBackground = "Transparent";
                     }
 
-                    if (leaderItem.IsCurrentUser)
+                    if (item.IsCurrentUser && rank > 3)
                     {
-                        leaderItem.RowBackground = "#E8F0FE";
+                        item.RowBackground = "#E8F0FE";
                     }
 
-                    studentsWithData.Add(leaderItem);
+                    leaderboardList.Add(item);
                     rank++;
+                    if (rank > 10) break;
                 }
 
-                Leaderboard = studentsWithData.Take(20).ToList();
+                Leaderboard = leaderboardList;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Ошибка загрузки лидеров: {ex.Message}");
+                Leaderboard = new List<LeaderboardItem>();
+            }
+        }
 
-                // Загружаем достижения (сортировка по порогу)
+        private async Task LoadAchievementsAsync()
+        {
+            try
+            {
                 var allAchievements = await _context.Achievements
                     .OrderBy(a => a.ThresholdValue)
                     .ToListAsync();
@@ -152,38 +200,25 @@ namespace Volunteer_Tracker.ViewModels
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Ошибка: {ex.Message}");
-                SetDefaultData();
+                System.Diagnostics.Debug.WriteLine($"Ошибка загрузки достижений: {ex.Message}");
+                EarnedAchievements = new List<AchievementItem>();
+                LockedAchievements = new List<AchievementItem>();
+                AchievementsCount = "0/0";
             }
         }
 
-        private void SetDefaultData()
+        public async Task SwitchToThisMonth()
         {
-            Leaderboard = new List<LeaderboardItem>
-            {
-                new() { Rank = 1, FullName = "Иванов Иван", GroupName = "Факультет информатики", Points = 2450, BadgesCount = 5, Medal = "🥇", RankColor = "#FFD700", RowBackground = "#FFF9E6", Initials = "ИИ" },
-                new() { Rank = 2, FullName = "Петрова Анна", GroupName = "Факультет экономики", Points = 2120, BadgesCount = 4, IsCurrentUser = true, Medal = "🥈", RankColor = "#C0C0C0", RowBackground = "#E8F0FE", Initials = "ПА" },
-                new() { Rank = 3, FullName = "Сидоров Алексей", GroupName = "Факультет медицины", Points = 1980, BadgesCount = 4, Medal = "🥉", RankColor = "#CD7F32", RowBackground = "#FFF4EB", Initials = "СА" },
-                new() { Rank = 4, FullName = "Кузнецова Мария", GroupName = "Факультет права", Points = 1845, BadgesCount = 3, Initials = "КМ" },
-                new() { Rank = 5, FullName = "Смирнов Дмитрий", GroupName = "Факультет инженерии", Points = 1720, BadgesCount = 3, Initials = "СД" }
-            };
+            IsThisMonthSelected = true;
+            IsAllTimeSelected = false;
+            await LoadLeaderboardAsync();
+        }
 
-            EarnedAchievements = new List<AchievementItem>
-            {
-                new() { Name = "Первые шаги", Points = 50, Icon = "★", IsEarned = true },
-                new() { Name = "Активист", Points = 200, Icon = "⚡", IsEarned = true }
-            };
-
-            LockedAchievements = new List<AchievementItem>
-            {
-                new() { Name = "Лидер", Points = 500, Icon = "👑", IsEarned = false },
-                new() { Name = "Волонтёр года", Points = 1000, Icon = "🏆", IsEarned = false },
-                new() { Name = "Труженик", Points = 100, Icon = "⏱️", IsEarned = false },
-                new() { Name = "Мастер проектов", Points = 3, Icon = "📁", IsEarned = false },
-                new() { Name = "Энтузиаст", Points = 5, Icon = "🚀", IsEarned = false }
-            };
-
-            AchievementsCount = "2/7";
+        public async Task SwitchToAllTime()
+        {
+            IsThisMonthSelected = false;
+            IsAllTimeSelected = true;
+            await LoadLeaderboardAsync();
         }
     }
 
