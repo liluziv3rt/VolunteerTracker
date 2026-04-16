@@ -341,12 +341,13 @@ namespace Volunteer_Tracker.ViewModels
                     assignment.Status = "approved";
                     await _context.SaveChangesAsync();
 
-                    // Обновляем список участников для конкретного проекта
                     var project = Projects.FirstOrDefault(p => p.Id == assignment.ProjectId);
                     if (project != null)
                     {
+                        // Перезагружаем участников для этого проекта
                         project.Participants = await GetProjectParticipantsAsync(project.Id);
                         project.ParticipantsCount = project.Participants.Count(p => p.IsApproved);
+                        // Принудительно обновляем UI
                         OnPropertyChanged(nameof(Projects));
                     }
                 }
@@ -369,7 +370,6 @@ namespace Volunteer_Tracker.ViewModels
                     _context.ProjectAssignments.Remove(assignment);
                     await _context.SaveChangesAsync();
 
-                    // Обновляем список участников для конкретного проекта
                     var project = Projects.FirstOrDefault(p => p.Id == assignment.ProjectId);
                     if (project != null)
                     {
@@ -389,10 +389,13 @@ namespace Volunteer_Tracker.ViewModels
         [RelayCommand]
         private async Task KickUser(ParticipantItem participant)
         {
+            // Нельзя удалить самого себя (создателя)
+            if (participant.UserId == _currentUser.Id) return;
+
             try
             {
                 var assignment = await _context.ProjectAssignments.FindAsync(participant.AssignmentId);
-                if (assignment != null && participant.IsApproved) // не удаляем создателя
+                if (assignment != null)
                 {
                     _context.ProjectAssignments.Remove(assignment);
                     await _context.SaveChangesAsync();
