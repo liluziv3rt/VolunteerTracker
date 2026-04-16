@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "mX5B9fY/Zl8=",
+  "dgSpecHash": "K3IXHYrronI=",
   "success": true,
   "projectFilePath": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\Guslik\\.nuget\\packages\\avalonia.angle.windows.natives\\2.1.25547.20250602\\avalonia.angle.windows.natives.2.1.25547.20250602.nupkg.sha512",
     "C:\\Users\\Guslik\\.nuget\\packages\\avalonia.buildservices\\11.3.2\\avalonia.buildservices.11.3.2.nupkg.sha512",
     "C:\\Users\\Guslik\\.nuget\\packages\\avalonia.controls.colorpicker\\11.3.11\\avalonia.controls.colorpicker.11.3.11.nupkg.sha512",
+    "C:\\Users\\Guslik\\.nuget\\packages\\avalonia.controls.datagrid\\11.2.0\\avalonia.controls.datagrid.11.2.0.nupkg.sha512",
     "C:\\Users\\Guslik\\.nuget\\packages\\avalonia.desktop\\11.3.11\\avalonia.desktop.11.3.11.nupkg.sha512",
     "C:\\Users\\Guslik\\.nuget\\packages\\avalonia.diagnostics\\11.3.11\\avalonia.diagnostics.11.3.11.nupkg.sha512",
     "C:\\Users\\Guslik\\.nuget\\packages\\avalonia.fonts.inter\\11.3.11\\avalonia.fonts.inter.11.3.11.nupkg.sha512",

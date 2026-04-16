@@ -1,0 +1,209 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Volunteer_Tracker.ViewModels"
+             x:Class="Volunteer_Tracker.Views.AdminPanelView"
+             x:DataType="vm:AdminPanelViewModel"
+             x:Name="Root">
+
+    <UserControl.Styles>
+        <!-- Таб-кнопки -->
+        <Style Selector="Button.tab-button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#5F6368"/>
+            <Setter Property="Padding" Value="20,12"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        
+        <Style Selector="Button.tab-button:pointerover">
+            <Setter Property="Background" Value="#E8F0FE"/>
+            <Setter Property="Foreground" Value="#1A73E8"/>
+        </Style>
+        
+        <Style Selector="Button.tab-button.selected">
+            <Setter Property="Background" Value="#1A73E8"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <!-- Кнопка сохранения -->
+        <Style Selector="Button.save-button">
+            <Setter Property="Background" Value="#34A853"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="16,10"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="0,16,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+        </Style>
+
+        <Style Selector="Button.save-button:pointerover">
+            <Setter Property="Background" Value="#2D8C47"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <!-- Поля ввода -->
+        <Style Selector="TextBox, ComboBox">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#DADCE0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="Foreground" Value="#202124"/>
+        </Style>
+
+        <Style Selector="TextBox:focus, ComboBox:focus">
+            <Setter Property="BorderBrush" Value="#1A73E8"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+
+        <!-- ComboBox выпадающий список -->
+        <Style Selector="ComboBoxItem">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#202124"/>
+            <Setter Property="Padding" Value="8,6"/>
+        </Style>
+
+        <Style Selector="ComboBoxItem:pointerover">
+            <Setter Property="Background" Value="#F1F3F4"/>
+        </Style>
+
+        <Style Selector="ComboBoxItem:selected">
+            <Setter Property="Background" Value="#E8F0FE"/>
+            <Setter Property="Foreground" Value="#1A73E8"/>
+        </Style>
+
+        <!-- Чекбокс -->
+        <Style Selector="CheckBox">
+            <Setter Property="Foreground" Value="#202124"/>
+        </Style>
+
+        <!-- Общий текст -->
+        <Style Selector="TextBlock">
+            <Setter Property="Foreground" Value="#202124"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Grid RowDefinitions="Auto,Auto,*" Margin="32,24">
+        
+        <TextBlock Text="Админ-панель"
+                   FontSize="28"
+                   FontWeight="SemiBold"
+                   Foreground="#202124"
+                   Grid.Row="0"/>
+
+        <StackPanel Orientation="Horizontal" Spacing="12" Margin="0,20,0,0" Grid.Row="1">
+            <Button Content="👥 Пользователи"
+                    Classes="tab-button"
+                    Classes.selected="{Binding IsUsersTabSelected}"
+                    Command="{Binding ShowUsersCommand}"/>
+            
+            <Button Content="📋 Проекты"
+                    Classes="tab-button"
+                    Classes.selected="{Binding IsProjectsTabSelected}"
+                    Command="{Binding ShowProjectsCommand}"/>
+        </StackPanel>
+
+        <Border Grid.Row="2"
+                Background="White"
+                CornerRadius="16"
+                Padding="20"
+                Margin="0,16,0,0"
+                BoxShadow="0 2 8 0 #1A000000">
+
+            <StackPanel>
+                <!-- Пользователи -->
+                <StackPanel IsVisible="{Binding IsUsersTabSelected}" Spacing="16">
+                    <TextBlock Text="Управление пользователями" 
+                               FontSize="18" FontWeight="SemiBold" 
+                               Foreground="#202124"/>
+
+                    <ScrollViewer Height="450">
+                        <ItemsControl ItemsSource="{Binding Users}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="#F8F9FA" CornerRadius="10" Padding="12" Margin="0,0,0,8">
+                                        <Grid ColumnDefinitions="40,*,120,100,100,80" ColumnSpacing="12">
+                                            
+                                            <Border Width="36" Height="36" CornerRadius="18" Background="#E8F0FE">
+                                                <TextBlock Text="{Binding Initials}" 
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           FontWeight="Bold"
+                                                           Foreground="#1A73E8"/>
+                                            </Border>
+
+                                            <TextBlock Grid.Column="1"
+                                                       Text="{Binding FullName}"
+                                                       VerticalAlignment="Center"
+                                                       FontWeight="SemiBold"/>
+
+                                            <ComboBox Grid.Column="2"
+                                                      ItemsSource="{Binding #Root.DataContext.Roles}"
+                                                      SelectedItem="{Binding Role}"
+                                                      Width="110"/>
+
+                                            <TextBox Grid.Column="3"
+                                                     Text="{Binding TotalPoints}"
+                                                     Width="90"/>
+
+                                            <TextBox Grid.Column="4"
+                                                     Text="{Binding CompletedProjects}"
+                                                     Width="90"/>
+
+                                            <CheckBox Grid.Column="5"
+                                                      IsChecked="{Binding IsActive}"
+                                                      VerticalAlignment="Center"/>
+
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+
+                    <Button Classes="save-button"
+                            Content="💾 Сохранить пользователей"
+                            Command="{Binding SaveUsersCommand}"/>
+                </StackPanel>
+
+                <!-- Проекты -->
+                <StackPanel IsVisible="{Binding IsProjectsTabSelected}" Spacing="16">
+                    <TextBlock Text="Управление проектами" 
+                               FontSize="18" FontWeight="SemiBold" 
+                               Foreground="#202124"/>
+
+                    <ScrollViewer Height="450">
+                        <ItemsControl ItemsSource="{Binding Projects}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="#F8F9FA" CornerRadius="10" Padding="12" Margin="0,0,0,8">
+                                        <Grid ColumnDefinitions="*,120,120,100" ColumnSpacing="12">
+                                            
+                                            <TextBox Text="{Binding Title}" Watermark="Название"/>
+
+                                            <TextBox Grid.Column="1" Text="{Binding Category}" Watermark="Категория"/>
+
+                                            <ComboBox Grid.Column="2"
+                                                      ItemsSource="{Binding #Root.DataContext.ProjectStatuses}"
+                                                      SelectedItem="{Binding Status}"/>
+
+                                            <TextBox Grid.Column="3" Text="{Binding MaxPoints}" Watermark="Баллы"/>
+
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+
+                    <Button Classes="save-button"
+                            Content="💾 Сохранить проекты"
+                            Command="{Binding SaveProjectsCommand}"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

@@ -139,7 +139,10 @@ namespace Volunteer_Tracker.ViewModels
                 case "MyProfile":
                     ShowMyProfile();
                     break;
-                
+                case "AdminPanel":
+                    ShowAdminPanel();
+                    break;
+
             }
         }
 
@@ -174,6 +177,18 @@ namespace Volunteer_Tracker.ViewModels
         {
             _currentUser = null;
             ShowLogin();
+        }
+
+        private void ShowAdminPanel()
+        {
+            if (_menuViewModel != null)
+            {
+                _menuViewModel.ResetSelection();
+                _menuViewModel.IsAdminPanelSelected = true;
+            }
+
+            var adminVm = new AdminPanelViewModel();
+            CurrentView = new AdminPanelView { DataContext = adminVm };
         }
 
         private void ShowRating()
