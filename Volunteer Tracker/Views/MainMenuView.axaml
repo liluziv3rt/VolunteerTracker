@@ -110,6 +110,16 @@
                         <TextBlock Text="Мои проекты" FontSize="14" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
+
+                <Button Classes="menu-item"
+                        Classes.selected="{Binding IsAdminPanelSelected}"
+                        Command="{Binding NavigateToAdminPanelCommand}"
+                        IsVisible="{Binding IsAdmin}">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <TextBlock Text="👑" FontSize="18"/>
+                        <TextBlock Text="Админ-панель" FontSize="14" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
                 
             </StackPanel>
 

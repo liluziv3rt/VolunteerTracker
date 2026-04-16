@@ -37,6 +37,11 @@ namespace Volunteer_Tracker.ViewModels
         [ObservableProperty]
         private bool _isProjectsSelected;
 
+        [ObservableProperty]
+        private bool _isAdminPanelSelected;
+
+        public bool IsAdmin => UserRole == "Администратор";
+
         // 👇 ЭТО СОБЫТИЕ НУЖНО ДОБАВИТЬ
         public event EventHandler<string>? NavigateRequested;
         public event EventHandler? LogoutRequested;
@@ -89,6 +94,14 @@ namespace Volunteer_Tracker.ViewModels
             IsVolunteerSelected = false;
             IsRatingSelected = false;
             IsProjectsSelected = false;
+        }
+
+        [RelayCommand]
+        private void NavigateToAdminPanel()
+        {
+            ResetSelection();
+            IsAdminPanelSelected = true;
+            NavigateRequested?.Invoke(this, "AdminPanel");
         }
 
         [RelayCommand]

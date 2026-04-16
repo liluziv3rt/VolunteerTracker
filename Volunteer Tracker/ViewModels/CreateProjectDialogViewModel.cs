@@ -56,6 +56,7 @@ namespace Volunteer_Tracker.ViewModels
         {
             ProjectCreated?.Invoke(this, (string.Empty, string.Empty, string.Empty, DateTime.Now, DateTime.Now, 0, string.Empty));
         }
+
         [RelayCommand]
         private void Create()
         {
@@ -72,15 +73,33 @@ namespace Volunteer_Tracker.ViewModels
             }
 
             DateError = string.Empty;
+            var today = DateTime.Today;
+
             if (StartDate == null || EndDate == null)
             {
                 DateError = "Выберите даты";
                 hasError = true;
             }
-            else if (EndDate <= StartDate)
+            else
             {
-                DateError = "Дедлайн должен быть позже даты начала";
-                hasError = true;
+                // Проверка: дедлайн не может быть раньше сегодня
+                if (EndDate.Value.Date < today)
+                {
+                    DateError = "Дедлайн не может быть раньше сегодняшнего дня";
+                    hasError = true;
+                }
+                // Проверка: дедлайн не может быть раньше даты начала
+                else if (EndDate.Value.Date < StartDate.Value.Date)
+                {
+                    DateError = "Дедлайн не может быть раньше даты начала";
+                    hasError = true;
+                }
+                // Проверка: дата начала не может быть раньше сегодня
+                else if (StartDate.Value.Date < today)
+                {
+                    DateError = "Дата начала не может быть раньше сегодняшнего дня";
+                    hasError = true;
+                }
             }
 
             if (hasError) return;

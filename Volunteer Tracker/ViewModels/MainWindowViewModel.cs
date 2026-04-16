@@ -142,8 +142,11 @@ namespace Volunteer_Tracker.ViewModels
                 case "MyProfile":
                     ShowMyProfile();
                     break;
+                
             }
         }
+
+        
 
         private void ShowMyProfile()
         {

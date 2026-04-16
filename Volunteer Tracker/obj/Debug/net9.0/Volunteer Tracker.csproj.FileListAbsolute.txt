@@ -1,3 +1,11 @@
+E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\obj\Debug\net9.0\Volunteer Tracker.csproj.AssemblyReference.cache
+E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\obj\Debug\net9.0\Avalonia\Resources.Inputs.cache
+E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\obj\Debug\net9.0\Avalonia\resources
+E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\obj\Debug\net9.0\Volunteer Tracker.GeneratedMSBuildEditorConfig.editorconfig
+E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\obj\Debug\net9.0\Volunteer Tracker.AssemblyInfoInputs.cache
+E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\obj\Debug\net9.0\Volunteer Tracker.AssemblyInfo.cs
+E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\obj\Debug\net9.0\Volunteer Tracker.csproj.CoreCompileInputs.cache
+E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\obj\Debug\net9.0\Volunteer Tracker.sourcelink.json
 E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\bin\Debug\net9.0\Volunteer Tracker.exe
 E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\bin\Debug\net9.0\Volunteer Tracker.deps.json
 E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\bin\Debug\net9.0\Volunteer Tracker.runtimeconfig.json
@@ -158,14 +166,6 @@ E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\bin\Debug\net9.0\runtim
 E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\bin\Debug\net9.0\runtimes\win-arm64\native\libSkiaSharp.dll
 E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\bin\Debug\net9.0\runtimes\win-x64\native\libSkiaSharp.dll
 E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\bin\Debug\net9.0\runtimes\win-x86\native\libSkiaSharp.dll
-E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\obj\Debug\net9.0\Volunteer Tracker.csproj.AssemblyReference.cache
-E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\obj\Debug\net9.0\Avalonia\Resources.Inputs.cache
-E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\obj\Debug\net9.0\Avalonia\resources
-E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\obj\Debug\net9.0\Volunteer Tracker.GeneratedMSBuildEditorConfig.editorconfig
-E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\obj\Debug\net9.0\Volunteer Tracker.AssemblyInfoInputs.cache
-E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\obj\Debug\net9.0\Volunteer Tracker.AssemblyInfo.cs
-E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\obj\Debug\net9.0\Volunteer Tracker.csproj.CoreCompileInputs.cache
-E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\obj\Debug\net9.0\Volunteer Tracker.sourcelink.json
 E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\obj\Debug\net9.0\Voluntee.01FF370F.Up2Date
 E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\obj\Debug\net9.0\Volunteer Tracker.dll
 E:\Volunteer Tracker\Volunteer Tracker\Volunteer Tracker\obj\Debug\net9.0\refint\Volunteer Tracker.dll

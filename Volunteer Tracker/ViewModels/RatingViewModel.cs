@@ -1,10 +1,14 @@
-﻿using System;
+﻿using Avalonia.Controls.ApplicationLifetimes;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
-using Microsoft.EntityFrameworkCore;
 using Volunteer_Tracker.Models;
+using Volunteer_Tracker.Views;
 
 namespace Volunteer_Tracker.ViewModels
 {
@@ -31,17 +35,197 @@ namespace Volunteer_Tracker.ViewModels
         [ObservableProperty]
         private bool _isAllTimeSelected;
 
+        [ObservableProperty]
+        private int _currentUserRank;
+
+        [ObservableProperty]
+        private string _currentUserFullName = string.Empty;
+
+        [ObservableProperty]
+        private string _currentUserInitials = string.Empty;
+
+        [ObservableProperty]
+        private int _currentUserPoints;
+
+        [ObservableProperty]
+        private int _currentUserBadgesCount;
+
         public RatingViewModel(User user)
         {
             _currentUser = user;
             _context = new PostgresContext();
+            _ = CheckAndAwardAchievements(user.Id);
             _ = LoadDataAsync();
         }
 
-        public async Task LoadDataAsync()
+        private async Task LoadDataAsync()
         {
-            await LoadLeaderboardAsync();
-            await LoadAchievementsAsync();
+            try
+            {
+                // Получаем всех студентов с баллами
+                var studentsQuery = await (from u in _context.Users
+                                           join up in _context.UserPoints on u.Id equals up.UserId into pointsJoin
+                                           from up in pointsJoin.DefaultIfEmpty()
+                                           where u.Role == "student" && u.IsActive == true
+                                           orderby (up.TotalPoints ?? 0) descending
+                                           select new
+                                           {
+                                               u.Id,
+                                               u.LastName,
+                                               u.FirstName,
+                                               u.GroupName,
+                                               Points = up.TotalPoints ?? 0
+                                           })
+                                           .ToListAsync();
+
+                // Получаем количество значков для всех пользователей
+                var badgesCount = await _context.UserAchievements
+                    .GroupBy(ua => ua.UserId)
+                    .Select(g => new { UserId = g.Key, Count = g.Count() })
+                    .ToDictionaryAsync(x => x.UserId, x => x.Count);
+
+                var studentsWithPoints = new List<LeaderboardItem>();
+                int rank = 1;
+
+                foreach (var item in studentsQuery)
+                {
+                    var leaderItem = new LeaderboardItem
+                    {
+                        UserId = item.Id,
+                        FullName = $"{item.LastName} {item.FirstName}",
+                        GroupName = item.GroupName ?? "Факультет",
+                        Points = item.Points,
+                        BadgesCount = badgesCount.GetValueOrDefault(item.Id, 0),
+                        Rank = rank,
+                        IsCurrentUser = item.Id == _currentUser.Id,
+                        Initials = item.FirstName != null && item.LastName != null
+                            ? $"{item.FirstName[0]}{item.LastName[0]}".ToUpper()
+                            : "??"
+                    };
+
+                    if (rank == 1) leaderItem.Medal = "🥇";
+                    else if (rank == 2) leaderItem.Medal = "🥈";
+                    else if (rank == 3) leaderItem.Medal = "🥉";
+                    else leaderItem.Medal = "";
+
+                    if (rank == 1) leaderItem.RankColor = "#FFD700";
+                    else if (rank == 2) leaderItem.RankColor = "#C0C0C0";
+                    else if (rank == 3) leaderItem.RankColor = "#CD7F32";
+                    else leaderItem.RankColor = "#5F6368";
+
+                    if (rank == 1) leaderItem.RowBackground = "#FFF9E6";
+                    else if (rank == 2) leaderItem.RowBackground = "#F0F7FF";
+                    else if (rank == 3) leaderItem.RowBackground = "#FFF4EB";
+                    else leaderItem.RowBackground = "Transparent";
+
+                    if (leaderItem.IsCurrentUser && rank > 3)
+                    {
+                        leaderItem.RowBackground = "#E8F0FE";
+                    }
+
+                    if (leaderItem.IsCurrentUser)
+                    {
+                        CurrentUserRank = rank;
+                        CurrentUserFullName = leaderItem.FullName;
+                        CurrentUserInitials = leaderItem.Initials;
+                        CurrentUserPoints = leaderItem.Points;
+                        CurrentUserBadgesCount = leaderItem.BadgesCount;
+                    }
+
+                    studentsWithPoints.Add(leaderItem);
+                    rank++;
+                }
+
+                Leaderboard = studentsWithPoints.Take(20).ToList();
+
+                await LoadAchievementsAsync();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Ошибка загрузки рейтинга: {ex.Message}");
+                Leaderboard = new List<LeaderboardItem>();
+            }
+        }
+
+        public async Task CheckAndAwardAchievements(int userId)
+        {
+            using var context = new PostgresContext();
+
+            // Получаем данные пользователя
+            var userPoints = await context.UserPoints.FirstOrDefaultAsync(up => up.UserId == userId);
+            if (userPoints == null) return;
+
+            int totalPoints = userPoints.TotalPoints ?? 0;
+            decimal totalHours = userPoints.TotalVolunteerHours ?? 0;
+            int totalProjects = userPoints.TotalProjectsCompleted ?? 0;
+            int totalRentals = userPoints.TotalRentalMinutes ?? 0;  // 👈 ИСПРАВЛЕНО
+
+            // Получаем все достижения
+            var allAchievements = await context.Achievements.ToListAsync();
+
+            // Получаем уже полученные достижения пользователя
+            var earnedIds = await context.UserAchievements
+                .Where(ua => ua.UserId == userId)
+                .Select(ua => ua.AchievementId)
+                .ToListAsync();
+
+            bool anyNew = false;
+
+            foreach (var achievement in allAchievements)
+            {
+                if (earnedIds.Contains(achievement.Id)) continue;
+
+                bool earned = false;
+
+                switch (achievement.TriggerType)
+                {
+                    case "points":
+                        earned = totalPoints >= achievement.ThresholdValue;
+                        break;
+                    case "hours":
+                        earned = totalHours >= achievement.ThresholdValue;
+                        break;
+                    case "projects":
+                        earned = totalProjects >= achievement.ThresholdValue;
+                        break;
+                    case "rentals":
+                        earned = totalRentals >= achievement.ThresholdValue;
+                        break;
+                }
+
+                if (earned)
+                {
+                    context.UserAchievements.Add(new UserAchievement
+                    {
+                        UserId = userId,
+                        AchievementId = achievement.Id,
+                        EarnedAt = DateTime.Now
+                    });
+
+                    // Добавляем бонусные баллы
+                    if (achievement.BonusPoints > 0)
+                    {
+                        userPoints.TotalPoints = (userPoints.TotalPoints ?? 0) + achievement.BonusPoints;
+                    }
+
+                    // Добавляем запись в активность
+                    context.ActivityLogs.Add(new ActivityLog
+                    {
+                        UserId = userId,
+                        ActivityType = "achievement",
+                        Title = $"Получено достижение \"{achievement.Name}\"",
+                        PointsChange = achievement.BonusPoints,
+                        CreatedAt = DateTime.Now
+                    });
+
+                    anyNew = true;
+                }
+            }
+
+            if (anyNew)
+            {
+                await context.SaveChangesAsync();
+            }
         }
 
         public async Task LoadLeaderboardAsync()
@@ -161,6 +345,21 @@ namespace Volunteer_Tracker.ViewModels
             }
         }
 
+        [RelayCommand]
+        private async Task OpenProfile(int userId)
+        {
+            var profileVm = new ProfileViewModel(_currentUser, userId);
+
+            if (Avalonia.Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                var mainWindow = desktop.MainWindow;
+                if (mainWindow?.DataContext is MainWindowViewModel mainVm)
+                {
+                    mainVm.CurrentView = new ProfileView { DataContext = profileVm };
+                }
+            }
+        }
+
         private async Task LoadAchievementsAsync()
         {
             try
@@ -179,7 +378,14 @@ namespace Volunteer_Tracker.ViewModels
                     .Select(a => new AchievementItem
                     {
                         Name = a.Name,
-                        Points = a.ThresholdValue,
+                        Description = a.Description ?? a.TriggerType switch
+                        {
+                            "points" => $"Набрать {a.ThresholdValue} баллов",
+                            "hours" => $"Отработать {a.ThresholdValue} волонтёрских часов",
+                            "projects" => $"Завершить {a.ThresholdValue} проектов",
+                            "rentals" => $"Взять в аренду ресурс {a.ThresholdValue} раз",
+                            _ => $"Достичь {a.ThresholdValue}"
+                        },
                         Icon = a.BadgeIcon ?? "🏅",
                         IsEarned = true
                     }).ToList();
@@ -189,7 +395,14 @@ namespace Volunteer_Tracker.ViewModels
                     .Select(a => new AchievementItem
                     {
                         Name = a.Name,
-                        Points = a.ThresholdValue,
+                        Description = a.Description ?? a.TriggerType switch
+                        {
+                            "points" => $"Набрать {a.ThresholdValue} баллов",
+                            "hours" => $"Отработать {a.ThresholdValue} волонтёрских часов",
+                            "projects" => $"Завершить {a.ThresholdValue} проектов",
+                            "rentals" => $"Взять в аренду ресурс {a.ThresholdValue} раз",
+                            _ => $"Достичь {a.ThresholdValue}"
+                        },
                         Icon = a.BadgeIcon ?? "🔒",
                         IsEarned = false
                     }).ToList();
@@ -240,6 +453,7 @@ namespace Volunteer_Tracker.ViewModels
     public class AchievementItem
     {
         public string Name { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
         public int Points { get; set; }
         public string Icon { get; set; } = string.Empty;
         public bool IsEarned { get; set; }

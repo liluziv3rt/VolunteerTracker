@@ -19,44 +19,54 @@
             <Setter Property="Margin" Value="0,0,0,16"/>
             <Setter Property="BoxShadow" Value="0 2 8 0 #1A000000"/>
         </Style>
-        
-        <Style Selector="Button.join-button, Button.approve-button">
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Padding" Value="12,8"/>
-            <Setter Property="CornerRadius" Value="8"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="MinWidth" Value="120"/>
-            <Setter Property="HorizontalAlignment" Value="Right"/>
-        </Style>
-        
-        <Style Selector="Button.join-button">
-            <Setter Property="Background" Value="#1A73E8"/>
-        </Style>
-        
-        <Style Selector="Button.join-button:pointerover">
-            <Setter Property="Background" Value="#1557B0"/>
-        </Style>
-        
-        <Style Selector="Button.approve-button">
-            <Setter Property="Background" Value="#34A853"/>
-        </Style>
-        
-        <Style Selector="Button.approve-button:pointerover">
-            <Setter Property="Background" Value="#2D8C47"/>
-        </Style>
-        
+
         <Style Selector="Button.create-button">
             <Setter Property="Background" Value="#34A853"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Padding" Value="16,10"/>
             <Setter Property="CornerRadius" Value="8"/>
             <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
         </Style>
-        
+
         <Style Selector="Button.create-button:pointerover">
             <Setter Property="Background" Value="#2D8C47"/>
+            <Setter Property="Foreground" Value="White"/>
         </Style>
-        
+
+        <Style Selector="Button.create-button:pressed">
+            <Setter Property="Background" Value="#1B5E20"/>
+        </Style>
+
+        <Style Selector="Button.join-button, Button.approve-button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="MinWidth" Value="120"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+
+        <Style Selector="Button.join-button">
+            <Setter Property="Background" Value="#1A73E8"/>
+        </Style>
+
+        <Style Selector="Button.join-button:pointerover">
+            <Setter Property="Background" Value="#1557B0"/>
+        </Style>
+
+        <Style Selector="Button.approve-button">
+            <Setter Property="Background" Value="#34A853"/>
+        </Style>
+
+        <Style Selector="Button.approve-button:pointerover">
+            <Setter Property="Background" Value="#2D8C47"/>
+        </Style>
+
         <Style Selector="Border.status-badge">
             <Setter Property="CornerRadius" Value="12"/>
             <Setter Property="Padding" Value="8,4"/>
@@ -67,14 +77,12 @@
     <ScrollViewer>
         <StackPanel Margin="32,24" Spacing="24">
             
-            <!-- Заголовок -->
             <StackPanel Spacing="6">
                 <TextBlock Text="Проекты и проектная активность" FontSize="28" FontWeight="SemiBold" Foreground="#202124"/>
                 <TextBlock Text="Присоединяйтесь к проектам и отслеживайте свой прогресс" 
                            FontSize="14" Foreground="#5F6368"/>
             </StackPanel>
 
-            <!-- Табы -->
             <StackPanel Orientation="Horizontal" Spacing="12">
                 <Border Background="{Binding IsAvailableSelected, Converter={StaticResource SelectedBrushConverter}}"
                         CornerRadius="20" Padding="20,8" Cursor="Hand" Tapped="OnAvailableTapped">
@@ -88,7 +96,6 @@
                 </Border>
             </StackPanel>
 
-            <!-- Кнопка создания проекта -->
             <Button Classes="create-button" 
                     HorizontalAlignment="Right"
                     Command="{Binding CreateProjectCommand}"
@@ -99,7 +106,6 @@
                 </StackPanel>
             </Button>
 
-            <!-- Список проектов -->
             <ItemsControl ItemsSource="{Binding Projects}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -110,13 +116,14 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 
-                                <!-- Название и статус -->
+                                <!-- Строка 0: Название и статус + кнопки -->
                                 <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
                                     <TextBlock Text="📁" FontSize="24" VerticalAlignment="Center"/>
                                     <TextBlock Text="{Binding Title}" FontSize="18" FontWeight="SemiBold" Foreground="#202124" VerticalAlignment="Center"/>
@@ -125,17 +132,12 @@
                                     </Border>
                                 </StackPanel>
                                 
-                                <!-- Кнопки действий -->
-                                <StackPanel Grid.Row="0" Grid.Column="1" 
-                                            Orientation="Horizontal" Spacing="8"
-                                            VerticalAlignment="Center">
-                                    
+                                <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
                                     <Button Classes="join-button"
                                             Content="Присоединиться"
                                             Command="{Binding $parent[UserControl].DataContext.JoinProjectCommand}"
                                             CommandParameter="{Binding}"
                                             IsVisible="{Binding CanJoin}"/>
-                                    
                                     <Button Classes="approve-button"
                                             Content="✓ Подтвердить"
                                             Command="{Binding $parent[UserControl].DataContext.ApproveProjectCommand}"
@@ -143,7 +145,7 @@
                                             IsVisible="{Binding CanApprove}"/>
                                 </StackPanel>
                                 
-                                <!-- Дедлайн и баллы -->
+                                <!-- Строка 1: Дедлайн и баллы -->
                                 <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Spacing="24" Margin="0,12,0,0">
                                     <StackPanel Orientation="Horizontal" Spacing="6">
                                         <TextBlock Text="📅" FontSize="14"/>
@@ -157,12 +159,12 @@
                                     </StackPanel>
                                 </StackPanel>
                                 
-                                <!-- Описание -->
+                                <!-- Строка 2: Описание -->
                                 <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding ShortDescription}" 
                                            FontSize="13" Foreground="#5F6368" TextWrapping="Wrap"
                                            Margin="0,8,0,0"/>
                                 
-                                <!-- Прогресс (для моих проектов) -->
+                                <!-- Строка 3: Прогресс (только для моих проектов) -->
                                 <StackPanel Grid.Row="3" Grid.Column="0" Margin="0,12,0,0" 
                                             IsVisible="{Binding ShowProgress}">
                                     <TextBlock Text="{Binding ProgressText}" FontSize="12" Foreground="#5F6368" Margin="0,0,0,4"/>
@@ -176,8 +178,8 @@
                                     </ProgressBar>
                                 </StackPanel>
                                 
-                                <!-- Участники проекта (только для создателя и админа) -->
-                                <StackPanel Grid.Row="3" Grid.Column="0" Margin="0,12,0,0"
+                                <!-- Строка 4: Участники (только для создателя и админа) -->
+                                <StackPanel Grid.Row="4" Grid.Column="0" Margin="0,12,0,0"
                                             IsVisible="{Binding ShowParticipants}">
                                     <TextBlock Text="👥 Участники:" FontSize="12" Foreground="#5F6368" Margin="0,0,0,8"/>
                                     <ItemsControl ItemsSource="{Binding Participants}">
@@ -185,7 +187,8 @@
                                             <DataTemplate>
                                                 <Button Command="{Binding $parent[UserControl].DataContext.OpenProfileCommand}"
                                                         CommandParameter="{Binding UserId}"
-                                                        Background="Transparent" BorderThickness="0" Cursor="Hand">
+                                                        Background="Transparent" BorderThickness="0" Cursor="Hand"
+                                                        Margin="0,2">
                                                     <StackPanel Orientation="Horizontal" Spacing="8">
                                                         <Border Width="32" Height="32" CornerRadius="16" Background="#E8F0FE">
                                                             <TextBlock Text="{Binding Initials}" FontSize="12" 
@@ -202,13 +205,13 @@
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
                                 </StackPanel>
+                                
                             </Grid>
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
             
-            <!-- Нет данных -->
             <TextBlock Text="Нет проектов" 
                        HorizontalAlignment="Center" 
                        Foreground="#5F6368" 

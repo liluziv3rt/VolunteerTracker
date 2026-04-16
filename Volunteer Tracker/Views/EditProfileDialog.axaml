@@ -1,0 +1,158 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Volunteer_Tracker.ViewModels"
+        x:Class="Volunteer_Tracker.Views.EditProfileDialog"
+        x:DataType="vm:EditProfileDialogViewModel"
+        Title="Редактирование профиля"
+        Width="500"
+        Height="600"
+        CanResize="False"
+        WindowStartupLocation="CenterOwner"
+        Background="#F8F9FA">
+
+    <Window.Styles>
+        <!-- Стиль для TextBox -->
+        <Style Selector="TextBox">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="BorderBrush" Value="#DADCE0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="#202124"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        
+        <Style Selector="TextBox:focus">
+            <Setter Property="BorderBrush" Value="#1A73E8"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+        
+        <!-- Стиль для кнопки primary (Сохранить) -->
+        <Style Selector="Button.primary">
+            <Setter Property="Background" Value="#1A73E8"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="16,10"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        
+        <Style Selector="Button.primary:pointerover">
+            <Setter Property="Background" Value="#1557B0"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        
+        <Style Selector="Button.primary:pressed">
+            <Setter Property="Background" Value="#0D47A1"/>
+        </Style>
+        
+        <!-- Стиль для кнопки secondary (Отмена) -->
+        <Style Selector="Button.secondary">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#5F6368"/>
+            <Setter Property="Padding" Value="16,10"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderBrush" Value="#DADCE0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+        
+        <Style Selector="Button.secondary:pointerover">
+            <Setter Property="Background" Value="#F8F9FA"/>
+            <Setter Property="Foreground" Value="#1A73E8"/>
+            <Setter Property="BorderBrush" Value="#1A73E8"/>
+        </Style>
+        
+        <!-- Стиль для CheckBox -->
+        <Style Selector="CheckBox">
+            <Setter Property="Foreground" Value="#202124"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Margin" Value="0,8,0,0"/>
+        </Style>
+        
+        <Style Selector="CheckBox:pointerover">
+            <Setter Property="Foreground" Value="#1A73E8"/>
+        </Style>
+        
+        <!-- Стили для заголовков -->
+        <Style Selector="TextBlock.field-label">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#202124"/>
+            <Setter Property="Margin" Value="0,0,0,4"/>
+        </Style>
+        
+        <Style Selector="TextBlock.window-title">
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#202124"/>
+        </Style>
+        
+        <Style Selector="TextBlock.window-subtitle">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="#5F6368"/>
+        </Style>
+    </Window.Styles>
+
+    <ScrollViewer>
+        <Border Padding="24" Background="#F8F9FA">
+            <StackPanel Spacing="16">
+                
+                <StackPanel Spacing="4">
+                    <TextBlock Classes="window-title" Text="✏️ Редактирование профиля"/>
+                    <TextBlock Classes="window-subtitle" Text="Обновите информацию о себе"/>
+                </StackPanel>
+
+                <Border Width="80" Height="80" CornerRadius="40" Background="#E8F0FE" HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding UserInitials}" FontSize="28" FontWeight="Bold" 
+                               Foreground="#1A73E8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+
+                <StackPanel Spacing="4">
+                    <TextBlock Classes="field-label" Text="ФИО"/>
+                    <TextBox Text="{Binding FullName, Mode=TwoWay}" IsReadOnly="True" Background="#F5F5F5"/>
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock Classes="field-label" Text="Группа"/>
+                    <TextBox Text="{Binding GroupName, Mode=TwoWay}"/>
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock Classes="field-label" Text="О себе"/>
+                    <TextBox Text="{Binding Bio, Mode=TwoWay}" Height="80" AcceptsReturn="True" TextWrapping="Wrap"/>
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock Classes="field-label" Text="Telegram (username без @)"/>
+                    <TextBox Text="{Binding Telegram, Mode=TwoWay}"/>
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock Classes="field-label" Text="VK (полная ссылка)"/>
+                    <TextBox Text="{Binding Vk, Mode=TwoWay}"/>
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock Classes="field-label" Text="GitHub (полная ссылка)"/>
+                    <TextBox Text="{Binding Github, Mode=TwoWay}"/>
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock Classes="field-label" Text="Телефон"/>
+                    <TextBox Text="{Binding Phone, Mode=TwoWay}"/>
+                    <CheckBox Content="Показывать телефон в профиле" IsChecked="{Binding PhoneVisible}"/>
+                </StackPanel>
+
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="12" Margin="0,16,0,0">
+                    <Button Grid.Column="0" Classes="secondary" Content="Отмена" Command="{Binding CancelCommand}"/>
+                    <Button Grid.Column="1" Classes="primary" Content="Сохранить" Command="{Binding SaveCommand}"/>
+                </Grid>
+
+            </StackPanel>
+        </Border>
+    </ScrollViewer>
+</Window>

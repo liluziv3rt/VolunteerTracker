@@ -9,9 +9,6 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.EntityFrameworkCore;
 using Volunteer_Tracker.Models;
 using Volunteer_Tracker.Views;
-using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Controls.ApplicationLifetimes;
 
 namespace Volunteer_Tracker.ViewModels
 {
@@ -36,7 +33,7 @@ namespace Volunteer_Tracker.ViewModels
         {
             _currentUser = user;
             _context = new PostgresContext();
-            CanCreateProject = true; // Любой может создать проект
+            CanCreateProject = true;
             _ = LoadProjectsAsync();
         }
 
@@ -63,10 +60,8 @@ namespace Volunteer_Tracker.ViewModels
         [RelayCommand]
         private async Task OpenProfile(int userId)
         {
-            // Открываем профиль пользователя
             var profileVm = new ProfileViewModel(_currentUser, userId);
 
-            // Получаем главное окно и заменяем контент
             if (Avalonia.Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
                 var mainWindow = desktop.MainWindow;
@@ -95,19 +90,48 @@ namespace Volunteer_Tracker.ViewModels
                 .Select(pa => pa.ProjectId)
                 .ToHashSetAsync();
 
-            Projects = availableProjects.Select(p => new ProjectItem
+            var projectItems = new List<ProjectItem>();
+
+            foreach (var p in availableProjects)
             {
-                Id = p.Id,
-                Title = p.Title,
-                ShortDescription = p.ShortDescription ?? (p.Description?.Length > 100 ? p.Description.Substring(0, 100) + "..." : p.Description),
-                EndDate = p.EndDate.ToString("dd.MM.yyyy"),
-                MaxPoints = p.MaxPoints ?? 100,
-                Status = GetStatusText(p),
-                StatusColor = GetStatusColor(p),
-                CanJoin = !userAssignments.Contains(p.Id) && p.Status == "open",
-                CanApprove = _currentUser.Role == "admin" && p.Status == "pending",
-                ShowProgress = false
-            }).ToList();
+                var item = new ProjectItem
+                {
+                    Id = p.Id,
+                    Title = p.Title,
+                    ShortDescription = p.ShortDescription ?? (p.Description?.Length > 100 ? p.Description.Substring(0, 100) + "..." : p.Description),
+                    EndDate = p.EndDate.ToString("dd.MM.yyyy"),
+                    MaxPoints = p.MaxPoints ?? 100,
+                    Status = GetStatusText(p),
+                    StatusColor = GetStatusColor(p),
+                    CanJoin = !userAssignments.Contains(p.Id) && p.Status == "open",
+                    CanApprove = _currentUser.Role == "admin" && p.Status == "pending",
+                    ShowProgress = false
+                };
+
+                // Проверяем, может ли пользователь видеть участников
+                if (_currentUser.Role == "admin" || p.LeaderId == _currentUser.Id)
+                {
+                    item.ShowParticipants = true;
+
+                    // Загружаем участников
+                    var participants = await _context.ProjectAssignments
+                        .Where(pa => pa.ProjectId == p.Id)
+                        .Include(pa => pa.User)
+                        .ToListAsync();
+
+                    item.Participants = participants.Select(pa => new ParticipantItem
+                    {
+                        UserId = pa.User.Id,
+                        FullName = $"{pa.User.LastName} {pa.User.FirstName}",
+                        Initials = $"{pa.User.FirstName[0]}{pa.User.LastName[0]}".ToUpper(),
+                        Points = pa.PointsEarned ?? 0
+                    }).ToList();
+                }
+
+                projectItems.Add(item);
+            }
+
+            Projects = projectItems;
         }
 
         private async Task LoadMyProjects()
@@ -128,7 +152,7 @@ namespace Volunteer_Tracker.ViewModels
             // Добавляем проекты-участники
             foreach (var pa in myAssignments)
             {
-                allMyProjects.Add(new ProjectItem
+                var item = new ProjectItem
                 {
                     Id = pa.Project.Id,
                     Title = pa.Project.Title,
@@ -143,13 +167,34 @@ namespace Volunteer_Tracker.ViewModels
                     ShowProgress = true,
                     ProgressPercent = pa.Project.MaxPoints > 0 ? (int)((pa.PointsEarned ?? 0) * 100 / pa.Project.MaxPoints) : 0,
                     ProgressText = $"Прогресс: {pa.PointsEarned ?? 0}/{pa.Project.MaxPoints ?? 100} баллов"
-                });
+                };
+
+                // Создатель и админ видят участников
+                if (_currentUser.Role == "admin" || pa.Project.LeaderId == _currentUser.Id)
+                {
+                    item.ShowParticipants = true;
+
+                    var participants = await _context.ProjectAssignments
+                        .Where(pa2 => pa2.ProjectId == pa.Project.Id)
+                        .Include(pa2 => pa2.User)
+                        .ToListAsync();
+
+                    item.Participants = participants.Select(pa2 => new ParticipantItem
+                    {
+                        UserId = pa2.User.Id,
+                        FullName = $"{pa2.User.LastName} {pa2.User.FirstName}",
+                        Initials = $"{pa2.User.FirstName[0]}{pa2.User.LastName[0]}".ToUpper(),
+                        Points = pa2.PointsEarned ?? 0
+                    }).ToList();
+                }
+
+                allMyProjects.Add(item);
             }
 
             // Добавляем проекты-создатели
             foreach (var p in myCreatedProjects)
             {
-                allMyProjects.Add(new ProjectItem
+                var item = new ProjectItem
                 {
                     Id = p.Id,
                     Title = p.Title,
@@ -164,7 +209,28 @@ namespace Volunteer_Tracker.ViewModels
                     ShowProgress = false,
                     ProgressPercent = 0,
                     ProgressText = ""
-                });
+                };
+
+                // Создатель и админ видят участников
+                if (_currentUser.Role == "admin" || p.LeaderId == _currentUser.Id)
+                {
+                    item.ShowParticipants = true;
+
+                    var participants = await _context.ProjectAssignments
+                        .Where(pa => pa.ProjectId == p.Id)
+                        .Include(pa => pa.User)
+                        .ToListAsync();
+
+                    item.Participants = participants.Select(pa => new ParticipantItem
+                    {
+                        UserId = pa.User.Id,
+                        FullName = $"{pa.User.LastName} {pa.User.FirstName}",
+                        Initials = $"{pa.User.FirstName[0]}{pa.User.LastName[0]}".ToUpper(),
+                        Points = pa.PointsEarned ?? 0
+                    }).ToList();
+                }
+
+                allMyProjects.Add(item);
             }
 
             Projects = allMyProjects.OrderBy(p => p.EndDate).ToList();
@@ -332,7 +398,6 @@ namespace Volunteer_Tracker.ViewModels
         public string ProgressText { get; set; } = string.Empty;
         public bool ShowParticipants { get; set; }
         public List<ParticipantItem> Participants { get; set; } = new();
-
     }
 
     public class ParticipantItem
@@ -342,5 +407,4 @@ namespace Volunteer_Tracker.ViewModels
         public string Initials { get; set; } = string.Empty;
         public int Points { get; set; }
     }
-
 }

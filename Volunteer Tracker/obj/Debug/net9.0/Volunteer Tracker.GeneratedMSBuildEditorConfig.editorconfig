@@ -44,6 +44,9 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [E:/Volunteer Tracker/Volunteer Tracker/Volunteer Tracker/Views/DashboardView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[E:/Volunteer Tracker/Volunteer Tracker/Volunteer Tracker/Views/EditProfileDialog.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [E:/Volunteer Tracker/Volunteer Tracker/Volunteer Tracker/Views/LoginView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 

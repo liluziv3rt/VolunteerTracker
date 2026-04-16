@@ -21,6 +21,47 @@
             <Setter Property="Background" Value="White"/>
             <Setter Property="Foreground" Value="#202124"/>
         </Style>
+
+        <Style Selector="Button.primary">
+                <Setter Property="Background" Value="#1A73E8"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Padding" Value="16,10"/>
+                <Setter Property="CornerRadius" Value="8"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="BorderThickness" Value="0"/>
+            </Style>
+
+            <Style Selector="Button.primary:pointerover">
+                <Setter Property="Background" Value="#1557B0"/>
+            </Style>
+
+            <Style Selector="Button.primary:pressed">
+                <Setter Property="Background" Value="#0D47A1"/>
+            </Style>
+
+            <!-- Стиль для кнопки secondary (Отмена) -->
+            <Style Selector="Button.secondary">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Foreground" Value="#5F6368"/>
+                <Setter Property="Padding" Value="16,10"/>
+                <Setter Property="CornerRadius" Value="8"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="BorderBrush" Value="#DADCE0"/>
+                <Setter Property="BorderThickness" Value="1"/>
+            </Style>
+
+            <Style Selector="Button.secondary:pointerover">
+                <Setter Property="Background" Value="#F8F9FA"/>
+                <Setter Property="Foreground" Value="#1A73E8"/>
+                <Setter Property="BorderBrush" Value="#1A73E8"/>
+            </Style>
+
+            <Style Selector="Button.secondary:pressed">
+                <Setter Property="Background" Value="#F0F0F0"/>
+            </Style>
         
         <Style Selector="TextBox:focus, DatePicker:focus">
             <Setter Property="BorderBrush" Value="#1A73E8"/>
