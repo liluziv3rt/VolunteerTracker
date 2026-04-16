@@ -1,0 +1,233 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Volunteer_Tracker.ViewModels"
+             x:Class="Volunteer_Tracker.Views.GradebookView"
+             x:DataType="vm:GradebookViewModel">
+
+    <UserControl.Styles>
+        <Style Selector="Border.stat-card">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="16"/>
+            <Setter Property="BoxShadow" Value="0 2 8 0 #1A000000"/>
+        </Style>
+
+        <!-- Цветные подложки для статистики -->
+        <Style Selector="Border.hours-card">
+            <Setter Property="Background" Value="#E8F0FE"/>
+        </Style>
+        <Style Selector="Border.projects-card">
+            <Setter Property="Background" Value="#E6F4EA"/>
+        </Style>
+        <Style Selector="Border.points-card">
+            <Setter Property="Background" Value="#F3E8FF"/>
+        </Style>
+        <Style Selector="Border.badges-card">
+            <Setter Property="Background" Value="#FFF3E0"/>
+        </Style>
+
+        <!-- ComboBox - всегда чёрный текст + светлый фон -->
+        <Style Selector="ComboBox">
+            <Setter Property="Background" Value="#F8F9FA"/>
+            <Setter Property="BorderBrush" Value="#DADCE0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="Foreground" Value="#202124"/> <!-- Чёрный текст всегда -->
+        </Style>
+
+        <Style Selector="ComboBox:pressed, ComboBox:pointerover">
+            <Setter Property="Background" Value="#F1F3F4"/>
+        </Style>
+
+        <Style Selector="ComboBox TextBlock">
+            <Setter Property="Foreground" Value="#202124"/>
+        </Style>
+
+        <Style Selector="Button.filter-button">
+            <Setter Property="Background" Value="#1A73E8"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="20,10"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+
+        <Style Selector="Button.export-button">
+            <Setter Property="Background" Value="#EA4335"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+    </UserControl.Styles>
+
+    <ScrollViewer>
+        <StackPanel Margin="32,24" Spacing="24">
+
+            <!-- Заголовок -->
+            <StackPanel Spacing="6">
+                <TextBlock Text="Зачётная книжка завода" FontSize="28" FontWeight="SemiBold" Foreground="#202124"/>
+                <TextBlock Text="Цифровое портфолио студента" FontSize="14" Foreground="#5F6368"/>
+            </StackPanel>
+
+            <!-- Карточка студента -->
+            <Border Background="White" CornerRadius="20" Padding="24" BoxShadow="0 4 12 0 #1A000000">
+                <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto">
+
+                    <Border Grid.Column="0" Width="88" Height="88" CornerRadius="44" Background="#E8F0FE">
+                        <TextBlock Text="{Binding UserInitials}" 
+                                   FontSize="36" FontWeight="Bold" Foreground="#1A73E8"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+
+                    <StackPanel Grid.Column="1" Margin="24,4,0,0" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding UserFullName}" FontSize="24" FontWeight="SemiBold" Foreground="#202124"/>
+                        <StackPanel Orientation="Horizontal" Spacing="16" Margin="0,8,0,0">
+                            <TextBlock FontSize="14" Foreground="#5F6368">
+                                <Run Text="Группа:" FontWeight="SemiBold"/> <Run Text="{Binding UserGroup}"/>
+                            </TextBlock>
+                            <TextBlock FontSize="14" Foreground="#5F6368">
+                                <Run Text="Дата вступления:" FontWeight="SemiBold"/> <Run Text="{Binding JoinDate}"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <Button Grid.Column="2" Classes="export-button" VerticalAlignment="Top"
+                            Command="{Binding ExportPdfCommand}">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <TextBlock Text="📥" FontSize="18"/>
+                            <TextBlock Text="ЭКСПОРТ В PDF"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Статистика с цветными фонами -->
+                    <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" 
+                                Orientation="Horizontal" Spacing="12" Margin="0,32,0,0">
+
+                        <!-- Часы -->
+                        <Border Classes="stat-card hours-card" Width="118">
+                            <StackPanel HorizontalAlignment="Center">
+                                <TextBlock Text="🕒" FontSize="32" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding TotalHours, StringFormat={}{0:F1}}" 
+                                           FontSize="26" FontWeight="Bold" Foreground="#1E88E5" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Часов" FontSize="13" Foreground="#5F6368" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Проекты -->
+                        <Border Classes="stat-card projects-card" Width="118">
+                            <StackPanel HorizontalAlignment="Center">
+                                <TextBlock Text="📁" FontSize="32" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding TotalProjects}" 
+                                           FontSize="26" FontWeight="Bold" Foreground="#34A853" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Проектов" FontSize="13" Foreground="#5F6368" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Баллы -->
+                        <Border Classes="stat-card points-card" Width="118">
+                            <StackPanel HorizontalAlignment="Center">
+                                <TextBlock Text="⭐" FontSize="32" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding TotalPoints}" 
+                                           FontSize="26" FontWeight="Bold" Foreground="#8E24AA" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Баллов" FontSize="13" Foreground="#5F6368" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Значки -->
+                        <Border Classes="stat-card badges-card" Width="118">
+                            <StackPanel HorizontalAlignment="Center">
+                                <TextBlock Text="🏅" FontSize="32" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding TotalBadges}" 
+                                           FontSize="26" FontWeight="Bold" Foreground="#FB8C00" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Значков" FontSize="13" Foreground="#5F6368" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Фильтр активности -->
+            <Border Background="White" CornerRadius="16" Padding="20" BoxShadow="0 2 6 0 #1A000000">
+                <StackPanel Spacing="16">
+                    <TextBlock Text="Фильтр активности" FontSize="16" FontWeight="SemiBold" Foreground="#202124"/>
+
+                    <Grid ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*,Auto" 
+                          ColumnSpacing="10" VerticalAlignment="Center">
+
+                        <TextBlock Grid.Column="0" Text="Тип:" VerticalAlignment="Center" Foreground="#5F6368" Margin="0,0,8,0"/>
+                        
+                        <ComboBox Grid.Column="1" Width="165"
+                                  SelectedItem="{Binding SelectedActivityType}"
+                                  ItemsSource="{Binding ActivityTypes}"/>
+
+                        <TextBlock Grid.Column="2" Text="Период:" VerticalAlignment="Center" 
+                                   Foreground="#5F6368" Margin="24,0,8,0"/>
+
+                        <ComboBox Grid.Column="3" Width="135"
+                                  SelectedItem="{Binding StartMonth}"
+                                  ItemsSource="{Binding AvailableMonths}"/>
+
+                        <TextBlock Grid.Column="4" Text="—" VerticalAlignment="Center" 
+                                   Foreground="#9AA0A6" FontSize="18" Margin="8,0"/>
+
+                        <ComboBox Grid.Column="5" Width="135"
+                                  SelectedItem="{Binding EndMonth}"
+                                  ItemsSource="{Binding AvailableMonths}"/>
+
+                        <Button Grid.Column="7" Classes="filter-button"
+                                Command="{Binding ApplyFilterCommand}">
+                            Применить фильтр
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- Список активности -->
+            <Border Background="White" CornerRadius="16" Padding="20" BoxShadow="0 2 6 0 #1A000000">
+                <StackPanel Spacing="16">
+                    <TextBlock Text="Вся активность" FontSize="18" FontWeight="SemiBold" Foreground="#202124"/>
+
+                    <ItemsControl ItemsSource="{Binding Activities}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Classes="activity-card">
+                                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="16">
+                                        <Border Width="52" Height="52" CornerRadius="26" Background="{Binding IconBackground}">
+                                            <TextBlock Text="{Binding Icon}" FontSize="26"
+                                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="2">
+                                            <TextBlock Text="{Binding Title}" FontSize="15.5" FontWeight="SemiBold" Foreground="#202124"/>
+                                            <TextBlock Text="{Binding Subtitle}" FontSize="13" Foreground="{Binding SubtitleColor}"/>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Column="2" HorizontalAlignment="Right" Spacing="6" VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding Date}" FontSize="13" Foreground="#9AA0A6" HorizontalAlignment="Right"/>
+                                            <Border Background="#E8F0FE" CornerRadius="20" Padding="12,5"
+                                                    IsVisible="{Binding PointsChange, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                                                <TextBlock Text="{Binding PointsChange}" 
+                                                           FontSize="14.5" FontWeight="SemiBold" Foreground="#1A73E8"/>
+                                            </Border>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <TextBlock Text="Нет активности за выбранный период"
+                               HorizontalAlignment="Center"
+                               Foreground="#9AA0A6"
+                               Margin="0,60"
+                               FontSize="15"
+                               IsVisible="{Binding HasNoActivities}"/>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

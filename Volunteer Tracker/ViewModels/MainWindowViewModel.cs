@@ -33,13 +33,10 @@ namespace Volunteer_Tracker.ViewModels
 
         private void ShowGradebook()
         {
-            if (_menuViewModel != null)
-            {
-                _menuViewModel.ResetSelection();
-                _menuViewModel.IsGradebookSelected = true;
-            }
-            // TODO: ShowGradebook
+            var gradebookVm = new GradebookViewModel(_currentUser!);
+            CurrentView = new GradebookView { DataContext = gradebookVm };
         }
+
 
         private void ShowEvents()
         {
@@ -125,7 +122,7 @@ namespace Volunteer_Tracker.ViewModels
                     ShowDashboard();
                     break;
                 case "Gradebook":
-                    // TODO
+                    ShowGradebook();
                     break;
                 case "Events":
                     // TODO
