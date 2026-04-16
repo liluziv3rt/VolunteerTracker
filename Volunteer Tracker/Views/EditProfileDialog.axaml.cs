@@ -9,7 +9,6 @@ namespace Volunteer_Tracker.Views
         {
             InitializeComponent();
 
-            // Подписываемся на событие закрытия
             DataContextChanged += (_, _) =>
             {
                 if (DataContext is EditProfileDialogViewModel vm)

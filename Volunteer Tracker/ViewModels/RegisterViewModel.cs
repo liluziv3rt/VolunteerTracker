@@ -41,9 +41,8 @@ namespace Volunteer_Tracker.ViewModels
         [ObservableProperty]
         private bool _isLoading;
 
-        // События
         public event EventHandler? RegistrationSuccess;
-        public event EventHandler? NavigateToLoginRequested;  // 👈 ИЗМЕНЕНО ИМЯ
+        public event EventHandler? NavigateToLoginRequested;  
 
         public RegisterViewModel()
         {
@@ -137,7 +136,6 @@ namespace Volunteer_Tracker.ViewModels
             }
         }
 
-        // 👇 ЭТОТ МЕТОД ГЕНЕРИРУЕТ КОМАНДУ NavigateToLoginCommand
         [RelayCommand]
         private void NavigateToLogin()
         {

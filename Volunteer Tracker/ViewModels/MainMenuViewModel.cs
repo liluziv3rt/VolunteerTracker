@@ -42,7 +42,6 @@ namespace Volunteer_Tracker.ViewModels
 
         public bool IsAdmin => UserRole == "Администратор";
 
-        // 👇 ЭТО СОБЫТИЕ НУЖНО ДОБАВИТЬ
         public event EventHandler<string>? NavigateRequested;
         public event EventHandler? LogoutRequested;
 

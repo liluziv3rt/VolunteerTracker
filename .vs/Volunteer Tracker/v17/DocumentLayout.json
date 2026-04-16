@@ -3,16 +3,196 @@
   "WorkspaceRootPath": "E:\\Volunteer Tracker\\Volunteer Tracker\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\app.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\app.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\app.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\app.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\registerview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\registerview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\registerview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\registerview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\ratingview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\ratingview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\ratingview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\ratingview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\projectsview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\projectsview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\projectsview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\projectsview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\profileview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\profileview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\profileview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\profileview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\mainmenuview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\mainmenuview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\mainmenuview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\mainmenuview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\loginview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\loginview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\loginview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\loginview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\gradebookview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\gradebookview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\gradebookview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\gradebookview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\editprofiledialog.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\editprofiledialog.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\editprofiledialog.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\editprofiledialog.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\dashboardview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\dashboardview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\dashboardview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\dashboardview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\createprojectdialog.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\createprojectdialog.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\createprojectdialog.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\createprojectdialog.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\adminpanelview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\adminpanelview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\adminpanelview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
       "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\adminpanelview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\viewmodels\\viewmodelbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\viewmodels\\viewmodelbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\viewmodels\\registerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\viewmodels\\registerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\viewmodels\\ratingviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\viewmodels\\ratingviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\viewmodels\\ranktoclassconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\viewmodels\\ranktoclassconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\viewmodels\\projectsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\viewmodels\\projectsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\viewmodels\\profileviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\viewmodels\\profileviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\viewmodels\\mainmenuviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\viewmodels\\mainmenuviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\viewmodels\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\viewmodels\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\viewmodels\\gradebookviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\viewmodels\\gradebookviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\viewmodels\\editprofiledialogviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\viewmodels\\editprofiledialogviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\viewmodels\\dashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\viewmodels\\dashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\viewmodels\\createprojectdialogviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\viewmodels\\createprojectdialogviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\viewmodels\\booltoselectedbrushconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\viewmodels\\booltoselectedbrushconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\viewmodels\\adminpanelviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\viewmodels\\adminpanelviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\gradebookview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\gradebookview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\styles\\buttonstyles.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\styles\\buttonstyles.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\styles\\styles1.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\styles\\styles1.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\models\\integrationsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\models\\integrationsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\models\\achievement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\models\\achievement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\models\\activitylog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\models\\activitylog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\converters\\tabconverters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\converters\\tabconverters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01670960-2B18-45EF-944E-221EBFDCED76}|RatingViewModelTests\\RatingViewModelTests.csproj|e:\\volunteer tracker\\volunteer tracker\\ratingviewmodeltests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01670960-2B18-45EF-944E-221EBFDCED76}|RatingViewModelTests\\RatingViewModelTests.csproj|solutionrelative:ratingviewmodeltests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\models\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -21,22 +201,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\viewmodels\\mainmenuviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\viewmodels\\mainmenuviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\views\\adminpanelview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\views\\adminpanelview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|e:\\volunteer tracker\\volunteer tracker\\volunteer tracker\\viewmodels\\gradebookviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{029B0091-C1CB-4955-A61D-40FCA5DAC226}|Volunteer Tracker\\Volunteer Tracker.csproj|solutionrelative:volunteer tracker\\viewmodels\\gradebookviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -51,42 +215,568 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "App.axaml.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\App.axaml.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\App.axaml.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\App.axaml.cs",
+              "RelativeToolTip": "Volunteer Tracker\\App.axaml.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAowBkAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:35:07.456Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "App.axaml",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\App.axaml",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\App.axaml",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\App.axaml",
+              "RelativeToolTip": "Volunteer Tracker\\App.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-16T14:35:06.82Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RegisterView.axaml.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\RegisterView.axaml.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\RegisterView.axaml.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\RegisterView.axaml.cs",
+              "RelativeToolTip": "Volunteer Tracker\\Views\\RegisterView.axaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:35:04.123Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RegisterView.axaml",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\RegisterView.axaml",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\RegisterView.axaml",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\RegisterView.axaml",
+              "RelativeToolTip": "Volunteer Tracker\\Views\\RegisterView.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-16T14:34:37.036Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RatingView.axaml.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\RatingView.axaml.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\RatingView.axaml.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\RatingView.axaml.cs",
+              "RelativeToolTip": "Volunteer Tracker\\Views\\RatingView.axaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:34:36Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "RatingView.axaml",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\RatingView.axaml",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\RatingView.axaml",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\RatingView.axaml",
+              "RelativeToolTip": "Volunteer Tracker\\Views\\RatingView.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-16T14:34:29.689Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ProjectsView.axaml.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\ProjectsView.axaml.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\ProjectsView.axaml.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\ProjectsView.axaml.cs",
+              "RelativeToolTip": "Volunteer Tracker\\Views\\ProjectsView.axaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:34:29.076Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ProjectsView.axaml",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\ProjectsView.axaml",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\ProjectsView.axaml",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\ProjectsView.axaml",
+              "RelativeToolTip": "Volunteer Tracker\\Views\\ProjectsView.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-16T14:34:01.023Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ProfileView.axaml.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\ProfileView.axaml.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\ProfileView.axaml.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\ProfileView.axaml.cs",
+              "RelativeToolTip": "Volunteer Tracker\\Views\\ProfileView.axaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:33:59.659Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ProfileView.axaml",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\ProfileView.axaml",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\ProfileView.axaml",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\ProfileView.axaml",
+              "RelativeToolTip": "Volunteer Tracker\\Views\\ProfileView.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-16T14:33:41.583Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "MainWindow.axaml.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\MainWindow.axaml.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\MainWindow.axaml.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\MainWindow.axaml.cs",
+              "RelativeToolTip": "Volunteer Tracker\\Views\\MainWindow.axaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:33:39.092Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "MainWindow.axaml",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\MainWindow.axaml",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\MainWindow.axaml",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\MainWindow.axaml",
+              "RelativeToolTip": "Volunteer Tracker\\Views\\MainWindow.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-16T14:33:39.307Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "MainMenuView.axaml.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\MainMenuView.axaml.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\MainMenuView.axaml.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\MainMenuView.axaml.cs",
+              "RelativeToolTip": "Volunteer Tracker\\Views\\MainMenuView.axaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:33:24.384Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "MainMenuView.axaml",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\MainMenuView.axaml",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\MainMenuView.axaml",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\MainMenuView.axaml",
+              "RelativeToolTip": "Volunteer Tracker\\Views\\MainMenuView.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-16T14:33:16.436Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "LoginView.axaml.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\LoginView.axaml.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\LoginView.axaml.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\LoginView.axaml.cs",
+              "RelativeToolTip": "Volunteer Tracker\\Views\\LoginView.axaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:33:15.505Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "LoginView.axaml",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\LoginView.axaml",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\LoginView.axaml",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\LoginView.axaml",
+              "RelativeToolTip": "Volunteer Tracker\\Views\\LoginView.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-16T14:32:54.109Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "GradebookView.axaml.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\GradebookView.axaml.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\GradebookView.axaml.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\GradebookView.axaml.cs",
+              "RelativeToolTip": "Volunteer Tracker\\Views\\GradebookView.axaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:32:53.191Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "EditProfileDialog.axaml.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\EditProfileDialog.axaml.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\EditProfileDialog.axaml.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\EditProfileDialog.axaml.cs",
+              "RelativeToolTip": "Volunteer Tracker\\Views\\EditProfileDialog.axaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:32:22.556Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "EditProfileDialog.axaml",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\EditProfileDialog.axaml",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\EditProfileDialog.axaml",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\EditProfileDialog.axaml",
+              "RelativeToolTip": "Volunteer Tracker\\Views\\EditProfileDialog.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-16T14:32:10.027Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "DashboardView.axaml.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\DashboardView.axaml.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\DashboardView.axaml.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\DashboardView.axaml.cs",
+              "RelativeToolTip": "Volunteer Tracker\\Views\\DashboardView.axaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:32:08.688Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "DashboardView.axaml",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\DashboardView.axaml",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\DashboardView.axaml",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\DashboardView.axaml",
+              "RelativeToolTip": "Volunteer Tracker\\Views\\DashboardView.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-16T14:31:48.415Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "CreateProjectDialog.axaml.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\CreateProjectDialog.axaml.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\CreateProjectDialog.axaml.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\CreateProjectDialog.axaml.cs",
+              "RelativeToolTip": "Volunteer Tracker\\Views\\CreateProjectDialog.axaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:31:47.317Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "CreateProjectDialog.axaml",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\CreateProjectDialog.axaml",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\CreateProjectDialog.axaml",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\CreateProjectDialog.axaml",
+              "RelativeToolTip": "Volunteer Tracker\\Views\\CreateProjectDialog.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-16T14:31:39.222Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "GradebookView.axaml",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\GradebookView.axaml",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\GradebookView.axaml",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\GradebookView.axaml",
+              "RelativeToolTip": "Volunteer Tracker\\Views\\GradebookView.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-16T07:03:20.287Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "ViewModelBase.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\ViewModelBase.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\ViewModels\\ViewModelBase.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\ViewModelBase.cs",
+              "RelativeToolTip": "Volunteer Tracker\\ViewModels\\ViewModelBase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:31:18.691Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "RegisterViewModel.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\RegisterViewModel.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\ViewModels\\RegisterViewModel.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\RegisterViewModel.cs",
+              "RelativeToolTip": "Volunteer Tracker\\ViewModels\\RegisterViewModel.cs",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAowIkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:31:10.852Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "RankToClassConverter.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\RankToClassConverter.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\ViewModels\\RankToClassConverter.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\RankToClassConverter.cs",
+              "RelativeToolTip": "Volunteer Tracker\\ViewModels\\RankToClassConverter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:30:32.278Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "ProfileViewModel.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\ProfileViewModel.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\ViewModels\\ProfileViewModel.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\ProfileViewModel.cs",
+              "RelativeToolTip": "Volunteer Tracker\\ViewModels\\ProfileViewModel.cs",
+              "ViewState": "AgIAACABAAAAAAAAAAAkwCIBAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:29:42.975Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "LoginViewModel.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\LoginViewModel.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\ViewModels\\LoginViewModel.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\LoginViewModel.cs",
+              "RelativeToolTip": "Volunteer Tracker\\ViewModels\\LoginViewModel.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAowFoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:29:18.123Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "MainMenuViewModel.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\MainMenuViewModel.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\ViewModels\\MainMenuViewModel.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\MainMenuViewModel.cs",
+              "RelativeToolTip": "Volunteer Tracker\\ViewModels\\MainMenuViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T07:52:56.306Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
               "Title": "AdminPanelView.axaml",
               "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\AdminPanelView.axaml",
               "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\AdminPanelView.axaml",
               "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\AdminPanelView.axaml",
               "RelativeToolTip": "Volunteer Tracker\\Views\\AdminPanelView.axaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-04-16T07:55:27.418Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-16T07:55:27.418Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 24,
+              "Title": "AdminPanelView.axaml.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\AdminPanelView.axaml.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\AdminPanelView.axaml.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\AdminPanelView.axaml.cs",
+              "RelativeToolTip": "Volunteer Tracker\\Views\\AdminPanelView.axaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T07:55:27.296Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "EditProfileDialogViewModel.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\EditProfileDialogViewModel.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\ViewModels\\EditProfileDialogViewModel.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\EditProfileDialogViewModel.cs",
+              "RelativeToolTip": "Volunteer Tracker\\ViewModels\\EditProfileDialogViewModel.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:08:11.68Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "DashboardViewModel.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\DashboardViewModel.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\ViewModels\\DashboardViewModel.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\DashboardViewModel.cs",
+              "RelativeToolTip": "Volunteer Tracker\\ViewModels\\DashboardViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:08:04.809Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "RatingViewModel.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\RatingViewModel.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\ViewModels\\RatingViewModel.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\RatingViewModel.cs",
+              "RelativeToolTip": "Volunteer Tracker\\ViewModels\\RatingViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD8AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:08:30.398Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "CreateProjectDialogViewModel.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\CreateProjectDialogViewModel.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\ViewModels\\CreateProjectDialogViewModel.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\CreateProjectDialogViewModel.cs",
+              "RelativeToolTip": "Volunteer Tracker\\ViewModels\\CreateProjectDialogViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF0AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:28:30.167Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "ProjectsViewModel.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\ProjectsViewModel.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\ViewModels\\ProjectsViewModel.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\ProjectsViewModel.cs",
+              "RelativeToolTip": "Volunteer Tracker\\ViewModels\\ProjectsViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:08:23.059Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "BoolToSelectedBrushConverter.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\BoolToSelectedBrushConverter.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\ViewModels\\BoolToSelectedBrushConverter.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\BoolToSelectedBrushConverter.cs",
+              "RelativeToolTip": "Volunteer Tracker\\ViewModels\\BoolToSelectedBrushConverter.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:27:56.518Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
               "Title": "MainWindowViewModel.cs",
               "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\MainWindowViewModel.cs",
               "RelativeDocumentMoniker": "Volunteer Tracker\\ViewModels\\MainWindowViewModel.cs",
               "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\MainWindowViewModel.cs",
               "RelativeToolTip": "Volunteer Tracker\\ViewModels\\MainWindowViewModel.cs",
-              "ViewState": "AgIAAG0AAAAAAAAAAAAYwIUAAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-16T07:52:55.602Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MainMenuViewModel.cs",
-              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\MainMenuViewModel.cs",
-              "RelativeDocumentMoniker": "Volunteer Tracker\\ViewModels\\MainMenuViewModel.cs",
-              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\MainMenuViewModel.cs",
-              "RelativeToolTip": "Volunteer Tracker\\ViewModels\\MainMenuViewModel.cs",
-              "ViewState": "AgIAAHIAAAAAAAAAAAAkwKYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-16T07:52:56.306Z"
+              "DocumentIndex": 41,
+              "Title": "ButtonStyles.axaml",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Styles\\ButtonStyles.axaml",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Styles\\ButtonStyles.axaml",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Styles\\ButtonStyles.axaml",
+              "RelativeToolTip": "Volunteer Tracker\\Styles\\ButtonStyles.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-16T14:27:51.285Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 42,
+              "Title": "Styles1.axaml",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Styles\\Styles1.axaml",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Styles\\Styles1.axaml",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Styles\\Styles1.axaml",
+              "RelativeToolTip": "Volunteer Tracker\\Styles\\Styles1.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-16T14:27:52.036Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "GradebookViewModel.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\GradebookViewModel.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\ViewModels\\GradebookViewModel.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\GradebookViewModel.cs",
+              "RelativeToolTip": "Volunteer Tracker\\ViewModels\\GradebookViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T07:19:48.758Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "IntegrationSetting.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Models\\IntegrationSetting.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Models\\IntegrationSetting.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Models\\IntegrationSetting.cs",
+              "RelativeToolTip": "Volunteer Tracker\\Models\\IntegrationSetting.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:27:44.917Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "Achievement.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Models\\Achievement.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Models\\Achievement.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Models\\Achievement.cs",
+              "RelativeToolTip": "Volunteer Tracker\\Models\\Achievement.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:27:42.608Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "ActivityLog.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Models\\ActivityLog.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Models\\ActivityLog.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Models\\ActivityLog.cs",
+              "RelativeToolTip": "Volunteer Tracker\\Models\\ActivityLog.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:27:41.475Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "TabConverters.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Converters\\TabConverters.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\Converters\\TabConverters.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Converters\\TabConverters.cs",
+              "RelativeToolTip": "Volunteer Tracker\\Converters\\TabConverters.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:27:39.887Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "AdminPanelViewModel.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\AdminPanelViewModel.cs",
+              "RelativeDocumentMoniker": "Volunteer Tracker\\ViewModels\\AdminPanelViewModel.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\AdminPanelViewModel.cs",
+              "RelativeToolTip": "Volunteer Tracker\\ViewModels\\AdminPanelViewModel.cs",
+              "ViewState": "AgIAANIAAAAAAAAAAAAkwO4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T07:56:04.533Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "UnitTest1.cs",
+              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\RatingViewModelTests\\UnitTest1.cs",
+              "RelativeDocumentMoniker": "RatingViewModelTests\\UnitTest1.cs",
+              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\RatingViewModelTests\\UnitTest1.cs",
+              "RelativeToolTip": "RatingViewModelTests\\UnitTest1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAABUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T14:01:53.436Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
               "Title": "Project.cs",
               "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Models\\Project.cs",
               "RelativeDocumentMoniker": "Volunteer Tracker\\Models\\Project.cs",
@@ -98,63 +788,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 49,
               "Title": "User.cs",
               "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Models\\User.cs",
               "RelativeDocumentMoniker": "Volunteer Tracker\\Models\\User.cs",
               "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Models\\User.cs",
               "RelativeToolTip": "Volunteer Tracker\\Models\\User.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAA2wEYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAUwEYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-16T07:52:40.765Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "GradebookViewModel.cs",
-              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\GradebookViewModel.cs",
-              "RelativeDocumentMoniker": "Volunteer Tracker\\ViewModels\\GradebookViewModel.cs",
-              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\GradebookViewModel.cs",
-              "RelativeToolTip": "Volunteer Tracker\\ViewModels\\GradebookViewModel.cs",
-              "ViewState": "AgIAAPgAAAAAAAAAAAA8wBQBAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-16T07:19:48.758Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GradebookView.axaml",
-              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\GradebookView.axaml",
-              "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\GradebookView.axaml",
-              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\GradebookView.axaml",
-              "RelativeToolTip": "Volunteer Tracker\\Views\\GradebookView.axaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-04-16T07:03:20.287Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AdminPanelViewModel.cs",
-              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\AdminPanelViewModel.cs",
-              "RelativeDocumentMoniker": "Volunteer Tracker\\ViewModels\\AdminPanelViewModel.cs",
-              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\ViewModels\\AdminPanelViewModel.cs",
-              "RelativeToolTip": "Volunteer Tracker\\ViewModels\\AdminPanelViewModel.cs",
-              "ViewState": "AgIAANAAAAAAAAAAAAAQwOQAAABIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-16T07:56:04.533Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "AdminPanelView.axaml.cs",
-              "DocumentMoniker": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\AdminPanelView.axaml.cs",
-              "RelativeDocumentMoniker": "Volunteer Tracker\\Views\\AdminPanelView.axaml.cs",
-              "ToolTip": "E:\\Volunteer Tracker\\Volunteer Tracker\\Volunteer Tracker\\Views\\AdminPanelView.axaml.cs",
-              "RelativeToolTip": "Volunteer Tracker\\Views\\AdminPanelView.axaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-16T07:55:27.296Z"
             }
           ]
         }

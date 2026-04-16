@@ -57,16 +57,13 @@ namespace Volunteer_Tracker.ViewModels
         {
             try
             {
-                // ОТЛАДКА: выводим ID пользователя
                 System.Diagnostics.Debug.WriteLine($"=== Загрузка данных для UserId: {_currentUser.Id} ===");
 
-                // 1. Загружаем баллы и часы из user_points
                 var userPoints = await _context.UserPoints
                     .FirstOrDefaultAsync(up => up.UserId == _currentUser.Id);
 
                 if (userPoints != null)
                 {
-                    // ОТЛАДКА: выводим значения из БД
                     System.Diagnostics.Debug.WriteLine($"userPoints найден: TotalPoints={userPoints.TotalPoints}, TotalHours={userPoints.TotalVolunteerHours}, Projects={userPoints.TotalProjectsCompleted}");
 
                     TotalPoints = userPoints.TotalPoints ?? 0;
@@ -77,7 +74,6 @@ namespace Volunteer_Tracker.ViewModels
                 {
                     System.Diagnostics.Debug.WriteLine($"userPoints НЕ найден для UserId={_currentUser.Id}");
 
-                    // Создаём запись в user_points, если её нет
                     var newUserPoints = new UserPoint
                     {
                         UserId = _currentUser.Id,
@@ -95,10 +91,8 @@ namespace Volunteer_Tracker.ViewModels
                     CompletedProjects = 0;
                 }
 
-                // ОТЛАДКА: выводим итоговые значения
                 System.Diagnostics.Debug.WriteLine($"Итоговые значения: TotalPoints={TotalPoints}, TotalHours={TotalHours}, CompletedProjects={CompletedProjects}");
 
-                // 2. Баллы за последнюю неделю
                 var oneWeekAgo = DateTime.Now.AddDays(-7);
                 var weeklyPointsFromLog = await _context.ActivityLogs
                     .Where(al => al.UserId == _currentUser.Id && al.CreatedAt >= oneWeekAgo)
@@ -106,10 +100,8 @@ namespace Volunteer_Tracker.ViewModels
                 WeeklyPoints = weeklyPointsFromLog;
                 System.Diagnostics.Debug.WriteLine($"WeeklyPoints: {WeeklyPoints}");
 
-                // 3. Прогресс достижений
                 await LoadAchievementProgress();
 
-                // 4. Недавняя активность
                 await LoadRecentActivities();
             }
             catch (Exception ex)
@@ -242,7 +234,6 @@ namespace Volunteer_Tracker.ViewModels
         public string TimeAgo { get; set; } = string.Empty;
         public string ActivityType { get; set; } = string.Empty;
 
-        // Иконка и цвет в зависимости от типа
         public string Icon => GetIcon();
         public string IconBackground => GetIconBackground();
         public string SubtitleColor => GetSubtitleColor();

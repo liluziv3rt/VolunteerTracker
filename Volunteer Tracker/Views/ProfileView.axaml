@@ -37,20 +37,16 @@
     <ScrollViewer>
         <StackPanel Margin="32,24" Spacing="24">
             
-            <!-- Заголовок -->
             <TextBlock Text="Профиль пользователя" FontSize="28" FontWeight="SemiBold" Foreground="#202124"/>
 
-            <!-- Основная карточка профиля -->
             <Border Classes="profile-card">
                 <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="24">
                     
-                    <!-- Аватар -->
                     <Border Width="100" Height="100" CornerRadius="50" Background="#E8F0FE">
                         <TextBlock Text="{Binding UserInitials}" FontSize="36" FontWeight="Bold" 
                                    Foreground="#1A73E8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     
-                    <!-- Информация -->
                     <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="8">
                         <TextBlock Text="{Binding UserFullName}" FontSize="24" FontWeight="SemiBold" Foreground="#202124"/>
                         <TextBlock Text="{Binding UserRole}" FontSize="14" Foreground="#5F6368"/>
@@ -69,7 +65,6 @@
                         </StackPanel>
                     </StackPanel>
                     
-                    <!-- Кнопка редактирования (только для своего профиля) -->
                     <Button Grid.Column="2" Classes="edit-button" 
                             Command="{Binding EditProfileCommand}"
                             IsVisible="{Binding IsOwnProfile}"
@@ -80,7 +75,6 @@
                 </Grid>
             </Border>
 
-            <!-- О себе -->
             <Border Classes="profile-card" IsVisible="{Binding Bio, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
                 <StackPanel Spacing="8">
                     <TextBlock Text="📝 О себе" FontSize="16" FontWeight="SemiBold" Foreground="#202124"/>
@@ -88,12 +82,10 @@
                 </StackPanel>
             </Border>
 
-            <!-- Контакты и соцсети -->
             <Border Classes="profile-card">
                 <StackPanel Spacing="16">
                     <TextBlock Text="🔗 Контакты и соцсети" FontSize="16" FontWeight="SemiBold" Foreground="#202124"/>
                     
-                    <!-- Telegram -->
                     <Grid ColumnDefinitions="Auto,Auto,*,Auto" ColumnSpacing="12" 
       IsVisible="{Binding Telegram, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
                         <TextBlock Grid.Column="0" Text="📱" FontSize="18"/>
@@ -102,7 +94,6 @@
                         <Button Grid.Column="3" Classes="social-button" Content="Открыть" Command="{Binding OpenTelegramCommand}"/>
                     </Grid>
                     
-                    <!-- VK -->
                     <Grid ColumnDefinitions="Auto,Auto,*,Auto" ColumnSpacing="12" 
       IsVisible="{Binding Telegram, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
                         <TextBlock Grid.Column="0" Text="🌐" FontSize="18"/>
@@ -111,7 +102,6 @@
                         <Button Grid.Column="3" Classes="social-button" Content="Открыть" Command="{Binding OpenVkCommand}"/>
                     </Grid>
                     
-                    <!-- GitHub -->
                    <Grid ColumnDefinitions="Auto,Auto,*,Auto" ColumnSpacing="12" 
       IsVisible="{Binding Telegram, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
                         <TextBlock Grid.Column="0" Text="💻" FontSize="18"/>
@@ -120,7 +110,6 @@
                         <Button Grid.Column="3" Classes="social-button" Content="Открыть" Command="{Binding OpenGithubCommand}"/>
                     </Grid>
                     
-                    <!-- Телефон (если включено отображение) -->
                     <Grid ColumnDefinitions="Auto,Auto,*,Auto" ColumnSpacing="12" IsVisible="{Binding ShowPhone, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
                         <TextBlock Grid.Column="0" Text="📞" FontSize="18"/>
                         <TextBlock Grid.Column="1" Text="Телефон:" FontSize="14" Foreground="#5F6368"/>
@@ -132,7 +121,6 @@
                 </StackPanel>
             </Border>
 
-           <!-- Недавняя активность -->
                 <Border Classes="profile-card">
                     <StackPanel Spacing="16">
                         <TextBlock Text="📋 Недавняя активность" FontSize="16" FontWeight="SemiBold" Foreground="#202124"/>

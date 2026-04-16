@@ -82,19 +82,16 @@ namespace Volunteer_Tracker.ViewModels
             }
             else
             {
-                // Проверка: дедлайн не может быть раньше сегодня
                 if (EndDate.Value.Date < today)
                 {
                     DateError = "Дедлайн не может быть раньше сегодняшнего дня";
                     hasError = true;
                 }
-                // Проверка: дедлайн не может быть раньше даты начала
                 else if (EndDate.Value.Date < StartDate.Value.Date)
                 {
                     DateError = "Дедлайн не может быть раньше даты начала";
                     hasError = true;
                 }
-                // Проверка: дата начала не может быть раньше сегодня
                 else if (StartDate.Value.Date < today)
                 {
                     DateError = "Дата начала не может быть раньше сегодняшнего дня";

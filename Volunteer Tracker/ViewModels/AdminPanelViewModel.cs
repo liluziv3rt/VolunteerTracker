@@ -14,35 +14,30 @@ namespace Volunteer_Tracker.ViewModels
     {
         private readonly PostgresContext _context;
 
-        // === Основные коллекции ===
         [ObservableProperty]
         private ObservableCollection<UserItem> _users = new();
 
         [ObservableProperty]
         private ObservableCollection<ProjectItemForAdmin> _projects = new();
 
-        // === Отфильтрованные коллекции для поиска ===
         [ObservableProperty]
         private ObservableCollection<UserItem> _filteredUsers = new();
 
         [ObservableProperty]
         private ObservableCollection<ProjectItemForAdmin> _filteredProjects = new();
 
-        // === Текст поиска ===
         [ObservableProperty]
         private string _userSearchText = string.Empty;
 
         [ObservableProperty]
         private string _projectSearchText = string.Empty;
 
-        // === Вкладки ===
         [ObservableProperty]
         private bool _isUsersTabSelected = true;
 
         [ObservableProperty]
         private bool _isProjectsTabSelected = false;
 
-        // === Списки для ComboBox ===
         public ObservableCollection<string> Roles { get; } = new()
         {
             "student", "project_leader", "admin"
@@ -59,12 +54,10 @@ namespace Volunteer_Tracker.ViewModels
             _ = LoadDataAsync();
         }
 
-        // === Загрузка данных из БД ===
         private async Task LoadDataAsync()
         {
             try
             {
-                // Загружаем пользователей
                 var dbUsers = await _context.Users
                     .OrderBy(u => u.Id)
                     .ToListAsync();
@@ -93,7 +86,6 @@ namespace Volunteer_Tracker.ViewModels
                     };
                 }));
 
-                // Загружаем проекты
                 var dbProjects = await _context.Projects
                     .OrderBy(p => p.Id)
                     .ToListAsync();
@@ -108,7 +100,6 @@ namespace Volunteer_Tracker.ViewModels
                     EndDate = p.EndDate.ToDateTime(TimeOnly.MinValue)
                 }));
 
-                // Инициализируем фильтрованные коллекции
                 FilteredUsers = new ObservableCollection<UserItem>(Users);
                 FilteredProjects = new ObservableCollection<ProjectItemForAdmin>(Projects);
             }
@@ -118,7 +109,6 @@ namespace Volunteer_Tracker.ViewModels
             }
         }
 
-        // === Поиск по пользователям ===
         partial void OnUserSearchTextChanged(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
@@ -136,7 +126,6 @@ namespace Volunteer_Tracker.ViewModels
             }
         }
 
-        // === Поиск по проектам ===
         partial void OnProjectSearchTextChanged(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
@@ -153,7 +142,6 @@ namespace Volunteer_Tracker.ViewModels
             }
         }
 
-        // === Переключение вкладок ===
         [RelayCommand]
         private void ShowUsers()
         {
@@ -168,7 +156,6 @@ namespace Volunteer_Tracker.ViewModels
             IsProjectsTabSelected = true;
         }
 
-        // === Сохранение изменений пользователей ===
         [RelayCommand]
         private async Task SaveUsers()
         {
@@ -206,7 +193,6 @@ namespace Volunteer_Tracker.ViewModels
             }
         }
 
-        // === Сохранение изменений проектов ===
         [RelayCommand]
         private async Task SaveProjects()
         {
@@ -235,7 +221,6 @@ namespace Volunteer_Tracker.ViewModels
         }
     }
 
-    // === Модель пользователя для админки ===
     public partial class UserItem : ObservableObject
     {
         public int Id { get; set; }
@@ -252,7 +237,6 @@ namespace Volunteer_Tracker.ViewModels
         [ObservableProperty] private int completedProjects;
     }
 
-    // === Модель проекта для админки ===
     public partial class ProjectItemForAdmin : ObservableObject
     {
         public int Id { get; set; }

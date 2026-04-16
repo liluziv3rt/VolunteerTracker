@@ -29,7 +29,6 @@
     <ScrollViewer>
         <StackPanel Margin="32,24,32,24" Spacing="24">
             
-            <!-- Приветствие -->
 <StackPanel Spacing="4">
     <TextBlock FontSize="28" FontWeight="SemiBold" Foreground="#202124">
         Добро пожаловать, <Run Text="{Binding UserFirstName}"/>!
@@ -37,7 +36,6 @@
     <TextBlock Text="{Binding CurrentDate}" FontSize="14" Foreground="#5F6368"/>
 </StackPanel>
 
-            <!-- Верхний ряд - 3 action карточки -->
             <StackPanel Orientation="Horizontal" Spacing="16">
                 <Button Classes="action-card" Width="300" Command="{Binding StartVolunteerCommand}">
                     <Grid ColumnDefinitions="*,Auto">
@@ -76,7 +74,6 @@
                 </Button>
             </StackPanel>
 
-            <!-- Нижний ряд - 3 стат карточки -->
             <StackPanel Orientation="Horizontal" Spacing="16">
                 <Border Classes="stat-card" Width="300">
                     <Grid ColumnDefinitions="*,Auto">
@@ -91,7 +88,6 @@
                     </Grid>
                 </Border>
 
-                <!-- Полученные баллы -->
                 <Border Classes="stat-card" Width="300">
                     <Grid ColumnDefinitions="*,Auto">
                         <StackPanel Grid.Column="0" Spacing="4">
@@ -123,7 +119,6 @@
                 </Border>
             </StackPanel>
 
-            <!-- Мои достижения -->
             <Border Background="White" CornerRadius="16" Padding="24,20">
                 <StackPanel Spacing="16">
                     <StackPanel Orientation="Horizontal" Spacing="8">
@@ -145,7 +140,6 @@
                 </StackPanel>
             </Border>
 
-            <!-- Недавняя активность с цветами и иконками -->
             <Border Background="White" CornerRadius="16" Padding="24,20">
                 <StackPanel Spacing="16">
                     <TextBlock Text="📋 Недавняя активность" FontSize="18" FontWeight="SemiBold" Foreground="#202124"/>
@@ -156,12 +150,10 @@
                                 <Border Padding="0,12" BorderBrush="#F0F0F0" BorderThickness="0,0,0,1">
                                     <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
                                         
-                                        <!-- Иконка типа активности -->
                                         <Border Width="40" Height="40" CornerRadius="12" Background="{Binding IconBackground}">
                                             <TextBlock Text="{Binding Icon}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Border>
                                         
-                                        <!-- Текст активности -->
                                         <StackPanel Grid.Column="1" Spacing="4">
                                             <TextBlock Text="{Binding Title}" FontSize="14" FontWeight="SemiBold" Foreground="#202124"/>
                                             <StackPanel Orientation="Horizontal" Spacing="12">
@@ -171,7 +163,6 @@
                                             </StackPanel>
                                         </StackPanel>
                                         
-                                        <!-- Баллы (если есть) -->
                                         <TextBlock Grid.Column="2" Text="{Binding PointsChange}" FontSize="13" FontWeight="SemiBold" 
                                                    Foreground="#34A853" VerticalAlignment="Center"
                                                    IsVisible="{Binding PointsChange, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>

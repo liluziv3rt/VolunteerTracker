@@ -1,7 +1,6 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
-    <!-- Простой стиль для кнопки primary -->
     <Style Selector="Button.primary">
         <Setter Property="Background" Value="#1A73E8"/>
         <Setter Property="Foreground" Value="White"/>

@@ -154,11 +154,8 @@ namespace Volunteer_Tracker.ViewModels
                 .Include(pa => pa.Project)
                 .ToListAsync();
 
-            // Получаем все проекты, в которых пользователь участвует (включая созданные)
             var projectsInvolved = myAssignments.Select(pa => pa.Project).Where(p => p != null).ToList();
-            // Собираем ID лидеров этих проектов
             var leaderIds = projectsInvolved.Select(p => p!.LeaderId).Distinct().ToList();
-            // Загружаем пользователей-лидеров
             var leaders = await _context.Users
                 .Where(u => leaderIds.Contains(u.Id))
                 .ToDictionaryAsync(u => u.Id, u => u);
@@ -171,7 +168,6 @@ namespace Volunteer_Tracker.ViewModels
                 var leader = leaders.GetValueOrDefault(project.LeaderId);
                 var isLeader = project.LeaderId == _currentUser.Id;
 
-                // Если лидер не найден, но это сам пользователь (создатель), то подставляем его данные
                 if (leader == null && isLeader)
                 {
                     leader = _currentUser;
@@ -311,7 +307,6 @@ namespace Volunteer_Tracker.ViewModels
         {
             try
             {
-                // Проверяем, нет ли уже заявки или участия
                 var existing = await _context.ProjectAssignments
                     .AnyAsync(pa => pa.ProjectId == project.Id && pa.UserId == _currentUser.Id);
                 if (existing) return;
@@ -347,10 +342,8 @@ namespace Volunteer_Tracker.ViewModels
                     var project = Projects.FirstOrDefault(p => p.Id == assignment.ProjectId);
                     if (project != null)
                     {
-                        // Перезагружаем участников для этого проекта
                         project.Participants = await GetProjectParticipantsAsync(project.Id);
                         project.ParticipantsCount = project.Participants.Count(p => p.IsApproved);
-                        // Принудительно обновляем UI
                         OnPropertyChanged(nameof(Projects));
                     }
                 }
@@ -392,7 +385,6 @@ namespace Volunteer_Tracker.ViewModels
         [RelayCommand]
         private async Task KickUser(ParticipantItem participant)
         {
-            // Нельзя удалить самого себя (создателя)
             if (participant.UserId == _currentUser.Id) return;
 
             try
@@ -499,22 +491,18 @@ namespace Volunteer_Tracker.ViewModels
         [RelayCommand]
         private void ToggleParticipants(ProjectItem project)
         {
-            // Закрываем все другие панели
             foreach (var p in Projects)
             {
                 if (p != project && p.IsParticipantsExpanded)
                     p.IsParticipantsExpanded = false;
             }
-            // Переключаем текущую
             project.IsParticipantsExpanded = !project.IsParticipantsExpanded;
 
-            // Если открываем и участники ещё не загружены, загружаем
             if (project.IsParticipantsExpanded && project.Participants.Count == 0)
             {
                 _ = LoadParticipantsForProject(project);
             }
 
-            // OnPropertyChanged(nameof(Projects));  // можно убрать, так как ObservableProperty обновляет сам
         }
 
         private async Task LoadParticipantsForProject(ProjectItem project)

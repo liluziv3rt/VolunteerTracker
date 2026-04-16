@@ -26,9 +26,8 @@ namespace Volunteer_Tracker.ViewModels
         [ObservableProperty]
         private bool _isPasswordVisible;
 
-        // События
         public event EventHandler<User?>? LoginSuccess;
-        public event EventHandler? NavigateToRegisterRequested;  // 👈 ИЗМЕНЕНО ИМЯ
+        public event EventHandler? NavigateToRegisterRequested;  
 
         public LoginViewModel()
         {
@@ -82,7 +81,6 @@ namespace Volunteer_Tracker.ViewModels
         [RelayCommand]
         private void ForgotPassword()
         {
-            // TODO: Обработка восстановления пароля
         }
 
         [RelayCommand]
@@ -91,7 +89,6 @@ namespace Volunteer_Tracker.ViewModels
             IsPasswordVisible = !IsPasswordVisible;
         }
 
-        // 👇 ЭТОТ МЕТОД ГЕНЕРИРУЕТ КОМАНДУ NavigateToRegisterCommand
         [RelayCommand]
         private void NavigateToRegister()
         {

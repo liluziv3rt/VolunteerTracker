@@ -12,7 +12,6 @@
             <Setter Property="BoxShadow" Value="0 2 8 0 #1A000000"/>
         </Style>
 
-        <!-- Цветные подложки для статистики -->
         <Style Selector="Border.hours-card">
             <Setter Property="Background" Value="#E8F0FE"/>
         </Style>
@@ -26,22 +25,19 @@
             <Setter Property="Background" Value="#FFF3E0"/>
         </Style>
 
-        <!-- ComboBox стили -->
 <Style Selector="ComboBox">
     <Setter Property="Background" Value="#F8F9FA"/>
     <Setter Property="BorderBrush" Value="#DADCE0"/>
     <Setter Property="BorderThickness" Value="1"/>
     <Setter Property="CornerRadius" Value="6"/>
     <Setter Property="Padding" Value="10,8"/>
-    <Setter Property="Foreground" Value="#202124"/> <!-- Основной текст всегда чёрный -->
+    <Setter Property="Foreground" Value="#202124"/>
 </Style>
 
-<!-- Текст в закрытом ComboBox -->
 <Style Selector="ComboBox TextBlock">
     <Setter Property="Foreground" Value="#202124"/>
 </Style>
 
-<!-- Стили для открытого состояния (Dropdown) -->
 <Style Selector="ComboBoxItem">
     <Setter Property="Background" Value="White"/>
     <Setter Property="Foreground" Value="#202124"/>
@@ -57,7 +53,6 @@
     <Setter Property="Foreground" Value="#1A73E8"/>
 </Style>
 
-<!-- Исправление для самого выпадающего списка -->
 <Style Selector="ComboBox FlyoutPresenter">
     <Setter Property="Background" Value="White"/>
 </Style>
@@ -84,13 +79,11 @@
     <ScrollViewer>
         <StackPanel Margin="32,24" Spacing="24">
 
-            <!-- Заголовок -->
             <StackPanel Spacing="6">
                 <TextBlock Text="Зачётная книжка завода" FontSize="28" FontWeight="SemiBold" Foreground="#202124"/>
                 <TextBlock Text="Цифровое портфолио студента" FontSize="14" Foreground="#5F6368"/>
             </StackPanel>
 
-            <!-- Карточка студента -->
             <Border Background="White" CornerRadius="20" Padding="24" BoxShadow="0 4 12 0 #1A000000">
                 <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto">
 
@@ -120,11 +113,9 @@
                         </StackPanel>
                     </Button>
 
-                    <!-- Статистика с цветными фонами -->
                     <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" 
                                 Orientation="Horizontal" Spacing="12" Margin="0,32,0,0">
 
-                        <!-- Часы -->
                         <Border Classes="stat-card hours-card" Width="118">
                             <StackPanel HorizontalAlignment="Center">
                                 <TextBlock Text="🕒" FontSize="32" HorizontalAlignment="Center"/>
@@ -134,7 +125,6 @@
                             </StackPanel>
                         </Border>
 
-                        <!-- Проекты -->
                         <Border Classes="stat-card projects-card" Width="118">
                             <StackPanel HorizontalAlignment="Center">
                                 <TextBlock Text="📁" FontSize="32" HorizontalAlignment="Center"/>
@@ -144,7 +134,6 @@
                             </StackPanel>
                         </Border>
 
-                        <!-- Баллы -->
                         <Border Classes="stat-card points-card" Width="118">
                             <StackPanel HorizontalAlignment="Center">
                                 <TextBlock Text="⭐" FontSize="32" HorizontalAlignment="Center"/>
@@ -154,7 +143,6 @@
                             </StackPanel>
                         </Border>
 
-                        <!-- Значки -->
                         <Border Classes="stat-card badges-card" Width="118">
                             <StackPanel HorizontalAlignment="Center">
                                 <TextBlock Text="🏅" FontSize="32" HorizontalAlignment="Center"/>
@@ -167,7 +155,6 @@
                 </Grid>
             </Border>
 
-            <!-- Фильтр активности -->
             <Border Background="White" CornerRadius="16" Padding="20" BoxShadow="0 2 6 0 #1A000000">
                 <StackPanel Spacing="16">
                     <TextBlock Text="Фильтр активности" FontSize="16" FontWeight="SemiBold" Foreground="#202124"/>
@@ -203,7 +190,6 @@
                 </StackPanel>
             </Border>
 
-            <!-- Список активности -->
             <Border Background="White" CornerRadius="16" Padding="20" BoxShadow="0 2 6 0 #1A000000">
                 <StackPanel Spacing="16">
                     <TextBlock Text="Вся активность" FontSize="18" FontWeight="SemiBold" Foreground="#202124"/>

@@ -115,7 +115,6 @@ namespace Volunteer_Tracker.ViewModels
                 ShowPhone = (_profileUser.PhoneVisible == true || IsOwnProfile) ? Phone : "";
                 NoSocials = string.IsNullOrEmpty(Telegram) && string.IsNullOrEmpty(Vk) && string.IsNullOrEmpty(Github);
 
-                // Статистика
                 var userPoints = await _context.UserPoints.FirstOrDefaultAsync(up => up.UserId == _profileUser.Id);
                 UserPoints = userPoints?.TotalPoints ?? 0;
                 VolunteerHours = userPoints?.TotalVolunteerHours ?? 0;
@@ -123,7 +122,6 @@ namespace Volunteer_Tracker.ViewModels
 
                 UserBadges = await _context.UserAchievements.CountAsync(ua => ua.UserId == _profileUser.Id);
 
-                // Ранг пользователя
                 var allPoints = await _context.UserPoints
                     .Where(up => up.TotalPoints > 0)
                     .OrderByDescending(up => up.TotalPoints)
@@ -161,10 +159,8 @@ namespace Volunteer_Tracker.ViewModels
                 var result = await dialog.ShowDialog<bool>(owner);
                 if (result)
                 {
-                    // Очищаем кеш EF Core
                     _context.ChangeTracker.Clear();
 
-                    // Перезагружаем данные пользователя из БД
                     var freshUser = await _context.Users
                         .AsNoTracking()
                         .FirstOrDefaultAsync(u => u.Id == _profileUser.Id);
@@ -179,7 +175,6 @@ namespace Volunteer_Tracker.ViewModels
                         _profileUser.PhoneVisible = freshUser.PhoneVisible;
                         _profileUser.Phone = freshUser.Phone;
 
-                        // Обновляем свойства ViewModel
                         await LoadDataAsync();
                     }
                 }
@@ -294,7 +289,6 @@ namespace Volunteer_Tracker.ViewModels
         {
             try
             {
-                // Проверяем, что URL валидный
                 if (Uri.TryCreate(url, UriKind.Absolute, out Uri? uriResult) &&
                     (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))
                 {

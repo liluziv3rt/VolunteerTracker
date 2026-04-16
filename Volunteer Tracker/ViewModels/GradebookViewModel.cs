@@ -128,7 +128,6 @@ namespace Volunteer_Tracker.ViewModels
             HasNoActivities = Activities.Count == 0;
         }
 
-        // Методы GetSubtitleByType, GetIconByType и т.д. оставил без изменений
         private string GetSubtitleByType(ActivityLog log)
         {
             return log.ActivityType switch
@@ -250,12 +249,10 @@ namespace Volunteer_Tracker.ViewModels
         {
             container.Column(column =>
             {
-                // Информация о студенте
                 column.Item().PaddingTop(20).Text(UserFullName).FontSize(18).Bold();
                 column.Item().Text($"Группа: {UserGroup}     Дата вступления: {JoinDate}")
                       .FontSize(12).FontColor("#5F6368");
 
-                // Статистика
                 column.Item().PaddingVertical(20).Row(row =>
                 {
                     row.RelativeItem().Component(new StatComponent("🕒", TotalHours.ToString("F1"), "Часов", "#1E88E5"));
@@ -264,7 +261,6 @@ namespace Volunteer_Tracker.ViewModels
                     row.RelativeItem().Component(new StatComponent("🏅", TotalBadges.ToString(), "Значков", "#FB8C00"));
                 });
 
-                // Заголовок "Вся активность" с отступом снизу
                 column.Item().PaddingBottom(12).Text("Вся активность")
                       .FontSize(16).Bold();
 
@@ -301,7 +297,6 @@ namespace Volunteer_Tracker.ViewModels
             });
         }
 
-        // Компонент карточки статистики
         private class StatComponent : IComponent
         {
             private readonly string _icon;

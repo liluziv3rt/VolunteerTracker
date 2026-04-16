@@ -51,7 +51,6 @@
     <ScrollViewer>
         <StackPanel Margin="32,24" Spacing="20">
 
-            <!-- Header -->
             <Grid ColumnDefinitions="*,Auto">
                 <TextBlock Text="Проекты" FontSize="28" FontWeight="SemiBold" Foreground="#202124" VerticalAlignment="Center"/>
                 <Button Grid.Column="1"
@@ -62,7 +61,6 @@
                 </Button>
             </Grid>
 
-            <!-- Tabs -->
             <StackPanel Orientation="Horizontal" Spacing="8">
                 <Button Content="📋 Все проекты"
                         Command="{Binding SwitchToAvailableCommand}"
@@ -77,24 +75,21 @@
                         Padding="16,10" CornerRadius="8" FontSize="14" FontWeight="SemiBold" Cursor="Hand"/>
             </StackPanel>
 
-            <!-- Projects List -->
             <ItemsControl ItemsSource="{Binding Projects}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border Classes="project-card">
                             <StackPanel Spacing="12">
 
-                                <!-- Title + Status -->
                                 <Grid ColumnDefinitions="*,Auto">
                                     <StackPanel VerticalAlignment="Center">
                                         <TextBlock Text="{Binding Title}" FontSize="18" FontWeight="SemiBold" Foreground="#202124"/>
-                                        <!-- Описание проекта -->
+                                       
                                             <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,8,0,0">
                                                 <TextBlock Text="{Binding ShortDescription}" 
                                                            FontSize="13" Foreground="#5F6368" TextWrapping="Wrap"
                                                            IsVisible="{Binding ShortDescription, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
     
-                                                <!-- Кнопка "Подробнее" для полного описания -->
                                                 <Button Content="Подробнее"
                                                         Command="{Binding #Root.DataContext.ToggleFullDescriptionCommand}"
                                                         CommandParameter="{Binding}"
@@ -105,7 +100,7 @@
                                                         Cursor="Hand"
                                                         IsVisible="{Binding FullDescription, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
     
-                                                <!-- Полное описание (раскрывается) -->
+                                                
                                                 <Border Background="#F8F9FA" CornerRadius="8" Padding="12" Margin="0,8,0,0"
                                                         IsVisible="{Binding IsFullDescriptionExpanded}">
                                                     <TextBlock Text="{Binding FullDescription}" FontSize="13" Foreground="#202124" TextWrapping="Wrap"/>
@@ -121,7 +116,6 @@
                                     </Border>
                                 </Grid>
 
-                                <!-- Info row -->
                                 <Grid ColumnDefinitions="Auto,Auto,*" ColumnSpacing="20">
                                     <TextBlock Text="{Binding EndDate}" FontSize="13" Foreground="#5F6368" VerticalAlignment="Center"/>
                                     
@@ -131,7 +125,6 @@
                                         <TextBlock Text="баллов" FontSize="12" Foreground="#5F6368"/>
                                     </StackPanel>
 
-                                    <!-- Leader (кликабельный) -->
                                     <Button Grid.Column="2"
                                             Command="{Binding #Root.DataContext.OpenLeaderProfileCommand}"
                                             CommandParameter="{Binding LeaderId}"
@@ -153,13 +146,11 @@
                                     </Button>
                                 </Grid>
 
-                                <!-- Progress -->
                                 <StackPanel Spacing="4" IsVisible="{Binding ShowProgress}">
                                     <ProgressBar Value="{Binding ProgressPercent}" Height="6" MinHeight="6" CornerRadius="3"/>
                                     <TextBlock Text="{Binding ProgressText}" FontSize="12" Foreground="#5F6368"/>
                                 </StackPanel>
 
-                                <!-- Request status (если заявка отправлена) -->
                                 <Border Background="{Binding RequestStatusColor}"
                                         CornerRadius="8"
                                         Padding="10,6"
@@ -167,7 +158,6 @@
                                     <TextBlock Text="{Binding RequestStatusText}" FontSize="13" FontWeight="SemiBold" Foreground="White"/>
                                 </Border>
 
-                                <!-- Actions -->
                                 <StackPanel Orientation="Horizontal" Spacing="8">
                                            <Button Classes="action-button" Content="📤 Заявка"
                                             Command="{Binding #Root.DataContext.SendRequestCommand}"
@@ -180,7 +170,6 @@
                                             Padding="12,8" CornerRadius="8" Cursor="Hand"
                                             IsVisible="{Binding ShowParticipants}"/>
 
-                                    <!-- Закрыть проект (только админ) -->
                                     <Button Background="#EA4335" Foreground="White" Content="Закрыть"
                                             Command="{Binding #Root.DataContext.CloseProjectCommand}"
                                             CommandParameter="{Binding}"
@@ -188,7 +177,6 @@
                                             IsVisible="{Binding CanCloseProject}"/>
                                 </StackPanel>
 
-                             <!-- Participants Panel (отображается при нажатии "Участники") -->
 <Border Background="#F8F9FA" CornerRadius="12" Padding="16" Margin="0,4,0,0"
         IsVisible="{Binding IsParticipantsExpanded}">
     <StackPanel Spacing="10">
@@ -211,7 +199,6 @@
 
                             <TextBlock Grid.Column="1" Text="{Binding FullName}" FontSize="14" FontWeight="SemiBold" Foreground="#202124" VerticalAlignment="Center"/>
 
-                            <!-- Кнопки управления – поднимаемся к ProjectItem, чтобы взять CanManageParticipants -->
                            <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4" VerticalAlignment="Center"
                                         IsVisible="{Binding CanManageParticipants}">
                                 

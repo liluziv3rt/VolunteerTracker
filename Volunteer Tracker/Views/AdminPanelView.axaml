@@ -6,7 +6,6 @@
              x:Name="Root">
 
     <UserControl.Styles>
-        <!-- Таб-кнопки -->
         <Style Selector="Button.tab-button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="#5F6368"/>
@@ -27,7 +26,6 @@
             <Setter Property="Foreground" Value="White"/>
         </Style>
 
-        <!-- Кнопка сохранения -->
         <Style Selector="Button.save-button">
             <Setter Property="Background" Value="#34A853"/>
             <Setter Property="Foreground" Value="White"/>
@@ -44,7 +42,6 @@
             <Setter Property="Foreground" Value="White"/>
         </Style>
 
-        <!-- Поля ввода -->
         <Style Selector="TextBox, ComboBox">
             <Setter Property="Background" Value="White"/>
             <Setter Property="BorderBrush" Value="#DADCE0"/>
@@ -59,7 +56,6 @@
             <Setter Property="BorderThickness" Value="2"/>
         </Style>
 
-        <!-- ComboBox выпадающий список -->
         <Style Selector="ComboBoxItem">
             <Setter Property="Background" Value="White"/>
             <Setter Property="Foreground" Value="#202124"/>
@@ -75,12 +71,10 @@
             <Setter Property="Foreground" Value="#1A73E8"/>
         </Style>
 
-        <!-- Чекбокс -->
         <Style Selector="CheckBox">
             <Setter Property="Foreground" Value="#202124"/>
         </Style>
 
-        <!-- Общий текст -->
         <Style Selector="TextBlock">
             <Setter Property="Foreground" Value="#202124"/>
         </Style>
@@ -114,7 +108,6 @@
                 BoxShadow="0 2 8 0 #1A000000">
 
             <StackPanel>
-                <!-- Пользователи -->
                 <StackPanel IsVisible="{Binding IsUsersTabSelected}" Spacing="16">
     <TextBlock Text="Управление пользователями" 
                FontSize="18" FontWeight="SemiBold" 
@@ -173,7 +166,6 @@
                             Command="{Binding SaveUsersCommand}"/>
                 </StackPanel>
 
-                <!-- Проекты -->
                 <StackPanel IsVisible="{Binding IsProjectsTabSelected}" Spacing="16">
                     <TextBlock Text="Управление проектами" 
                                FontSize="18" FontWeight="SemiBold" 

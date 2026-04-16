@@ -62,7 +62,6 @@ namespace Volunteer_Tracker.ViewModels
         {
             try
             {
-                // Получаем всех студентов с баллами
                 var studentsQuery = await (from u in _context.Users
                                            join up in _context.UserPoints on u.Id equals up.UserId into pointsJoin
                                            from up in pointsJoin.DefaultIfEmpty()
@@ -78,7 +77,6 @@ namespace Volunteer_Tracker.ViewModels
                                            })
                                            .ToListAsync();
 
-                // Получаем количество значков для всех пользователей
                 var badgesCount = await _context.UserAchievements
                     .GroupBy(ua => ua.UserId)
                     .Select(g => new { UserId = g.Key, Count = g.Count() })
@@ -151,19 +149,16 @@ namespace Volunteer_Tracker.ViewModels
         {
             using var context = new PostgresContext();
 
-            // Получаем данные пользователя
             var userPoints = await context.UserPoints.FirstOrDefaultAsync(up => up.UserId == userId);
             if (userPoints == null) return;
 
             int totalPoints = userPoints.TotalPoints ?? 0;
             decimal totalHours = userPoints.TotalVolunteerHours ?? 0;
             int totalProjects = userPoints.TotalProjectsCompleted ?? 0;
-            int totalRentals = userPoints.TotalRentalMinutes ?? 0;  // 👈 ИСПРАВЛЕНО
+            int totalRentals = userPoints.TotalRentalMinutes ?? 0;  
 
-            // Получаем все достижения
             var allAchievements = await context.Achievements.ToListAsync();
 
-            // Получаем уже полученные достижения пользователя
             var earnedIds = await context.UserAchievements
                 .Where(ua => ua.UserId == userId)
                 .Select(ua => ua.AchievementId)
@@ -202,13 +197,11 @@ namespace Volunteer_Tracker.ViewModels
                         EarnedAt = DateTime.Now
                     });
 
-                    // Добавляем бонусные баллы
                     if (achievement.BonusPoints > 0)
                     {
                         userPoints.TotalPoints = (userPoints.TotalPoints ?? 0) + achievement.BonusPoints;
                     }
 
-                    // Добавляем запись в активность
                     context.ActivityLogs.Add(new ActivityLog
                     {
                         UserId = userId,
@@ -237,7 +230,6 @@ namespace Volunteer_Tracker.ViewModels
 
                 if (IsThisMonthSelected)
                 {
-                    // Баллы за этот месяц из activity_log
                     var monthlyPoints = await _context.ActivityLogs
                         .Where(al => al.CreatedAt >= oneMonthAgo && al.PointsChange > 0)
                         .GroupBy(al => al.UserId)
@@ -252,7 +244,6 @@ namespace Volunteer_Tracker.ViewModels
                 }
                 else
                 {
-                    // Баллы за всё время из таблицы user_points
                     var userPoints = await _context.UserPoints
                         .Where(up => up.TotalPoints > 0)
                         .ToDictionaryAsync(up => up.UserId, up => up.TotalPoints ?? 0);
@@ -264,18 +255,15 @@ namespace Volunteer_Tracker.ViewModels
                     userPointsList = users.Select(u => (u.Id, userPoints.GetValueOrDefault(u.Id, 0))).ToList();
                 }
 
-                // Получаем количество значков для каждого пользователя
                 var badgesCount = await _context.UserAchievements
                     .GroupBy(ua => ua.UserId)
                     .Select(g => new { UserId = g.Key, Count = g.Count() })
                     .ToDictionaryAsync(x => x.UserId, x => x.Count);
 
-                // Получаем информацию о пользователях
                 var usersInfo = await _context.Users
                     .Where(u => u.Role == "student" && u.IsActive == true)
                     .ToDictionaryAsync(u => u.Id, u => u);
 
-                // Формируем список лидеров, сортируем по баллам, берём ТОП-10
                 var leaderboardList = new List<LeaderboardItem>();
                 int rank = 1;
 
@@ -300,7 +288,6 @@ namespace Volunteer_Tracker.ViewModels
                         ? $"{names[0][0]}{names[1][0]}".ToUpper()
                         : names[0].Substring(0, Math.Min(2, names[0].Length)).ToUpper();
 
-                    // Оформление 1, 2, 3 места
                     if (rank == 1)
                     {
                         item.Medal = "🥇";

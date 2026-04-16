@@ -13,7 +13,6 @@
 
     <UserControl.Styles>
 
-        <!-- PRIMARY BUTTON -->
         <Style Selector="Button.primary">
             <Setter Property="Height" Value="40"/>
             <Setter Property="Foreground" Value="White"/>
@@ -42,7 +41,6 @@
             <Setter Property="Background" Value="#0D47A1"/>
         </Style>
 
-        <!-- LINK BUTTON -->
         <Style Selector="Button.link">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="#1A73E8"/>
@@ -61,7 +59,6 @@
             <Setter Property="Foreground" Value="#1557B0"/>
         </Style>
 
-        <!-- Стили для TextBox - БАЗОВЫЙ СТИЛЬ (ВСЕГДА) -->
         <Style Selector="TextBox">
             <Setter Property="Background" Value="White"/>
             <Setter Property="BorderBrush" Value="#DADCE0"/>
@@ -72,12 +69,10 @@
             <Setter Property="Foreground" Value="#202124"/>
         </Style>
 
-        <!-- Стиль для TextBox ПРИ НАВЕДЕНИИ -->
         <Style Selector="TextBox:pointerover">
             <Setter Property="BorderBrush" Value="#1A73E8"/>
         </Style>
 
-        <!-- Стиль для TextBox ПРИ ФОКУСЕ -->
         <Style Selector="TextBox:focus">
             <Setter Property="BorderBrush" Value="#1A73E8"/>
             <Setter Property="BorderThickness" Value="2"/>
@@ -94,7 +89,6 @@
                     Padding="40,35">
                 <StackPanel Width="400" Spacing="16">
 
-                    <!-- Заголовок -->
                     <StackPanel Spacing="8" HorizontalAlignment="Center">
                         <TextBlock Text="📝" FontSize="48" HorizontalAlignment="Center" />
                         <TextBlock Text="Регистрация"
@@ -109,49 +103,42 @@
                                    TextAlignment="Center" />
                     </StackPanel>
 
-                    <!-- Фамилия -->
                     <StackPanel Spacing="4">
                         <TextBlock Text="Фамилия" FontSize="14" Foreground="#202124" />
                         <TextBox Watermark="Введите фамилию"
                                  Text="{Binding LastName, Mode=TwoWay}" />
                     </StackPanel>
 
-                    <!-- Имя -->
                     <StackPanel Spacing="4">
                         <TextBlock Text="Имя" FontSize="14" Foreground="#202124" />
                         <TextBox Watermark="Введите имя"
                                  Text="{Binding FirstName, Mode=TwoWay}" />
                     </StackPanel>
 
-                    <!-- Отчество -->
                     <StackPanel Spacing="4">
                         <TextBlock Text="Отчество (опционально)" FontSize="14" Foreground="#202124" />
                         <TextBox Watermark="Введите отчество"
                                  Text="{Binding MiddleName, Mode=TwoWay}" />
                     </StackPanel>
 
-                    <!-- Email -->
                     <StackPanel Spacing="4">
                         <TextBlock Text="Email" FontSize="14" Foreground="#202124" />
                         <TextBox Watermark="example@student.ru"
                                  Text="{Binding Email, Mode=TwoWay}" />
                     </StackPanel>
 
-                    <!-- Группа -->
                     <StackPanel Spacing="4">
                         <TextBlock Text="Группа" FontSize="14" Foreground="#202124" />
                         <TextBox Watermark="Например: ПИ-401"
                                  Text="{Binding GroupName, Mode=TwoWay}" />
                     </StackPanel>
 
-                    <!-- Телефон -->
                     <StackPanel Spacing="4">
                         <TextBlock Text="Телефон" FontSize="14" Foreground="#202124" />
                         <TextBox Watermark="+7 (999) 123-45-67"
                                  Text="{Binding Phone, Mode=TwoWay}" />
                     </StackPanel>
 
-                    <!-- Пароль -->
                     <StackPanel Spacing="4">
                         <TextBlock Text="Пароль" FontSize="14" Foreground="#202124" />
                         <TextBox Watermark="Придумайте пароль"
@@ -159,7 +146,6 @@
                                  PasswordChar="●" />
                     </StackPanel>
 
-                    <!-- Подтверждение пароля -->
                     <StackPanel Spacing="4">
                         <TextBlock Text="Подтверждение пароля" FontSize="14" Foreground="#202124" />
                         <TextBox Watermark="Повторите пароль"
@@ -167,27 +153,23 @@
                                  PasswordChar="●" />
                     </StackPanel>
 
-                    <!-- Ошибка -->
                     <TextBlock Text="{Binding ErrorMessage}"
                                Foreground="#EA4335"
                                FontSize="13"
                                IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
                                TextWrapping="Wrap" />
 
-                    <!-- Кнопка регистрации -->
                     <Button Classes="primary"
                             Content="Зарегистрироваться"
                             Command="{Binding RegisterCommand}"
                             HorizontalAlignment="Stretch"
                             Padding="16,12" />
 
-                    <!-- Загрузка -->
                     <ProgressBar IsVisible="{Binding IsLoading}"
                                  IsIndeterminate="True"
                                  Height="4"
                                  CornerRadius="2" />
 
-                    <!-- Ссылка на вход -->
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="5">
                         <TextBlock Text="Уже есть аккаунт?" FontSize="13" Foreground="#5F6368" />
                         <Button Classes="link"

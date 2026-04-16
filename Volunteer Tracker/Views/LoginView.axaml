@@ -10,7 +10,6 @@
 
     <UserControl.Styles>
         
-        <!-- PRIMARY BUTTON -->
         <Style Selector="Button.primary">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Template">
@@ -38,7 +37,6 @@
             <Setter Property="Background" Value="#0D47A1"/>
         </Style>
 
-        <!-- LINK BUTTON -->
         <Style Selector="Button.link">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="#1A73E8"/>
@@ -57,7 +55,6 @@
             <Setter Property="Foreground" Value="#1557B0"/>
         </Style>
 
-        <!-- Стили для TextBox -->
         <Style Selector="TextBox">
             <Setter Property="Background" Value="White"/>
             <Setter Property="BorderBrush" Value="#DADCE0"/>
@@ -88,7 +85,6 @@
                     Padding="40,35">
                 <StackPanel Spacing="24">
 
-                    <!-- Заголовок -->
                     <StackPanel Spacing="8" HorizontalAlignment="Center">
                         <TextBlock Text="🤝" FontSize="48" HorizontalAlignment="Center" />
                         <TextBlock Text="Volunteer Tracker"
@@ -103,7 +99,6 @@
                                    TextAlignment="Center" />
                     </StackPanel>
 
-                    <!-- Email -->
                     <StackPanel Spacing="8">
                         <TextBlock Text="Email или телефон"
                                    FontSize="14"
@@ -112,7 +107,6 @@
                                  Text="{Binding Email, Mode=TwoWay}" />
                     </StackPanel>
 
-                    <!-- Пароль -->
                     <StackPanel Spacing="8">
                         <TextBlock Text="Пароль"
                                    FontSize="14"
@@ -122,33 +116,28 @@
                                  PasswordChar="●" />
                     </StackPanel>
 
-                    <!-- Ошибка -->
                     <TextBlock Text="{Binding ErrorMessage}"
                                Foreground="#EA4335"
                                FontSize="13"
                                IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
                                TextWrapping="Wrap" />
 
-                    <!-- Кнопка входа -->
                     <Button Classes="primary"
                             Content="Войти"
                             Command="{Binding LoginCommand}"
                             HorizontalAlignment="Stretch"
                             Padding="16,12" />
 
-                    <!-- Загрузка -->
                     <ProgressBar IsVisible="{Binding IsLoading}"
                                  IsIndeterminate="True"
                                  Height="4"
                                  CornerRadius="2" />
 
-                    <!-- Забыли пароль? -->
                     <Button Classes="link"
                             Content="Забыли пароль?"
                             Command="{Binding ForgotPasswordCommand}"
                             HorizontalAlignment="Center" />
 
-                    <!-- Ссылка на регистрацию -->
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="5">
                         <TextBlock Text="Нет аккаунта?" FontSize="13" Foreground="#5F6368" />
                         <Button Classes="link"
@@ -156,7 +145,6 @@
                                 Command="{Binding NavigateToRegisterCommand}" />
                     </StackPanel>
 
-                    <!-- Футер -->
                     <TextBlock Text="Студенты АНО | Волонтёрские часы и проекты"
                                FontSize="12"
                                Foreground="#9AA0A6"

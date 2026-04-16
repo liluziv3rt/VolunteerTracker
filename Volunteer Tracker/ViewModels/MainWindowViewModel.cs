@@ -88,7 +88,6 @@ namespace Volunteer_Tracker.ViewModels
         {
             _currentUser = user;
 
-            // Загружаем баллы пользователя из базы данных
             int userPoints = 0;
             try
             {

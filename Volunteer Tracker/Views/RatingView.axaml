@@ -52,7 +52,6 @@
 
             <Grid ColumnDefinitions="1.6*,1*" ColumnSpacing="32">
 
-                <!-- ЛЕВАЯ КОЛОНКА -->
                 <Border Background="White" CornerRadius="16" BoxShadow="0 2 8 0 #1A000000">
                     <Grid RowDefinitions="Auto,Auto,Auto">
 
@@ -121,7 +120,6 @@
                     </Grid>
                 </Border>
 
-                <!-- ПРАВАЯ КОЛОНКА -->
                 <StackPanel Grid.Column="1" Spacing="16">
                     <StackPanel Orientation="Horizontal" Spacing="12">
                         <TextBlock Text="Мои достижения" FontSize="20" FontWeight="SemiBold" Foreground="#202124"/>
