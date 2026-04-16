@@ -26,23 +26,41 @@
             <Setter Property="Background" Value="#FFF3E0"/>
         </Style>
 
-        <!-- ComboBox - всегда чёрный текст + светлый фон -->
-        <Style Selector="ComboBox">
-            <Setter Property="Background" Value="#F8F9FA"/>
-            <Setter Property="BorderBrush" Value="#DADCE0"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="6"/>
-            <Setter Property="Padding" Value="10,8"/>
-            <Setter Property="Foreground" Value="#202124"/> <!-- Чёрный текст всегда -->
-        </Style>
+        <!-- ComboBox стили -->
+<Style Selector="ComboBox">
+    <Setter Property="Background" Value="#F8F9FA"/>
+    <Setter Property="BorderBrush" Value="#DADCE0"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="CornerRadius" Value="6"/>
+    <Setter Property="Padding" Value="10,8"/>
+    <Setter Property="Foreground" Value="#202124"/> <!-- Основной текст всегда чёрный -->
+</Style>
 
-        <Style Selector="ComboBox:pressed, ComboBox:pointerover">
-            <Setter Property="Background" Value="#F1F3F4"/>
-        </Style>
+<!-- Текст в закрытом ComboBox -->
+<Style Selector="ComboBox TextBlock">
+    <Setter Property="Foreground" Value="#202124"/>
+</Style>
 
-        <Style Selector="ComboBox TextBlock">
-            <Setter Property="Foreground" Value="#202124"/>
-        </Style>
+<!-- Стили для открытого состояния (Dropdown) -->
+<Style Selector="ComboBoxItem">
+    <Setter Property="Background" Value="White"/>
+    <Setter Property="Foreground" Value="#202124"/>
+    <Setter Property="Padding" Value="10,8"/>
+</Style>
+
+<Style Selector="ComboBoxItem:pointerover">
+    <Setter Property="Background" Value="#F1F3F4"/>
+</Style>
+
+<Style Selector="ComboBoxItem:selected">
+    <Setter Property="Background" Value="#E8F0FE"/>
+    <Setter Property="Foreground" Value="#1A73E8"/>
+</Style>
+
+<!-- Исправление для самого выпадающего списка -->
+<Style Selector="ComboBox FlyoutPresenter">
+    <Setter Property="Background" Value="White"/>
+</Style>
 
         <Style Selector="Button.filter-button">
             <Setter Property="Background" Value="#1A73E8"/>

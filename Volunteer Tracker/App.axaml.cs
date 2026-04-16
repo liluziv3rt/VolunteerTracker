@@ -6,6 +6,7 @@ using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
 using Volunteer_Tracker.ViewModels;
 using Volunteer_Tracker.Views;
+using QuestPDF.Infrastructure;
 
 namespace Volunteer_Tracker
 {
@@ -13,6 +14,8 @@ namespace Volunteer_Tracker
     {
         public override void Initialize()
         {
+            QuestPDF.Settings.License = LicenseType.Community;
+
             AvaloniaXamlLoader.Load(this);
         }
 
