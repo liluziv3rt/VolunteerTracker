@@ -132,6 +132,8 @@ namespace Volunteer_Tracker.ViewModels
 
                 UserRank = allPoints.IndexOf(_profileUser.Id) + 1;
                 if (UserRank == 0) UserRank = allPoints.Count + 1;
+                await LoadRecentActivities();
+
             }
             catch (Exception ex)
             {
