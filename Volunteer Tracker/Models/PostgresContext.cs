@@ -178,6 +178,9 @@ public partial class PostgresContext : DbContext
             entity.Property(e => e.Category)
                 .HasMaxLength(100)
                 .HasColumnName("category");
+            entity.Property(e => e.CompletedAt)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("completed_at");
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("timestamp without time zone")
@@ -240,6 +243,10 @@ public partial class PostgresContext : DbContext
                 .HasDefaultValue(0)
                 .HasColumnName("points_earned");
             entity.Property(e => e.ProjectId).HasColumnName("project_id");
+            entity.Property(e => e.RequestStatus)
+                .HasMaxLength(50)
+                .HasDefaultValueSql("'pending'::character varying")
+                .HasColumnName("request_status");
             entity.Property(e => e.RoleInProject)
                 .HasMaxLength(100)
                 .HasColumnName("role_in_project");

@@ -36,6 +36,8 @@ public partial class Project
 
     public DateTime? UpdatedAt { get; set; }
 
+    public DateTime? CompletedAt { get; set; }
+
     public virtual User Leader { get; set; } = null!;
 
     public virtual ICollection<ProjectAssignment> ProjectAssignments { get; set; } = new List<ProjectAssignment>();

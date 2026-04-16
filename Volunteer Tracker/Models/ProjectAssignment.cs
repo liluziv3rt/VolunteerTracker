@@ -24,6 +24,8 @@ public partial class ProjectAssignment
 
     public DateTime? CompletedAt { get; set; }
 
+    public string? RequestStatus { get; set; }
+
     public virtual Project Project { get; set; } = null!;
 
     public virtual User User { get; set; } = null!;

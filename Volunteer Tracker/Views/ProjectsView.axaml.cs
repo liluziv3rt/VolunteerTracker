@@ -11,20 +11,6 @@ namespace Volunteer_Tracker.Views
             InitializeComponent();
         }
 
-        private async void OnAvailableTapped(object? sender, TappedEventArgs e)
-        {
-            if (DataContext is ProjectsViewModel vm)
-            {
-                await vm.SwitchToAvailable();
-            }
-        }
-
-        private async void OnMyProjectsTapped(object? sender, TappedEventArgs e)
-        {
-            if (DataContext is ProjectsViewModel vm)
-            {
-                await vm.SwitchToMyProjects();
-            }
-        }
+        
     }
 }

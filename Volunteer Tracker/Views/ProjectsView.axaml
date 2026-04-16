@@ -1,14 +1,14 @@
 ﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="clr-namespace:Volunteer_Tracker.ViewModels"
+             xmlns:converters="clr-namespace:Volunteer_Tracker.Converters"
              x:Class="Volunteer_Tracker.Views.ProjectsView"
              x:DataType="vm:ProjectsViewModel"
              x:Name="Root">
 
     <UserControl.Resources>
-        <vm:BoolToSelectedBrushConverter x:Key="SelectedBrushConverter"/>
-        <vm:BoolToForegroundBrushConverter x:Key="ForegroundBrushConverter"/>
-        <vm:IsEmptyConverter x:Key="IsEmptyConverter"/>
+        <converters:BoolToActiveTabBgConverter x:Key="ActiveBg"/>
+        <converters:BoolToActiveTabFgConverter x:Key="ActiveFg"/>
     </UserControl.Resources>
 
     <UserControl.Styles>
@@ -16,207 +16,209 @@
             <Setter Property="Background" Value="White"/>
             <Setter Property="CornerRadius" Value="16"/>
             <Setter Property="Padding" Value="20"/>
-            <Setter Property="Margin" Value="0,0,0,16"/>
+            <Setter Property="Margin" Value="0,0,0,12"/>
             <Setter Property="BoxShadow" Value="0 2 8 0 #1A000000"/>
         </Style>
 
-        <Style Selector="Button.create-button">
-            <Setter Property="Background" Value="#34A853"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Padding" Value="16,10"/>
-            <Setter Property="CornerRadius" Value="8"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="BorderThickness" Value="0"/>
-        </Style>
-
-        <Style Selector="Button.create-button:pointerover">
-            <Setter Property="Background" Value="#2D8C47"/>
-            <Setter Property="Foreground" Value="White"/>
-        </Style>
-
-        <Style Selector="Button.create-button:pressed">
-            <Setter Property="Background" Value="#1B5E20"/>
-        </Style>
-
-        <Style Selector="Button.join-button, Button.approve-button">
+        <Style Selector="Button.action-button">
+            <Setter Property="Background" Value="#1A73E8"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Padding" Value="12,8"/>
             <Setter Property="CornerRadius" Value="8"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="MinWidth" Value="120"/>
-            <Setter Property="FontSize" Value="13"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
         </Style>
 
-        <Style Selector="Button.join-button">
-            <Setter Property="Background" Value="#1A73E8"/>
-        </Style>
-
-        <Style Selector="Button.join-button:pointerover">
+        <Style Selector="Button.action-button:pointerover">
             <Setter Property="Background" Value="#1557B0"/>
         </Style>
 
-        <Style Selector="Button.approve-button">
-            <Setter Property="Background" Value="#34A853"/>
+        <Style Selector="Border.leader-avatar">
+            <Setter Property="Width" Value="36"/>
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="CornerRadius" Value="18"/>
+            <Setter Property="Background" Value="#E8F0FE"/>
         </Style>
 
-        <Style Selector="Button.approve-button:pointerover">
-            <Setter Property="Background" Value="#2D8C47"/>
-        </Style>
-
-        <Style Selector="Border.status-badge">
-            <Setter Property="CornerRadius" Value="12"/>
-            <Setter Property="Padding" Value="8,4"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
+        <Style Selector="Border.participant-avatar">
+            <Setter Property="Width" Value="32"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="CornerRadius" Value="16"/>
+            <Setter Property="Background" Value="#F0F0F0"/>
         </Style>
     </UserControl.Styles>
 
     <ScrollViewer>
-        <StackPanel Margin="32,24" Spacing="24">
-            
-            <StackPanel Spacing="6">
-                <TextBlock Text="Проекты и проектная активность" FontSize="28" FontWeight="SemiBold" Foreground="#202124"/>
-                <TextBlock Text="Присоединяйтесь к проектам и отслеживайте свой прогресс" 
-                           FontSize="14" Foreground="#5F6368"/>
+        <StackPanel Margin="32,24" Spacing="20">
+
+            <!-- Header -->
+            <Grid ColumnDefinitions="*,Auto">
+                <TextBlock Text="Проекты" FontSize="28" FontWeight="SemiBold" Foreground="#202124" VerticalAlignment="Center"/>
+                <Button Grid.Column="1"
+                        Classes="action-button"
+                        Command="{Binding CreateProjectCommand}"
+                        IsVisible="{Binding CanCreateProject}">
+                    + Создать проект
+                </Button>
+            </Grid>
+
+            <!-- Tabs -->
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <Button Content="📋 Все проекты"
+                        Command="{Binding SwitchToAvailableCommand}"
+                        Background="{Binding IsAvailableSelected, Converter={StaticResource ActiveBg}}"
+                        Foreground="{Binding IsAvailableSelected, Converter={StaticResource ActiveFg}}"
+                        Padding="16,10" CornerRadius="8" FontSize="14" FontWeight="SemiBold" Cursor="Hand"/>
+                
+                <Button Content="👤 Мои проекты"
+                        Command="{Binding SwitchToMyProjectsCommand}"
+                        Background="{Binding IsMyProjectsSelected, Converter={StaticResource ActiveBg}}"
+                        Foreground="{Binding IsMyProjectsSelected, Converter={StaticResource ActiveFg}}"
+                        Padding="16,10" CornerRadius="8" FontSize="14" FontWeight="SemiBold" Cursor="Hand"/>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Spacing="12">
-                <Border Background="{Binding IsAvailableSelected, Converter={StaticResource SelectedBrushConverter}}"
-                        CornerRadius="20" Padding="20,8" Cursor="Hand" Tapped="OnAvailableTapped">
-                    <TextBlock Text="Доступные проекты" 
-                               Foreground="{Binding IsAvailableSelected, Converter={StaticResource ForegroundBrushConverter}}"/>
-                </Border>
-                <Border Background="{Binding IsMyProjectsSelected, Converter={StaticResource SelectedBrushConverter}}"
-                        CornerRadius="20" Padding="20,8" Cursor="Hand" Tapped="OnMyProjectsTapped">
-                    <TextBlock Text="Мои проекты" 
-                               Foreground="{Binding IsMyProjectsSelected, Converter={StaticResource ForegroundBrushConverter}}"/>
-                </Border>
-            </StackPanel>
-
-            <Button Classes="create-button" 
-                    HorizontalAlignment="Right"
-                    Command="{Binding CreateProjectCommand}"
-                    IsVisible="{Binding CanCreateProject}">
-                <StackPanel Orientation="Horizontal" Spacing="8">
-                    <TextBlock Text="➕" FontSize="14"/>
-                    <TextBlock Text="Создать проект" FontSize="14" FontWeight="SemiBold"/>
-                </StackPanel>
-            </Button>
-
+            <!-- Projects List -->
             <ItemsControl ItemsSource="{Binding Projects}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border Classes="project-card">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                
-                                <!-- Строка 0: Название и статус + кнопки -->
-                                <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
-                                    <TextBlock Text="📁" FontSize="24" VerticalAlignment="Center"/>
-                                    <TextBlock Text="{Binding Title}" FontSize="18" FontWeight="SemiBold" Foreground="#202124" VerticalAlignment="Center"/>
-                                    <Border Classes="status-badge" Background="{Binding StatusColor}">
-                                        <TextBlock Text="{Binding Status}" FontSize="11" Foreground="White"/>
+                            <StackPanel Spacing="12">
+
+                                <!-- Title + Status -->
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Title}" FontSize="18" FontWeight="SemiBold" Foreground="#202124"/>
+                                        <TextBlock Text="{Binding ShortDescription}" FontSize="13" Foreground="#5F6368" TextWrapping="Wrap" MaxLines="2"/>
+                                    </StackPanel>
+                                    <Border Grid.Column="1"
+                                            Background="{Binding StatusColor}"
+                                            CornerRadius="10"
+                                            Padding="10,4"
+                                            VerticalAlignment="Top">
+                                        <TextBlock Text="{Binding Status}" Foreground="White" FontSize="12" FontWeight="SemiBold"/>
                                     </Border>
-                                </StackPanel>
-                                
-                                <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
-                                    <Button Classes="join-button"
-                                            Content="Присоединиться"
-                                            Command="{Binding $parent[UserControl].DataContext.JoinProjectCommand}"
-                                            CommandParameter="{Binding}"
-                                            IsVisible="{Binding CanJoin}"/>
-                                    <Button Classes="approve-button"
-                                            Content="✓ Подтвердить"
-                                            Command="{Binding $parent[UserControl].DataContext.ApproveProjectCommand}"
-                                            CommandParameter="{Binding}"
-                                            IsVisible="{Binding CanApprove}"/>
-                                </StackPanel>
-                                
-                                <!-- Строка 1: Дедлайн и баллы -->
-                                <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Spacing="24" Margin="0,12,0,0">
-                                    <StackPanel Orientation="Horizontal" Spacing="6">
-                                        <TextBlock Text="📅" FontSize="14"/>
-                                        <TextBlock Text="Дедлайн:" FontSize="13" Foreground="#5F6368"/>
-                                        <TextBlock Text="{Binding EndDate}" FontSize="13" FontWeight="SemiBold" Foreground="#EA4335"/>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal" Spacing="6">
+                                </Grid>
+
+                                <!-- Info row -->
+                                <Grid ColumnDefinitions="Auto,Auto,*" ColumnSpacing="20">
+                                    <TextBlock Text="{Binding EndDate}" FontSize="13" Foreground="#5F6368" VerticalAlignment="Center"/>
+                                    
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="4" VerticalAlignment="Center">
                                         <TextBlock Text="⭐" FontSize="14"/>
-                                        <TextBlock Text="Макс. баллов:" FontSize="13" Foreground="#5F6368"/>
                                         <TextBlock Text="{Binding MaxPoints}" FontSize="13" FontWeight="SemiBold" Foreground="#1A73E8"/>
+                                        <TextBlock Text="баллов" FontSize="12" Foreground="#5F6368"/>
                                     </StackPanel>
+
+                                    <!-- Leader (кликабельный) -->
+                                    <Button Grid.Column="2"
+                                            Command="{Binding #Root.DataContext.OpenLeaderProfileCommand}"
+                                            CommandParameter="{Binding LeaderId}"
+                                            Background="Transparent"
+                                            Padding="0"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Cursor="Hand">
+                                        <StackPanel Orientation="Horizontal" Spacing="8">
+                                            <Border Classes="leader-avatar">
+                                                <TextBlock Text="{Binding LeaderInitials}" FontSize="13" FontWeight="Bold"
+                                                           Foreground="#1A73E8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <StackPanel VerticalAlignment="Center">
+                                                <TextBlock Text="Руководитель" FontSize="10" Foreground="#9AA0A6"/>
+                                                <TextBlock Text="{Binding LeaderName}" FontSize="13" FontWeight="SemiBold" Foreground="#202124"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Button>
+                                </Grid>
+
+                                <!-- Progress -->
+                                <StackPanel Spacing="4" IsVisible="{Binding ShowProgress}">
+                                    <ProgressBar Value="{Binding ProgressPercent}" Height="6" MinHeight="6" CornerRadius="3"/>
+                                    <TextBlock Text="{Binding ProgressText}" FontSize="12" Foreground="#5F6368"/>
                                 </StackPanel>
-                                
-                                <!-- Строка 2: Описание -->
-                                <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding ShortDescription}" 
-                                           FontSize="13" Foreground="#5F6368" TextWrapping="Wrap"
-                                           Margin="0,8,0,0"/>
-                                
-                                <!-- Строка 3: Прогресс (только для моих проектов) -->
-                                <StackPanel Grid.Row="3" Grid.Column="0" Margin="0,12,0,0" 
-                                            IsVisible="{Binding ShowProgress}">
-                                    <TextBlock Text="{Binding ProgressText}" FontSize="12" Foreground="#5F6368" Margin="0,0,0,4"/>
-                                    <ProgressBar Value="{Binding ProgressPercent}" Maximum="100" Height="6" CornerRadius="3">
-                                        <ProgressBar.Styles>
-                                            <Style Selector="ProgressBar">
-                                                <Setter Property="Background" Value="#E8F0FE"/>
-                                                <Setter Property="Foreground" Value="#1A73E8"/>
-                                            </Style>
-                                        </ProgressBar.Styles>
-                                    </ProgressBar>
+
+                                <!-- Request status (если заявка отправлена) -->
+                                <Border Background="{Binding RequestStatusColor}"
+                                        CornerRadius="8"
+                                        Padding="10,6"
+                                        IsVisible="{Binding IsPending}">
+                                    <TextBlock Text="{Binding RequestStatusText}" FontSize="13" FontWeight="SemiBold" Foreground="White"/>
+                                </Border>
+
+                                <!-- Actions -->
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                           <Button Classes="action-button" Content="📤 Заявка"
+                                            Command="{Binding #Root.DataContext.SendRequestCommand}"
+                                            CommandParameter="{Binding}"
+                                            IsVisible="{Binding CanSendRequest}"/>
+
+                                    <Button Background="#F0F0F0" Foreground="#5F6368" Content="👥 Участники"
+                                            Command="{Binding #Root.DataContext.ToggleParticipantsCommand}"
+                                            CommandParameter="{Binding}"
+                                            Padding="12,8" CornerRadius="8" Cursor="Hand"
+                                            IsVisible="{Binding ShowParticipants}"/>
+
+                                    <!-- Закрыть проект (только админ) -->
+                                    <Button Background="#EA4335" Foreground="White" Content="Закрыть"
+                                            Command="{Binding #Root.DataContext.CloseProjectCommand}"
+                                            CommandParameter="{Binding}"
+                                            Padding="12,8" CornerRadius="8" Cursor="Hand"
+                                            IsVisible="{Binding CanCloseProject}"/>
                                 </StackPanel>
+
+                             <!-- Participants Panel (отображается при нажатии "Участники") -->
+<Border Background="#F8F9FA" CornerRadius="12" Padding="16" Margin="0,4,0,0"
+        IsVisible="{Binding IsParticipantsExpanded}">
+    <StackPanel Spacing="10">
+        <TextBlock Text="Участники проекта" FontSize="14" FontWeight="SemiBold" Foreground="#202124"/>
+
+        <ItemsControl ItemsSource="{Binding Participants}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="White" CornerRadius="8" Padding="12" Margin="0,0,0,8">
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                            
+                            <Button Command="{Binding #Root.DataContext.OpenUserProfileCommand}"
+                                    CommandParameter="{Binding UserId}"
+                                    Background="Transparent" Padding="0" VerticalAlignment="Center" Cursor="Hand">
+                                <Border Width="32" Height="32" CornerRadius="16" Background="#F0F0F0">
+                                    <TextBlock Text="{Binding Initials}" FontSize="12" FontWeight="Bold"
+                                               Foreground="#5F6368" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </Button>
+
+                            <TextBlock Grid.Column="1" Text="{Binding FullName}" FontSize="14" FontWeight="SemiBold" Foreground="#202124" VerticalAlignment="Center"/>
+
+                            <!-- Кнопки управления – поднимаемся к ProjectItem, чтобы взять CanManageParticipants -->
+                           <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4" VerticalAlignment="Center"
+                                        IsVisible="{Binding CanManageParticipants}">
                                 
-                                <!-- Строка 4: Участники (только для создателя и админа) -->
-                                <StackPanel Grid.Row="4" Grid.Column="0" Margin="0,12,0,0"
-                                            IsVisible="{Binding ShowParticipants}">
-                                    <TextBlock Text="👥 Участники:" FontSize="12" Foreground="#5F6368" Margin="0,0,0,8"/>
-                                    <ItemsControl ItemsSource="{Binding Participants}">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <Button Command="{Binding $parent[UserControl].DataContext.OpenProfileCommand}"
-                                                        CommandParameter="{Binding UserId}"
-                                                        Background="Transparent" BorderThickness="0" Cursor="Hand"
-                                                        Margin="0,2">
-                                                    <StackPanel Orientation="Horizontal" Spacing="8">
-                                                        <Border Width="32" Height="32" CornerRadius="16" Background="#E8F0FE">
-                                                            <TextBlock Text="{Binding Initials}" FontSize="12" 
-                                                                       Foreground="#1A73E8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                        </Border>
-                                                        <TextBlock Text="{Binding FullName}" FontSize="13" Foreground="#202124"/>
-                                                        <TextBlock FontSize="11" Foreground="#1A73E8">
-                                                            <Run Text="{Binding Points}"/>
-                                                            <Run Text=" баллов"/>
-                                                        </TextBlock>
-                                                    </StackPanel>
-                                                </Button>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </StackPanel>
-                                
-                            </Grid>
+                                <Button Background="#34A853" Foreground="White" Content="✓" Padding="8,6" CornerRadius="6" FontSize="12" Cursor="Hand"
+                                        Command="{Binding #Root.DataContext.AcceptUserCommand}"
+                                        CommandParameter="{Binding}" IsVisible="{Binding IsPending}"/>
+
+                                <Button Background="#FB8C00" Foreground="White" Content="✗" Padding="8,6" CornerRadius="6" FontSize="12" Cursor="Hand"
+                                        Command="{Binding #Root.DataContext.RejectUserCommand}"
+                                        CommandParameter="{Binding}" IsVisible="{Binding IsPending}"/>
+
+                                <Button Background="#EA4335" Foreground="White" Content="🗑" Padding="8,6" CornerRadius="6" FontSize="12" Cursor="Hand"
+                                        Command="{Binding #Root.DataContext.KickUserCommand}"
+                                        CommandParameter="{Binding}" IsVisible="{Binding IsApproved}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+    </StackPanel>
+</Border>
+                            </StackPanel>
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            
-            <TextBlock Text="Нет проектов" 
-                       HorizontalAlignment="Center" 
-                       Foreground="#5F6368" 
-                       IsVisible="{Binding Projects, Converter={StaticResource IsEmptyConverter}}"/>
-            
+
         </StackPanel>
     </ScrollViewer>
 </UserControl>
