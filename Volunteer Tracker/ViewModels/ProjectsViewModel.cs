@@ -124,6 +124,7 @@ namespace Volunteer_Tracker.ViewModels
                     Id = p.Id,
                     Title = p.Title,
                     ShortDescription = p.ShortDescription ?? (p.Description?.Length > 100 ? p.Description.Substring(0, 100) + "..." : p.Description),
+                    FullDescription = p.Description,
                     EndDate = p.EndDate.ToString("dd.MM.yyyy"),
                     MaxPoints = p.MaxPoints ?? 100,
                     Status = GetStatusText(p),
@@ -187,6 +188,7 @@ namespace Volunteer_Tracker.ViewModels
                     Id = project.Id,
                     Title = project.Title,
                     ShortDescription = project.ShortDescription ?? (project.Description?.Length > 100 ? project.Description.Substring(0, 100) + "..." : project.Description),
+                    FullDescription = project.Description,
                     EndDate = project.EndDate.ToString("dd.MM.yyyy"),
                     MaxPoints = project.MaxPoints ?? 100,
                     PointsEarned = pa.PointsEarned ?? 0,
@@ -233,6 +235,7 @@ namespace Volunteer_Tracker.ViewModels
                         Id = p.Id,
                         Title = p.Title,
                         ShortDescription = p.ShortDescription ?? (p.Description?.Length > 100 ? p.Description.Substring(0, 100) + "..." : p.Description),
+                        FullDescription = p.Description,
                         EndDate = p.EndDate.ToString("dd.MM.yyyy"),
                         MaxPoints = p.MaxPoints ?? 100,
                         Status = GetStatusText(p),
@@ -600,6 +603,12 @@ namespace Volunteer_Tracker.ViewModels
         }
 
         [RelayCommand]
+        private void ToggleFullDescription(ProjectItem project)
+        {
+            project.IsFullDescriptionExpanded = !project.IsFullDescriptionExpanded;
+        }
+
+        [RelayCommand]
         private async Task SwitchToMyProjects()
         {
             IsAvailableSelected = false;
@@ -657,7 +666,14 @@ namespace Volunteer_Tracker.ViewModels
         public int LeaderId { get; set; }
         public string LeaderName { get; set; } = string.Empty;
         public string LeaderInitials { get; set; } = string.Empty;
+
+        public string? FullDescription { get; set; }
+
+        [ObservableProperty]
+        private bool isFullDescriptionExpanded;
     }
+
+
 
     public class ParticipantItem
     {
@@ -690,4 +706,6 @@ namespace Volunteer_Tracker.ViewModels
         public bool IsRejected => Status == "rejected";
         public string JoinedDate => JoinedAt?.ToString("dd.MM.yyyy") ?? "";
     }
+
+
 }

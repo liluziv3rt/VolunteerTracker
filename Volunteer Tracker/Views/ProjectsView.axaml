@@ -88,7 +88,29 @@
                                 <Grid ColumnDefinitions="*,Auto">
                                     <StackPanel VerticalAlignment="Center">
                                         <TextBlock Text="{Binding Title}" FontSize="18" FontWeight="SemiBold" Foreground="#202124"/>
-                                        <TextBlock Text="{Binding ShortDescription}" FontSize="13" Foreground="#5F6368" TextWrapping="Wrap" MaxLines="2"/>
+                                        <!-- Описание проекта -->
+                                            <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,8,0,0">
+                                                <TextBlock Text="{Binding ShortDescription}" 
+                                                           FontSize="13" Foreground="#5F6368" TextWrapping="Wrap"
+                                                           IsVisible="{Binding ShortDescription, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+    
+                                                <!-- Кнопка "Подробнее" для полного описания -->
+                                                <Button Content="Подробнее"
+                                                        Command="{Binding #Root.DataContext.ToggleFullDescriptionCommand}"
+                                                        CommandParameter="{Binding}"
+                                                        Background="Transparent"
+                                                        Foreground="#1A73E8"
+                                                        BorderThickness="0"
+                                                        Padding="0,4,0,0"
+                                                        Cursor="Hand"
+                                                        IsVisible="{Binding FullDescription, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+    
+                                                <!-- Полное описание (раскрывается) -->
+                                                <Border Background="#F8F9FA" CornerRadius="8" Padding="12" Margin="0,8,0,0"
+                                                        IsVisible="{Binding IsFullDescriptionExpanded}">
+                                                    <TextBlock Text="{Binding FullDescription}" FontSize="13" Foreground="#202124" TextWrapping="Wrap"/>
+                                                </Border>
+                                            </StackPanel>
                                     </StackPanel>
                                     <Border Grid.Column="1"
                                             Background="{Binding StatusColor}"
