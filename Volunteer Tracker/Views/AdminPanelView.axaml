@@ -116,12 +116,16 @@
             <StackPanel>
                 <!-- Пользователи -->
                 <StackPanel IsVisible="{Binding IsUsersTabSelected}" Spacing="16">
-                    <TextBlock Text="Управление пользователями" 
-                               FontSize="18" FontWeight="SemiBold" 
-                               Foreground="#202124"/>
+    <TextBlock Text="Управление пользователями" 
+               FontSize="18" FontWeight="SemiBold" 
+               Foreground="#202124"/>
 
-                    <ScrollViewer Height="450">
-                        <ItemsControl ItemsSource="{Binding Users}">
+    <TextBox Watermark="🔍 Поиск по имени, email или группе..."
+             Text="{Binding UserSearchText, Mode=TwoWay}"
+             Margin="0,0,0,16"/>
+
+    <ScrollViewer Height="450">
+        <ItemsControl ItemsSource="{Binding FilteredUsers}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border Background="#F8F9FA" CornerRadius="10" Padding="12" Margin="0,0,0,8">

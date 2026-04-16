@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Volunteer Tracker")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7c55de0cb4b3b7bbbb45f15a1f483f10d5453a3b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e05cb851d77d7ccfd762ee60dc54a84373606b43")]
 [assembly: System.Reflection.AssemblyProductAttribute("Volunteer Tracker")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Volunteer Tracker")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
